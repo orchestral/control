@@ -1,0 +1,8 @@
+{
+	"name": "Control",
+	"description": "Orchestra Platform Control Extension",
+	"author": "Mior Muhammad Zaki",
+	"url": "https://github.com/orchestral/control",
+	"version": "2.0.0",
+	"provide": []
+}

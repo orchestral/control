@@ -1,0 +1,30 @@
+{
+	"name": "orchestra/control",
+	"description": "Orchestra Platform Control Extension",
+	"license": "MIT",
+	"keywords": ["orchestra-platform", "laravel", "rbac", "timezone", "theme"],
+	"authors": [
+		{
+			"name": "Mior Muhammad Zaki",
+			"email": "crynobone@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-0": { 
+			"Orchestra\\Control" : "src/" 
+		}
+	},
+	"require": {
+		"php": ">=5.3.3",
+		"orchestra/support": "2.0.*"
+	},
+	"require-dev": {
+		"mockery/mockery": "0.8.0"
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "2.0.x-dev"
+		}
+	},
+	"minimum-stability": "dev"
+}
