@@ -1,12 +1,12 @@
 @section('orchestra/control::primary_menu')
-<ul class="nav">
+<ul class="nav navbar-nav">
 	@if (Orchestra\App::acl()->can('manage-roles'))
-	<li class="{{ URI::is('*/resources/control.roles*') ? 'active' : '' }}">
+	<li class="{{ Request::is('*/resources/control.roles*') ? 'active' : '' }}">
 		{{ HTML::link(handles('orchestra::resources/control.roles'), 'Roles') }}
 	</li>
 	@endif
 	@if (Orchestra\App::acl()->can('manage-acl'))
-	<li class="{{ URI::is('*/resources/control.acls*') ? 'active' : '' }}">
+	<li class="{{ Request::is('*/resources/control.acls*') ? 'active' : '' }}">
 		{{ HTML::link(handles('orchestra::resources/control.acls'), 'ACL') }}
 	</li>
 	@endif
@@ -16,10 +16,12 @@
 <?php
 
 $navbar = new Illuminate\Support\Fluent(array(
-	'id'           => 'control',
-	'title'        => 'Control',
-	'url'          => handles('orchestra::resources/control'),
-	'primary_menu' => View::yieldContent('orchestra/control::primary_menu'),
+	'id'    => 'control',
+	'title' => 'Control',
+	'url'   => handles('orchestra/foundation::resources/control'),
+	'menu'  => View::yieldContent('orchestra/control::primary_menu'),
 )); ?>
 
 @decorator('navbar', $navbar)
+
+<br>
