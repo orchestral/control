@@ -1,5 +1,7 @@
 <?php namespace Orchestra\Control\Routing;
 
+use Illuminate\Support\Facades\View;
+
 class HomeController extends BaseController {
 	
 	/**
@@ -8,7 +10,7 @@ class HomeController extends BaseController {
 	 * @access public
 	 * @return Response
 	 */
-	public function index()
+	public function getIndex()
 	{
 		return View::make('orchestra/control::home');
 	}
