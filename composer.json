@@ -14,7 +14,8 @@
 			"Orchestra\\Control" : "src/" 
 		},
 		"classmap": [
-			"src/controllers"
+			"src/controllers",
+			"src/services"
 		]
 	},
 	"require": {
