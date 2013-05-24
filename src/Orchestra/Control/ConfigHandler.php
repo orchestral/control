@@ -1,5 +1,7 @@
 <?php namespace Orchestra\Control;
 
+use Orchestra\Support\Facades\App;
+
 class ConfigHandler {
 	
 	/**
@@ -34,14 +36,16 @@ class ConfigHandler {
 	}
 
 	/**
-	 * Handle `orchestra.saving: extension.orchestra/control` event.
+	 * Handle `orchestra.saved: extension.orchestra/control` event.
 	 *
 	 * @access public
 	 * @param  array    $input
 	 * @return void
 	 */
-	public function onSaving($input)
+	public function onSaved($input)
 	{
-		$input['localtime'] = ($input['localtime'] === 'yes');
+		$localtime = ($input['localtime'] === 'yes');
+
+		App::memory()->put("extension_orchestra/control.localtime", $localtime);
 	}
 }

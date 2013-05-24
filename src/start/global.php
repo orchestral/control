@@ -5,4 +5,4 @@ Orchestra\Config::map('orchestra/control', array(
 ));
 
 Event::listen('orchestra.form: extension.orchestra/control', 'Orchestra\Control\ConfigHandler@onViewForm');
-Event::listen('orchestra.saving: extension.orchestra/control', 'Orchestra\Control\ConfigHandler@onSaving');
+Event::listen('orchestra.saved: extension.orchestra/control', 'Orchestra\Control\ConfigHandler@onSaved');
