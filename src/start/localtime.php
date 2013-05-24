@@ -2,6 +2,8 @@
 
 Event::listen('orchestra.form: user.account', function ($user, $form)
 {
+	if (false === Config::get('orchestra/control::localtime.enable', false)) return;
+
 	$form->extend(function ($form)
 	{
 		$form->fieldset('Timezone', function ($fieldset)
@@ -23,6 +25,8 @@ Event::listen('orchestra.form: user.account', function ($user, $form)
 
 Event::listen('orchestra.saved: user.account', function ($user)
 {
+	if (false === Config::get('orchestra/control::localtime.enable', false)) return;
+	
 	$userId   = $user->id;
 	$userMeta = Orchestra\Memory::make('user');
 
