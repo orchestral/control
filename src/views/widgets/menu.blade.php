@@ -2,12 +2,12 @@
 <ul class="nav navbar-nav">
 	@if (Orchestra\App::acl()->can('manage-roles'))
 	<li class="{{ Request::is('*/resources/control.roles*') ? 'active' : '' }}">
-		{{ HTML::link(handles('orchestra::resources/control.roles'), 'Roles') }}
+		{{ HTML::link(handles('orchestra/foundation::resources/control.roles'), 'Roles') }}
 	</li>
 	@endif
 	@if (Orchestra\App::acl()->can('manage-acl'))
 	<li class="{{ Request::is('*/resources/control.acls*') ? 'active' : '' }}">
-		{{ HTML::link(handles('orchestra::resources/control.acls'), 'ACL') }}
+		{{ HTML::link(handles('orchestra/foundation::resources/control.acls'), 'ACL') }}
 	</li>
 	@endif
 </ul>
