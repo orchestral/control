@@ -2,7 +2,7 @@
 
 use Orchestra\Support\Facades\App;
 
-class ConfigHandler {
+class ExtensionConfigHandler {
 	
 	/**
 	 * Handle `orchestra.form: extension.orchestra/control` event.
