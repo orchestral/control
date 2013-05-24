@@ -23,18 +23,22 @@ class RolePresenter {
 			$table->with($model);
 
 			// Add columns
-			$table->column('name', trans('orchestra::label.name'));
+			$table->column('name', trans('orchestra/foundation::label.name'));
 			$table->column('action', function ($column)
 			{
 				$column->label('');
 				$column->escape(false);
-				$column->attributes(array('class' => 'th-action'));
+				$column->attributes(function ()
+				{
+					return array('class' => 'th-action');
+				});
+
 				$column->value(function ($row)
 				{
 					$html = array(
 						HTML::link(
 							handles("orchestra/foundation::resources/authorize.roles/{$row->id}/edit"),
-							trans('orchestra::label.edit'),
+							trans('orchestra/foundation::label.edit'),
 							array('class' => 'btn btn-mini btn-warning')
 						)
 					);
@@ -48,7 +52,7 @@ class RolePresenter {
 					{
 						$html[] = HTML::link(
 							handles("orchestra/foundation::resources/authorize.roles/{$row->id}/delete"),
-							trans('orchestra::label.delete'),
+							trans('orchestra/foundation::label.delete'),
 							array('class' => 'btn btn-mini btn-danger')
 						);
 					}
