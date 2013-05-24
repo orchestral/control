@@ -1,5 +1,10 @@
 <?php namespace Orchestra\Control\Timezone;
 
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Input;
+use Orchestra\Control\Timezone;
+use Orchestra\Support\Facades\Memory;
+
 class UserHandler {
 
 	/**
@@ -20,14 +25,14 @@ class UserHandler {
 			{
 				$fieldset->control('select', 'meta_timezone', function ($control)
 				{
-					$control->label   = 'Timezone';
-					$control->options = Orchestra\Control\Timezone::lists();
-					$control->value   = function ($row)
+					$control->label('Timezone');
+					$control->options(Timezone::lists());
+					$control->value(function ($row)
 					{
-						$userMeta = Orchestra\Memory::make('user');
+						$userMeta = Memory::make('user');
 
 						return $userMeta->get("timezone.{$row->id}", Config::get('app.timezone'));
-					};
+					});
 				});
 			});
 		});
@@ -45,7 +50,7 @@ class UserHandler {
 		if (false === Config::get('orchestra/control::localtime.enable', false)) return;
 
 		$userId   = $user->id;
-		$userMeta = Orchestra\Memory::make('user');
+		$userMeta = Memory::make('user');
 
 		$userMeta->put("timezone.{$userId}", Input::get('meta_timezone'));
 	}
