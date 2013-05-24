@@ -1,7 +1,15 @@
-<?php namespace Orchestra\Control\Timezone;
+<?php namespace Orchestra\Control;
 
 class ConfigHandler {
 	
+	/**
+	 * Handle `orchestra.form: extension.orchestra/control` event.
+	 *
+	 * @access public
+	 * @param  Orchestra\Model\User             $model
+	 * @param  Orchestra\Html\Form\FormBuilder  $form
+	 * @return void
+	 */
 	public function onViewForm($model, $form)
 	{
 		$form->extend(function ($form)
@@ -23,5 +31,17 @@ class ConfigHandler {
 				});
 			});
 		});
+	}
+
+	/**
+	 * Handle `orchestra.saving: extension.orchestra/control` event.
+	 *
+	 * @access public
+	 * @param  array    $input
+	 * @return void
+	 */
+	public function onSaving($input)
+	{
+		$input['localtime'] = ($input['localtime'] === 'yes');
 	}
 }
