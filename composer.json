@@ -12,7 +12,10 @@
 	"autoload": {
 		"psr-0": { 
 			"Orchestra\\Control" : "src/" 
-		}
+		},
+		"classmap": [
+			"src/controllers"
+		]
 	},
 	"require": {
 		"php": ">=5.3.3",
