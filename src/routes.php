@@ -2,12 +2,13 @@
 
 $control = Orchestra\Resources::make('control', array(
 	'name'       => 'Control',
-	'uses'       => 'resource:Orchestra\Control\Routing\RolesController',
+	'uses'       => 'restful:Orchestra\Control\Routing\HomeController',
 	'visibility' => function ()
 	{
 		return Orchestra\App::acl()->can('manage user');
 	}
 ));
 
+$control['roles'] = 'resource:Orchestra\Control\Routing\RolesController';
 $control['acl']   = 'restful:Orchestra\Control\Routing\AclController';
-// $control['theme'] = 'restful:Orchestra\Control\Routing\ThemesController';
+$control['theme'] = 'restful:Orchestra\Control\Routing\ThemesController';
