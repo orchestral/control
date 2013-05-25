@@ -69,16 +69,27 @@ class RolePresenter {
 	 * @static
 	 * @access public
 	 * @param  Orchestra\Model\Role $model
+	 * @param  string               $type
 	 * @return Orchestra\Html\Form\FormBuilder
 	 */
-	public static function form($model)
+	public static function form($model, $type = 'create')
 	{
-		return Form::of('control.roles', function ($form) use ($model)
+		return Form::of('control.roles', function ($form) use ($model, $type)
 		{
 			$form->row($model);
+
+			$url    = "orchestra/foundation::resources/authorize.roles";
+			$method = 'POST';
+
+			if ($type === 'update')
+			{
+				$url    = "orchestra/foundation::resources/authorize.roles/{$model->id}";
+				$method = 'PUT';
+			}
+
 			$form->attributes(array(
-				'url'    => handles("orchestra/foundation::resources/authorize.roles/{$model->id}"),
-				'method' => 'POST',
+				'url'    => handles($url),
+				'method' => $method,
 			));
 
 			$form->fieldset(function ($fieldset)
