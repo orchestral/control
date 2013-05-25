@@ -37,7 +37,7 @@ class RolePresenter {
 				{
 					$html = array(
 						HTML::link(
-							handles("orchestra/foundation::resources/authorize.roles/{$row->id}/edit"),
+							handles("orchestra/foundation::resources/control.roles/{$row->id}/edit"),
 							trans('orchestra/foundation::label.edit'),
 							array('class' => 'btn btn-mini btn-warning')
 						)
@@ -51,7 +51,7 @@ class RolePresenter {
 					if ( ! in_array((int) $row->id, $roles))
 					{
 						$html[] = HTML::link(
-							handles("orchestra/foundation::resources/authorize.roles/{$row->id}/delete"),
+							handles("orchestra/foundation::resources/control.roles/{$row->id}/delete"),
 							trans('orchestra/foundation::label.delete'),
 							array('class' => 'btn btn-mini btn-danger')
 						);
@@ -78,12 +78,12 @@ class RolePresenter {
 		{
 			$form->row($model);
 
-			$url    = "orchestra/foundation::resources/authorize.roles";
+			$url    = "orchestra/foundation::resources/control.roles";
 			$method = 'POST';
 
 			if ($type === 'update')
 			{
-				$url    = "orchestra/foundation::resources/authorize.roles/{$model->id}";
+				$url    = "orchestra/foundation::resources/control.roles/{$model->id}";
 				$method = 'PUT';
 			}
 
@@ -96,7 +96,7 @@ class RolePresenter {
 			{
 				$fieldset->control('input:text', 'name', function ($control)
 				{
-					$control->label(trans('authorize::label.name'));
+					$control->label(trans('orchestra/control::label.name'));
 				});
 			});
 		});
