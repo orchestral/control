@@ -11,6 +11,7 @@ use Orchestra\Site;
 use Orchestra\Model\Role;
 
 class RolesController extends BaseController {
+	
 	/**
 	 * Define the filters.
 	 *
@@ -213,6 +214,6 @@ class RolesController extends BaseController {
 			)));
 		}
 
-		return Redirect::to(handles('orchestra/foundation::users'));
+		return Redirect::to(handles('orchestra/foundation::resources/control.roles'));
 	}
 }
