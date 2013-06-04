@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
+use Orchestra\Model\Role;
 use Orchestra\Support\Facades\App;
 use Orchestra\Support\Facades\Acl;
 use Orchestra\Support\Facades\Messages;
