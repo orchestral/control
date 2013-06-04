@@ -6,8 +6,8 @@
 	</li>
 	@endif
 	@if (Orchestra\App::acl()->can('manage-acl'))
-	<li class="{{ Request::is('*/resources/control.acls*') ? 'active' : '' }}">
-		{{ HTML::link(handles('orchestra/foundation::resources/control.acls'), 'ACL') }}
+	<li class="{{ Request::is('*/resources/control.acl*') ? 'active' : '' }}">
+		{{ HTML::link(handles('orchestra/foundation::resources/control.acl'), 'ACL') }}
 	</li>
 	@endif
 </ul>

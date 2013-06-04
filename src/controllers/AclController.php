@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\View;
 use Orchestra\Support\Facades\App;
 use Orchestra\Support\Facades\Acl;
 use Orchestra\Support\Facades\Site;
+use Orchestra\Support\Str;
 
 class AclController extends BaseController {
 
