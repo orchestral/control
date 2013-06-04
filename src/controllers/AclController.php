@@ -59,6 +59,39 @@ class AclController extends BaseController {
 	}
 
 	/**
+	 * Update ACL metric
+	 *
+	 * @access public
+	 * @return Response
+	 */
+	public function postIndex()
+	{
+		$metric    = Input::get('metric');
+		$instances = Acl::all();
+		         
+		if (is_null($metric) or ! isset($instances[$metric])) return App::abort(404);
+
+		$acl = $instances[$metric];
+
+		foreach ($acl->roles()->get() as $roleKey => $roleName)
+		{
+			foreach($acl->actions()->get() as $actionKey => $actionName)
+			{
+				$input = ('yes' === Input::get("acl-{$roleKey}-{$actionKey}", 'no'));
+
+				$acl->allow($roleName, $actionName, $input);
+			}
+		}
+
+		$admin = Role::admin();
+		$acl->allow($admin->name, array('Manage Users', 'Manage Orchestra', 'Manage Roles', 'Manage Acl'));
+
+		Messages::add('success', trans('orchestra/control::response.acls.update'));
+
+		return Redirect::to(handles("orchestra/foundation::resources/control.acl?name={$metric}"));
+	}
+
+	/**
 	 * Get sync roles action.
 	 *
 	 * @access public
@@ -82,6 +115,6 @@ class AclController extends BaseController {
 			'name' => Str::humanize($name),
 		)));
 
-		return Redirect::to(handles("orchestra/foundation::resources/control.acls?name={$name}"));
+		return Redirect::to(handles("orchestra/foundation::resources/control.acl?name={$name}"));
 	}
 }
