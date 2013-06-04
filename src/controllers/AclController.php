@@ -109,7 +109,7 @@ class AclController extends BaseController {
 
 		foreach (Role::all() as $role) $roles[] = $role->name;
 
-		$current->roles()->add($roles);
+		$current->roles()->fill($roles);
 		
 		Messages::add('success', trans('orchestra/control::response.acls.sync-roles', array(
 			'name' => Str::humanize($name),
