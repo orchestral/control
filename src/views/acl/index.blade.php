@@ -21,7 +21,7 @@
 				<div class="accordion-heading">
 					<a class="accordion-toggle" data-toggle="collapse" 
 						data-parent="#acl-accordion" href="#collapse{{ $roleKey }}">
-						{{ $roleName }}
+						{{ Orchestra\Support\Str::humanize($roleName) }}
 					</a>
 				</div>
 				<div id="collapse{{ $roleKey }}" class="accordion-body collapse in">
@@ -29,7 +29,7 @@
 						@foreach($eloquent->actions()->get() as $actionKey => $actionName)
 							<label for="acl-{{ $roleKey }}-{{ $actionKey }}" class="checkbox-inline">
 								{{ Form::checkbox("acl-{$roleKey}-{$actionKey}", 'yes', $eloquent->check($roleName, $actionName), array('id' => "acl-{$roleKey}-{$actionKey}")) }}
-								{{ $actionName }}&nbsp;&nbsp;&nbsp;
+								{{ Orchestra\Support\Str::humanize($actionName) }}&nbsp;&nbsp;&nbsp;
 							</label>
 						@endforeach
 					</div>
