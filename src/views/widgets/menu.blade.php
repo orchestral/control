@@ -11,7 +11,7 @@
 	</li>
 	@endif
 </ul>
-@endsection
+@stop
 
 <?php
 
