@@ -9,7 +9,7 @@ class RoleValidation extends Validator {
 	 *
 	 * @var array
 	 */
-	protected static $rules = array(
+	protected $rules = array(
 		'name' => array('required'),
 	);
 
@@ -21,7 +21,7 @@ class RoleValidation extends Validator {
 	 */
 	protected function onCreate()
 	{
-		static::$rules['name'][] = 'unique:roles,name';
+		$this->rules['name'][] = 'unique:roles,name';
 	}
 
 	/**
@@ -32,6 +32,6 @@ class RoleValidation extends Validator {
 	 */
 	protected function onUpdate()
 	{
-		static::$rules['name'][] = 'unique:roles,name,{roleID}';
+		$this->rules['name'][] = 'unique:roles,name,{roleID}';
 	}
 }
