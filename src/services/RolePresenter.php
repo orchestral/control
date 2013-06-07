@@ -92,6 +92,8 @@ class RolePresenter {
 				'method' => $method,
 			));
 
+			$form->hidden('id');
+
 			$form->fieldset(function ($fieldset)
 			{
 				$fieldset->control('input:text', 'name', function ($control)
