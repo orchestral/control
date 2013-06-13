@@ -17,7 +17,7 @@ use Orchestra\Support\Facades\App; ?>
 	endif;
 	if (App::acl()->can('manage-acl')) : ?>
 	<li class="<?php echo Request::is('*/resources/control.acl*') ? 'active' : ''; ?>">
-		<?php echo HTML::link(handles('orchestra/foundation::resources/control.acl'), 'ACL') }}
+		<?php echo HTML::link(handles('orchestra/foundation::resources/control.acl'), 'ACL'); ?>
 	</li>
 	<?php endif; ?>
 </ul>
