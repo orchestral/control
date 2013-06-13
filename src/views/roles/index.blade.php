@@ -1,7 +1,9 @@
 @include('orchestra/control::widgets.menu')
 
+<?php use Orchestra\Support\Facades\Site; ?>
+
 <div class="row-fluid">
-	<?php Orchestra\Site::set('header::add-button', true); ?>
+	<?php Site::set('header::add-button', true); ?>
 	@include('orchestra/foundation::layout.widgets.header')
-	{{ $table }}
+	<?php echo $table; ?>
 </div>

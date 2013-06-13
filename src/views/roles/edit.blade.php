@@ -2,5 +2,5 @@
 
 <div class="row-fluid">
 	@include('orchestra/foundation::layout.widgets.header')
-	{{ $form }}
+	<?php echo $form; ?>
 </div>

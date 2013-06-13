@@ -1,47 +1,54 @@
 @include('orchestra/control::widgets.menu')
 
+<?php 
+
+use Illuminate\Support\Facades\Form;
+use Illuminate\Support\Facades\URL;
+use Orchestra\Support\Str; ?>
+
 <div class="row">
 	
 	@include('orchestra/foundation::layout.widgets.header')
 
 	<div class="navbar hidden-phone">
-		{{ Form::open(array('url' => URL::current(), 'method' => 'GET', 'class' => 'navbar-form')) }}
-			{{ Form::select('name', $lists, $selected, array('class' => '')) }}&nbsp;
-			<button type="submit" class="btn btn-primary">{{ trans('orchestra/foundation::label.submit') }}</button>
-		{{ Form::close() }}
+		<?php echo Form::open(array('url' => URL::current(), 'method' => 'GET', 'class' => 'navbar-form')); ?>
+			<?php echo Form::select('name', $lists, $selected, array('class' => '')); ?>&nbsp;
+			<button type="submit" class="btn btn-primary"><?php echo trans('orchestra/foundation::label.submit'); ?></button>
+		<?php echo Form::close(); ?>
 	</div>
 
 	<br>
 
-	{{ Form::open(array('url' => URL::current(), 'method' => 'POST')) }}
-		{{ Form::hidden('metric', $selected) }}
+	<?php echo Form::open(array('url' => URL::current(), 'method' => 'POST')); ?>
+		<?php echo Form::hidden('metric', $selected); ?>
 		<div class="accordion" id="acl-accordion">
-		@foreach ($eloquent->roles()->get() as $roleKey => $roleName)
+		
+		<?php foreach ($eloquent->roles()->get() as $roleKey => $roleName) : ?>
 			<div class="accordion-group">
 				<div class="accordion-heading">
 					<a class="accordion-toggle" data-toggle="collapse" 
-						data-parent="#acl-accordion" href="#collapse{{ $roleKey }}">
-						{{ Orchestra\Support\Str::humanize($roleName) }}
+						data-parent="#acl-accordion" href="#collapse<?php echo $roleKey; ?>">
+						<?php echo Str::humanize($roleName); ?>
 					</a>
 				</div>
-				<div id="collapse{{ $roleKey }}" class="accordion-body collapse in">
+				<div id="collapse<?php echo $roleKey; ?>" class="accordion-body collapse in">
 					<div class="accordion-inner">
-						@foreach($eloquent->actions()->get() as $actionKey => $actionName)
-							<label for="acl-{{ $roleKey }}-{{ $actionKey }}" class="checkbox-inline">
-								{{ Form::checkbox("acl-{$roleKey}-{$actionKey}", 'yes', $eloquent->check($roleName, $actionName), array('id' => "acl-{$roleKey}-{$actionKey}")) }}
-								{{ Orchestra\Support\Str::humanize($actionName) }}&nbsp;&nbsp;&nbsp;
+						<?php foreach($eloquent->actions()->get() as $actionKey => $actionName) : ?>
+							<label for="acl-<?php echo $roleKey; ?>-<?php echo $actionKey; ?>" class="checkbox-inline">
+								<?php echo Form::checkbox("acl-{$roleKey}-{$actionKey}", 'yes', $eloquent->check($roleName, $actionName), array('id' => "acl-{$roleKey}-{$actionKey}")); ?>
+								<?php echo Str::humanize($actionName); ?>&nbsp;&nbsp;&nbsp;
 							</label>
-						@endforeach
+						<?php endforeach; ?>
 					</div>
 				</div>
 			</div>
-		@endforeach
+		<?php endforeach; ?>
 		</div>
 		<div class="form-actions">
-			<button type="submit" class="btn btn-primary">{{ trans('orchestra/foundation::label.submit') }}</button>
-			<a href="{{ handles("orchestra/foundation::resources/control.acl/sync/{$selected}") }}" class="btn">
-				{{ trans('orchestra/control::label.sync-roles') }}
+			<button type="submit" class="btn btn-primary"><?php echo trans('orchestra/foundation::label.submit'); ?></button>
+			<a href="<?php echo handles("orchestra/foundation::resources/control.acl/sync/{$selected}"); ?>" class="btn">
+				<?php echo trans('orchestra/control::label.sync-roles'); ?>
 			</a>
 		</div>
-	{{ Form::close() }}
+	<?php echo Form::close(); ?>
 </div>
