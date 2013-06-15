@@ -83,8 +83,7 @@ class AclController extends BaseController {
 			}
 		}
 
-		$admin = Role::admin();
-		$acl->allow($admin->name, array('Manage Users', 'Manage Orchestra', 'Manage Roles', 'Manage Acl'));
+		$this->resyncAdminAccess();
 
 		Messages::add('success', trans('orchestra/control::response.acls.update'));
 
@@ -116,5 +115,19 @@ class AclController extends BaseController {
 		)));
 
 		return Redirect::to(handles("orchestra/foundation::resources/control.acl?name={$name}"));
+	}
+
+	/**
+	 * Re-sync administrator access control.
+	 *
+	 * @access protected
+	 * @return void
+	 */
+	protected function resyncAdminAccess()
+	{
+		$acl   = Acl::make('orchestra');
+		$admin = Role::admin();
+
+		$acl->allow($admin->name, array('Manage Users', 'Manage Orchestra', 'Manage Roles', 'Manage Acl'));
 	}
 }
