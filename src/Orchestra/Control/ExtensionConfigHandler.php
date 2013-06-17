@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Config;
 use Orchestra\Support\Facades\App;
+use Orchestra\Model\Role;
 
 class ExtensionConfigHandler {
 	
@@ -19,15 +20,17 @@ class ExtensionConfigHandler {
 		{
 			$form->fieldset('Role Configuration', function ($fieldset)
 			{
-				$fieldset->control('select', 'admin_role', function($control)
+				$roles = Role::lists('name', 'id');
+
+				$fieldset->control('select', 'admin_role', function($control) use ($roles)
 				{
 					$control->label(trans('orchestra/control::label.roles.admin'));
-					$control->options(Role::lists('name', 'id'));
+					$control->options($roles);
 				});
-				$fieldset->control('select', 'member_role', function($control)
+				$fieldset->control('select', 'member_role', function($control) use ($roles)
 				{
 					$control->label(trans('orchestra/control::label.roles.member'));
-					$control->options(Role::lists('name', 'id'));
+					$control->options($roles);
 				});
 
 			});

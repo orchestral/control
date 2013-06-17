@@ -1,6 +1,6 @@
 <?php namespace Orchestra\Control;
 
-use Orchestra\Support\Facades\App;
+use Orchestra\Support\Facades\Acl;
 use Orchestra\Model\Role;
 
 class Authorize {
