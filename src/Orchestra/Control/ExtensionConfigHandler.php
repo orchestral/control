@@ -1,5 +1,6 @@
 <?php namespace Orchestra\Control;
 
+use Illuminate\Support\Facades\Config;
 use Orchestra\Support\Facades\App;
 
 class ExtensionConfigHandler {
@@ -16,12 +17,27 @@ class ExtensionConfigHandler {
 	{
 		$form->extend(function ($form)
 		{
+			$form->fieldset('Role Configuration', function ($fieldset)
+			{
+				$fieldset->control('select', 'admin_role', function($control)
+				{
+					$control->label(trans('orchestra/control::label.roles.admin'));
+					$control->options(Role::lists('name', 'id'));
+				});
+				$fieldset->control('select', 'member_role', function($control)
+				{
+					$control->label(trans('orchestra/control::label.roles.member'));
+					$control->options(Role::lists('name', 'id'));
+				});
+
+			});
+
 			$form->fieldset('Timezone', function ($fieldset)
 			{
 				$fieldset->control('select', 'localtime', function($control)
 				{
 					$control->attributes(array('role' => 'switcher'));
-					$control->label('Enable Timezone');
+					$control->label(trans('orchestra/control::label.enable-timezone'));
 					$control->options(array(
 						'yes' => 'Yes',
 						'no'  => 'No',
@@ -45,6 +61,9 @@ class ExtensionConfigHandler {
 	public function onSaved($input)
 	{
 		$localtime = ($input['localtime'] === 'yes');
+
+		Config::set('orchestra/foundation::roles.admin', (int) $input['admin_role']);
+		Config::set('orchestra/foundation::roles.member', (int) $input['member_role']);
 
 		App::memory()->put("extension_orchestra/control.localtime", $localtime);
 	}

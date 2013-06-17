@@ -1,12 +1,13 @@
 <?php
 
 return array(
-	'name'       => 'Name',
-	'sync-roles' => 'Sync Roles',
+	'name'            => 'Name',
+	'sync-roles'      => 'Sync Roles',
+	'enable-timezone' => 'Enable Timezone',
 
 	'roles'      => array(
 		'configuration' => 'Role Configuration',
-		'default'       => 'Default Role',
+		'admin'         => 'Administrator Role',
 		'member'        => 'Member Role',
 	),
 );

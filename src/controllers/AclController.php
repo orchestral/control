@@ -3,11 +3,12 @@
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
-use Orchestra\Model\Role;
 use Orchestra\Support\Facades\App;
 use Orchestra\Support\Facades\Acl;
 use Orchestra\Support\Facades\Messages;
 use Orchestra\Support\Facades\Site;
+use Orchestra\Control\Authorize;
+use Orchestra\Model\Role;
 use Orchestra\Support\Str;
 
 class AclController extends BaseController {
@@ -83,7 +84,7 @@ class AclController extends BaseController {
 			}
 		}
 
-		$this->resyncAdminAccess();
+		Authorize::sync();
 
 		Messages::add('success', trans('orchestra/control::response.acls.update'));
 
@@ -115,19 +116,5 @@ class AclController extends BaseController {
 		)));
 
 		return Redirect::to(handles("orchestra/foundation::resources/control.acl?name={$name}"));
-	}
-
-	/**
-	 * Re-sync administrator access control.
-	 *
-	 * @access protected
-	 * @return void
-	 */
-	protected function resyncAdminAccess()
-	{
-		$acl   = Acl::make('orchestra');
-		$admin = Role::admin();
-
-		$acl->allow($admin->name, array('Manage Users', 'Manage Orchestra', 'Manage Roles', 'Manage Acl'));
 	}
 }
