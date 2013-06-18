@@ -88,7 +88,7 @@ class AclController extends BaseController {
 
 		Messages::add('success', trans('orchestra/control::response.acls.update'));
 
-		return Redirect::to(handles("orchestra/foundation::resources/control.acl?name={$metric}"));
+		return Redirect::to(resources("control.acl?name={$metric}"));
 	}
 
 	/**
@@ -115,6 +115,6 @@ class AclController extends BaseController {
 			'name' => Str::humanize($name),
 		)));
 
-		return Redirect::to(handles("orchestra/foundation::resources/control.acl?name={$name}"));
+		return Redirect::to(resources("control.acl?name={$name}"));
 	}
 }

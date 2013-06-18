@@ -46,6 +46,6 @@ class ThemesController extends BaseController {
 			'type' => Str::title($type),
 		)));
 
-		return Redirect::to(handles("orchestra/foundation::resources/control.themes/{$type}"));
+		return Redirect::to(resources("control.themes/index/{$type}"));
 	}
 }

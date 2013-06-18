@@ -96,7 +96,7 @@ class RolesController extends BaseController {
 
 		if ($validation->fails())
 		{
-			return Redirect::to(handles("orchestra/foundation::resources/control.roles/create"))
+			return Redirect::to(resources("control.roles/create"))
 					->withInput()
 					->withErrors($validation);
 		}
@@ -122,7 +122,7 @@ class RolesController extends BaseController {
 			)));
 		}
 
-		return Redirect::to(handles('orchestra/foundation::resources/control.roles'));
+		return Redirect::to(resources("control.roles"));
 	}
 
 	/**
@@ -144,7 +144,7 @@ class RolesController extends BaseController {
 
 		if ($validation->fails())
 		{
-			return Redirect::to(handles("orchestra/foundation::resources/control.roles/{$id}/edit"))
+			return Redirect::to(resources("control.roles/{$id}/edit"))
 					->withInput()
 					->withErrors($validation);
 		}
@@ -170,7 +170,7 @@ class RolesController extends BaseController {
 			)));
 		}
 
-		return Redirect::to(handles('orchestra/foundation::resources/control.roles'));
+		return Redirect::to(resources("control.roles"));
 	}
 
 	/**
@@ -214,6 +214,6 @@ class RolesController extends BaseController {
 			)));
 		}
 
-		return Redirect::to(handles('orchestra/foundation::resources/control.roles'));
+		return Redirect::to(resources("control.roles"));
 	}
 }
