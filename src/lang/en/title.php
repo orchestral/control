@@ -10,4 +10,8 @@ return array(
 		'create' => 'Create New Role',
 		'update' => 'Update A Role',
 	),
+
+	'themes' => array(
+		'list' => ':type Themes Manager',
+	),
 );
