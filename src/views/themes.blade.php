@@ -15,6 +15,7 @@
 		foreach ($themes as $id => $theme) : ?>
 
 		<div class="themes col col-lg-4 well">
+			<img src="<?php echo asset("themes/{$id}/screenshot.png"); ?>">
 			<h3><?php echo $theme->name; ?></h3>
 			<p><?php echo $theme->description; ?></p>
 
