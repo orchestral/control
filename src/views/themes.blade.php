@@ -2,6 +2,9 @@
 
 <div class="container">
 	<div class="row">
+		@include('orchestra/foundation::layout.widgets.header')
+	</div>
+	<div class="row">
 	
 		<?php if (empty($themes)) : ?>
 		<div class="jumbotron">
@@ -14,7 +17,7 @@
 		<?php else :
 		foreach ($themes as $id => $theme) : ?>
 
-		<div class="themes col col-lg-4 well">
+		<div class="themes col col-lg-4">
 			<img src="<?php echo asset("themes/{$id}/screenshot.png"); ?>">
 			<h3><?php echo $theme->name; ?></h3>
 			<p><?php echo $theme->description; ?></p>
