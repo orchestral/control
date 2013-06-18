@@ -9,6 +9,6 @@ $control = Orchestra\Resources::make('control', array(
 	}
 ));
 
-$control['roles'] = 'resource:Orchestra\Control\Routing\RolesController';
-$control['acl']   = 'restful:Orchestra\Control\Routing\AclController';
-$control['theme'] = 'restful:Orchestra\Control\Routing\ThemesController';
+$control['roles']  = 'resource:Orchestra\Control\Routing\RolesController';
+$control['acl']    = 'restful:Orchestra\Control\Routing\AclController';
+$control['themes'] = 'restful:Orchestra\Control\Routing\ThemesController';

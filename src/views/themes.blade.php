@@ -14,7 +14,7 @@
 		<?php else :
 		foreach ($themes as $id => $theme) : ?>
 
-		<div class="themes span4 well">
+		<div class="themes col col-lg-4 well">
 			<h3><?php echo $theme->name; ?></h3>
 			<p><?php echo $theme->description; ?></p>
 
@@ -33,7 +33,7 @@
 
 		</div>
 		<?php endforeach;
-		elseif; ?>
+		endif; ?>
 
 	</div>
 </div>

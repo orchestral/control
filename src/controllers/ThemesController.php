@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Str;
 use Orchestra\Support\Facades\App;
 use Orchestra\Support\Facades\Messages;
 use Orchestra\Support\Facades\Site;
+use Orchestra\Support\Str;
 
 class ThemesController extends BaseController {
 
