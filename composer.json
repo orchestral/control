@@ -1,12 +1,13 @@
 {
 	"name": "orchestra/control",
-	"description": "Orchestra Platform Control Extension",
+	"description": "Control Extension for Orchestra Platform 2",
 	"license": "MIT",
-	"keywords": ["orchestra-platform", "orchestral", "laravel", "rbac", "timezone", "theme"],
+	"keywords": ["orchestra-platform", "orchestral", "extension", "laravel", "rbac", "timezone", "theme"],
 	"authors": [
 		{
 			"name": "Mior Muhammad Zaki",
-			"email": "crynobone@gmail.com"
+			"email": "crynobone@gmail.com",
+			"homepage": "https://github.com/crynobone"
 		}
 	],
 	"autoload": {
@@ -27,7 +28,7 @@
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "2.0.x-dev"
+			"dev-master": "2.1-dev"
 		}
 	},
 	"minimum-stability": "dev"
