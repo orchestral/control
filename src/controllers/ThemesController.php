@@ -18,7 +18,9 @@ class ThemesController extends BaseController {
 	 */
 	public function getIndex($type = 'frontend')
 	{
-		$current = App::memory()->get('site.theme.frontend');
+		if ( ! in_array($type, array('frontend', 'backend'))) App::abort(404);
+
+		$current = App::memory()->get("site.theme.{$type}");
 		$themes  = App::make('orchestra.theme.finder')->detect();
 
 		Site::set('title', trans('orchestra/control::title.themes.list', array(
