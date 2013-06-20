@@ -2,5 +2,7 @@
 
 <div class="row">
 	@include('orchestra/foundation::layout.widgets.header')
-	<?php echo $form; ?>
+	<div class="col col-lg-9">
+		<?php echo $form; ?>
+	</div>
 </div>
