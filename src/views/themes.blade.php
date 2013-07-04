@@ -2,10 +2,6 @@
 
 <div class="container">
 	<div class="row">
-		@include('orchestra/foundation::layout.widgets.header')
-	</div>
-	<div class="row">
-	
 		<?php if (empty($themes)) : ?>
 		<div class="jumbotron">
 			<div class="page-header">
@@ -14,10 +10,10 @@
 
 			<p>Don't worry, you can stil use Orchestra without a theme :)</p>
 		</div>
-		<?php else :
+		<?php else : 
 		foreach ($themes as $id => $theme) : ?>
 
-		<div class="themes col col-lg-4">
+		<div class="themes col col-lg-4 box white rounded">
 			<img src="<?php echo asset("themes/{$id}/screenshot.png"); ?>">
 			<h3><?php echo $theme->name; ?></h3>
 			<p><?php echo $theme->description; ?></p>
