@@ -1,9 +1,13 @@
 @include('orchestra/control::widgets.menu')
 
-<?php use Orchestra\Support\Facades\Site; ?>
+<?php 
+
+use Orchestra\Support\Facades\Site; 
+
+Site::set('header::add-button', true); ?>
 
 <div class="row">
-	<?php Site::set('header::add-button', true); ?>
-	@include('orchestra/foundation::layout.widgets.header')
-	<?php echo $table; ?>
+	<div class="col col-lg-12 box white rounded">
+		<?php echo $table; ?>
+	</div>
 </div>

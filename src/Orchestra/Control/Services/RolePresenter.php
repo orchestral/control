@@ -23,7 +23,7 @@ class RolePresenter {
 			$table->with($model);
 
 			// Add columns
-			$table->column('name', trans('orchestra/foundation::label.name'));
+			$table->column(trans('orchestra/foundation::label.name'), 'name');
 			$table->column('action', function ($column)
 			{
 				$column->label('');

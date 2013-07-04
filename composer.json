@@ -13,18 +13,15 @@
 	"autoload": {
 		"psr-0": { 
 			"Orchestra\\Control" : "src/" 
-		},
-		"classmap": [
-			"src/controllers",
-			"src/services"
-		]
+		}
 	},
 	"require": {
 		"php": ">=5.3.3"
 	},
 	"require-dev": {
 		"mockery/mockery": "0.8.0",
-		"orchestra/support": "2.1.*"
+		"orchestra/support": "2.1.*",
+		"orchestra/testbench": "2.1.*"
 	},
 	"extra": {
 		"branch-alias": {
