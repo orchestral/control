@@ -1,11 +1,15 @@
 <?php
 
-$control = Orchestra\Resources::make('control', array(
-	'name'       => 'Control',
-	'uses'       => 'restful:Orchestra\Control\Routing\HomeController',
-	'visibility' => function ()
+use Orchestra\Support\Facades\App;
+use Orchestra\Support\Facades\Resources;
+
+$control = Resources::make('control', array(
+	'name'    => 'Control',
+	'uses'    => 'restful:Orchestra\Control\Routing\HomeController',
+	'visible' => function ()
 	{
-		return Orchestra\App::acl()->can('manage user');
+		$acl = App::acl();
+		return ($acl->can('manage acl') or $acl->can('manage roles'));
 	}
 ));
 

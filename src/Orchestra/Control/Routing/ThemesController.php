@@ -10,6 +10,17 @@ use Orchestra\Support\Str;
 class ThemesController extends BaseController {
 
 	/**
+	 * Define the filters.
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function __construct()
+	{
+		$this->beforeFilter('control.manage:orchestra');
+	}
+
+	/**
 	 * Show frontend/backend theme for Orchestra Platform.
 	 *
 	 * @access public			

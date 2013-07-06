@@ -5,9 +5,9 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
 use Orchestra\Control\Services\RolePresenter;
-use Orchestra\App;
-use Orchestra\Messages;
-use Orchestra\Site;
+use Orchestra\Support\Facades\App;
+use Orchestra\Support\Facades\Messages;
+use Orchestra\Support\Facades\Site;
 use Orchestra\Model\Role;
 
 class RolesController extends BaseController {
@@ -20,7 +20,7 @@ class RolesController extends BaseController {
 	 */
 	public function __construct()
 	{
-		$this->beforeFilter('orchestra.manage:roles');
+		$this->beforeFilter('control.manage:roles');
 	}
 
 	/**
