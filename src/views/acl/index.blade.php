@@ -30,12 +30,14 @@ use Orchestra\Support\Str; ?>
 					</div>
 					<div id="collapse<?php echo $roleKey; ?>" class="accordion-body collapse in">
 						<div class="accordion-inner">
+							<div class="row">
 							<?php foreach($eloquent->actions()->get() as $actionKey => $actionName) : ?>
-								<label for="acl-<?php echo $roleKey; ?>-<?php echo $actionKey; ?>" class="checkbox-inline">
+								<label for="acl-<?php echo $roleKey; ?>-<?php echo $actionKey; ?>" class="col col-lg-3 checkboxes">
 									<?php echo Form::checkbox("acl-{$roleKey}-{$actionKey}", 'yes', $eloquent->check($roleName, $actionName), array('id' => "acl-{$roleKey}-{$actionKey}")); ?>
 									<?php echo Str::humanize($actionName); ?>&nbsp;&nbsp;&nbsp;
 								</label>
 							<?php endforeach; ?>
+							</div>
 						</div>
 					</div>
 				</div>
