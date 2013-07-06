@@ -13,7 +13,7 @@
 		<?php else : 
 		foreach ($themes as $id => $theme) : ?>
 
-		<div class="themes col col-lg-4 box white rounded">
+		<div class="four columns white rounded themes box">
 			<img src="<?php echo asset("themes/{$id}/screenshot.png"); ?>">
 			<h3><?php echo $theme->name; ?></h3>
 			<p><?php echo $theme->description; ?></p>
