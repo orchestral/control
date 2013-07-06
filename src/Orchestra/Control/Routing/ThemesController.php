@@ -16,7 +16,7 @@ class ThemesController extends BaseController {
 	 * @return void
 	 */
 	public function __construct()
-	{		
+	{
 		$this->beforeFilter('control.manage:orchestra');
 	}
 

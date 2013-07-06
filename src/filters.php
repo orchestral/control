@@ -24,6 +24,6 @@ Route::filter('control.manage', function ($route, $request, $value = 'orchestra'
 	{
 		$redirect = ($guest ? 'login' : '/');
 		
-		Redirect::to(handles("orchestra::{$redirect}"));
+		return Redirect::to(handles("orchestra::{$redirect}"));
 	}
 });
