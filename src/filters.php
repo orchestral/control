@@ -1,5 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirecta;
+use Illuminate\Support\Facades\Route;
+use Orchestra\Support\Facades\App;
+
 /*
 |--------------------------------------------------------------------------
 | ACL Filter
@@ -13,9 +18,11 @@
 
 Route::filter('control.manage', function ($route, $request, $value = 'orchestra')
 {
-	if ( ! App::acl()->can("manage-{$value}"))
+	$guest = Auth::guest();
+
+	if ( ! App::acl()->can("manage-{$value}") or $guest)
 	{
-		$redirect = (Auth::guest() ? 'login' : '/');
+		$redirect = ($guest ? 'login' : '/');
 		
 		Redirect::to(handles("orchestra::{$redirect}"));
 	}
