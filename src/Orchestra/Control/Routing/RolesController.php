@@ -20,7 +20,9 @@ class RolesController extends BaseController {
 	 */
 	public function __construct()
 	{
-		$this->beforeFilter('orchestra.manage:roles');
+		parent::__construct();
+
+		$this->beforeFilter('control.manage:roles');
 	}
 
 	/**

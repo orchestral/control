@@ -28,7 +28,9 @@ class AclController extends BaseController {
 	 */
 	public function __construct()
 	{
-		$this->beforeFilter('orchestra.manage:acl');
+		parent::__construct();
+		
+		$this->beforeFilter('control.manage:acl');
 
 		$this->memory = App::memory();
 	}
