@@ -7,7 +7,7 @@ use Orchestra\Support\Facades\Site;
 Site::set('header::add-button', true); ?>
 
 <div class="row">
-	<div class="col col-lg-12 box white rounded">
+	<div class="twelve columns white rounded box">
 		<?php echo $table; ?>
 	</div>
 </div>

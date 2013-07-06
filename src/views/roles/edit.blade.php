@@ -1,9 +1,9 @@
 @include('orchestra/control::widgets.menu')
 
 <div class="row">
-	<div class="col col-lg-12 box white rounded">
+	<div class="twelve columns rounded box">
 		<div class="row">
-			<div class="col col-lg-9">
+			<div class="nine columns">
 				<?php echo $form; ?>
 			</div>
 		</div>
