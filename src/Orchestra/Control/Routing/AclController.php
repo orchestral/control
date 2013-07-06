@@ -14,6 +14,13 @@ use Orchestra\Support\Str;
 class AclController extends BaseController {
 
 	/**
+	 * Memory instance.
+	 *
+	 * @var Orchestra\Memory\Drivers\Driver
+	 */
+	protected $memory;
+
+	/**
 	 * Define the filters.
 	 *
 	 * @access public
@@ -22,6 +29,8 @@ class AclController extends BaseController {
 	public function __construct()
 	{
 		$this->beforeFilter('orchestra.manage:acl');
+
+		$this->memory = App::memory();
 	}
 
 	/**
@@ -36,14 +45,13 @@ class AclController extends BaseController {
 		$selected = Input::get('name', 'orchestra');
 		$acls     = Acl::all();
 		$active   = null;
-		$memory   = App::memory();
 
 		foreach ($acls as $name => $instance)
 		{
-			$extension    = $memory->get("extensions.available.{$name}.name", null);
-			$lists[$name] = (is_null($extension) ? Str::title($name) : $extension);
+			$uid = str_replace('/', '.', $name);
+			$lists[$uid] = $this->getExtensionName($name);
 
-			if ($name === $selected) $active = $instance;
+			if ($uid === $selected) $active = $instance;
 		}
 
 		if (is_null($active)) return App::abort(404);
@@ -98,8 +106,9 @@ class AclController extends BaseController {
 	 * @param  string   $name
 	 * @return Response
 	 */
-	public function getSync($name)
+	public function getSync($uid)
 	{
+		$name  = str_replace('.', '/', $uid);
 		$roles = array();
 		$acls  = Acl::all();
 
@@ -112,9 +121,25 @@ class AclController extends BaseController {
 		$current->roles()->fill($roles);
 		
 		Messages::add('success', trans('orchestra/control::response.acls.sync-roles', array(
-			'name' => Str::humanize($name),
+			'name' => $this->getExtensionName($name),
 		)));
 
-		return Redirect::to(resources("control.acl?name={$name}"));
+		return Redirect::to(resources("control.acl?name={$uid}"));
+	}
+
+	/**
+	 * Get extension name if possible.
+	 *
+	 * @access protected
+	 * @param  string   $name
+	 * @return string
+	 */
+	protected function getExtensionName($name)
+	{
+		$extension = $this->memory->get("extensions.available.{$name}.name", null);
+
+		$name !== 'orchestra' or $extension = 'Orchestra Platform';
+
+		return (is_null($extension) ? Str::title($name) : $extension);
 	}
 }
