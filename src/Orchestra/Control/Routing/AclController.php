@@ -27,9 +27,7 @@ class AclController extends BaseController {
 	 * @return void
 	 */
 	public function __construct()
-	{
-		parent::__construct();
-		
+	{		
 		$this->beforeFilter('control.manage:acl');
 
 		$this->memory = App::memory();

@@ -20,8 +20,6 @@ class RolesController extends BaseController {
 	 */
 	public function __construct()
 	{
-		parent::__construct();
-
 		$this->beforeFilter('control.manage:roles');
 	}
 
