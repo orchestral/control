@@ -45,7 +45,7 @@ use Orchestra\Support\Str; ?>
 			</div>
 			<div class="form-actions">
 				<button type="submit" class="btn btn-primary"><?php echo trans('orchestra/foundation::label.submit'); ?></button>
-				<a href="<?php echo handles("orchestra/foundation::resources/control.acl/sync/{$selected}"); ?>" class="btn">
+				<a href="<?php echo handles("orchestra/foundation::resources/control.acl/sync/{$selected}"); ?>" class="btn btn-link">
 					<?php echo trans('orchestra/control::label.sync-roles'); ?>
 				</a>
 			</div>
