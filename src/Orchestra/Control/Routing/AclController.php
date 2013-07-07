@@ -76,11 +76,12 @@ class AclController extends BaseController {
 	public function postIndex()
 	{
 		$metric    = Input::get('metric');
+		$name      = str_replace('.', '/', $metric);
 		$instances = Acl::all();
-		         
-		if (is_null($metric) or ! isset($instances[$metric])) return App::abort(404);
 
-		$acl = $instances[$metric];
+		if (is_null($name) or ! isset($instances[$name])) return App::abort(404);
+
+		$acl = $instances[$name];
 
 		foreach ($acl->roles()->get() as $roleKey => $roleName)
 		{
