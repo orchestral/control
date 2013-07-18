@@ -26,8 +26,12 @@
     </logging>
 
     <filter>
-        <whitelist addUncoveredFilesFromWhitelist="false">
+        <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src/</directory>
+
+            <exclude>
+                <directory>vendor/</directory>
+            </exclude>
         </whitelist>
     </filter>
 </phpunit>
