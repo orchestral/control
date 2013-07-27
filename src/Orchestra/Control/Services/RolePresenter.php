@@ -21,6 +21,7 @@ class RolePresenter {
 		{
 			// attach Model and set pagination option to true
 			$table->with($model);
+			$table->layout('orchestra/foundation::components.table');
 
 			// Add columns
 			$table->column(trans('orchestra/foundation::label.name'), 'name');
@@ -77,6 +78,7 @@ class RolePresenter {
 		return Form::of('control.roles', function ($form) use ($model, $type)
 		{
 			$form->row($model);
+			$form->layout('orchestra/foundation::components.form');
 
 			$url    = "orchestra/foundation::resources/control.roles";
 			$method = 'POST';
