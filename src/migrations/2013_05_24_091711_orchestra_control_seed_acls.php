@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Orchestra\App;
+use Orchestra\Support\Facades\App;
 use Orchestra\Model\Role;
 
 class OrchestraControlSeedAcls extends Migration {
