@@ -22,7 +22,7 @@ use Orchestra\Support\Str; ?>
 		<div class="panel-heading">
 			<?php echo Str::humanize($roleName); ?>
 		</div>
-		<div class="white rounded-bottom box no-padding">
+		<div class="white rounded-bottom box small-padding">
 			<div class="row">
 			<?php foreach($eloquent->actions()->get() as $actionKey => $actionName) : ?>
 				<label for="acl-<?php echo $roleKey; ?>-<?php echo $actionKey; ?>" class="three columns checkboxes">
