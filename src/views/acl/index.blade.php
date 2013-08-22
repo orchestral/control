@@ -18,7 +18,7 @@ use Orchestra\Support\Str; ?>
 	<?php echo Form::hidden('metric', $selected); ?>
 		
 	<?php foreach ($eloquent->roles()->get() as $roleKey => $roleName) : ?>
-	<div class="twelve columns panel">
+	<div class="twelve columns panel panel-default">
 		<div class="panel-heading">
 			<?php echo Str::humanize($roleName); ?>
 		</div>
