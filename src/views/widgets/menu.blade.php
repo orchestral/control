@@ -10,18 +10,18 @@ use Orchestra\Support\Facades\App; ?>
 
 <ul class="nav navbar-nav">
 	<?php if (App::acl()->can('manage-roles')) : ?>
-	<li class="<?php echo Request::is('*/resources/control.roles*') ? 'active' : ''; ?>">
+	<li class="<?php echo Request::is('*resources/control.roles*') ? 'active' : ''; ?>">
 		<?php echo HTML::link(resources('control.roles'), 'Roles'); ?>
 	</li>
 	<?php 
 	endif;
 	if (App::acl()->can('manage-acl')) : ?>
-	<li class="<?php echo Request::is('*/resources/control.acl*') ? 'active' : ''; ?>">
+	<li class="<?php echo Request::is('*resources/control.acl*') ? 'active' : ''; ?>">
 		<?php echo HTML::link(resources('control.acl'), 'ACL'); ?>
 	</li>
 	<?php endif;
 	if (App::acl()->can('manage-orchestra')) : ?>
-	<li class="dropdown<?php echo Request::is('*/resources/control.themes*') ? ' active' : ''; ?>">
+	<li class="dropdown<?php echo Request::is('*resources/control.themes*') ? ' active' : ''; ?>">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes</a>
 		<ul class="dropdown-menu">
 			<li>
