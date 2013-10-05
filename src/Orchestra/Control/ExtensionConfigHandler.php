@@ -68,6 +68,8 @@ class ExtensionConfigHandler {
 		Config::set('orchestra/foundation::roles.admin', (int) $input['admin_role']);
 		Config::set('orchestra/foundation::roles.member', (int) $input['member_role']);
 
+		Role::setDefaultRoles(Config::get('orchestra/foundation::roles'));
+
 		Authorize::sync();
 
 		App::memory()->put("extension_orchestra/control.localtime", $localtime);
