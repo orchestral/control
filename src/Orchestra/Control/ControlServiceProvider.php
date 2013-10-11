@@ -18,11 +18,13 @@ class ControlServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('orchestra/control', 'orchestra/control');
+		$path = realpath(__DIR__.'/../../');
 
-		require_once __DIR__.'/../../start/global.php';
-		require_once __DIR__.'/../../start/localtime.php';
-		require_once __DIR__.'/../../filters.php';
-		require_once __DIR__.'/../../routes.php';
+		$this->package('orchestra/control', 'orchestra/control', $path);
+
+		require_once "{$path}/start/global.php";
+		require_once "{$path}/start/localtime.php";
+		require_once "{$path}/filters.php";
+		require_once "{$path}/routes.php";
 	}
 }
