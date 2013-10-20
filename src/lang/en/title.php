@@ -1,17 +1,17 @@
 <?php
 
 return array(
-	'acls' => array(
-		'list'   => 'List of ACLs',
-	),
+    'acls' => array(
+        'list'   => 'List of ACLs',
+    ),
 
-	'roles' => array(
-		'list'   => 'List of Roles',
-		'create' => 'Create New Role',
-		'update' => 'Update A Role',
-	),
+    'roles' => array(
+        'list'   => 'List of Roles',
+        'create' => 'Create New Role',
+        'update' => 'Update A Role',
+    ),
 
-	'themes' => array(
-		'list' => ':type Themes Manager',
-	),
+    'themes' => array(
+        'list' => ':type Themes Manager',
+    ),
 );
