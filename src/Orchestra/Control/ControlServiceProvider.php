@@ -2,27 +2,32 @@
 
 use Illuminate\Support\ServiceProvider;
 
-class ControlServiceProvider extends ServiceProvider {
+class ControlServiceProvider extends ServiceProvider
+{
+    /**
+     * Register service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
 
-	/**
-	 * Register service provider.
-	 *
-	 * @return void
-	 */
-	public function register() {}
+    /**
+     * Boot the service provider
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $path = realpath(__DIR__.'/../../');
 
-	/**
-	 * Boot the service provider
-	 *
-	 * @return void
-	 */
-	public function boot()
-	{
-		$this->package('orchestra/control', 'orchestra/control');
+        $this->package('orchestra/control', 'orchestra/control', $path);
 
-		require_once __DIR__.'/../../start/global.php';
-		require_once __DIR__.'/../../start/localtime.php';
-		require_once __DIR__.'/../../filters.php';
-		require_once __DIR__.'/../../routes.php';
-	}
+        require_once "{$path}/start/global.php";
+        require_once "{$path}/start/localtime.php";
+        require_once "{$path}/filters.php";
+        require_once "{$path}/routes.php";
+    }
 }

@@ -10,20 +10,18 @@ use Orchestra\Support\Facades\App;
 | ACL Filter
 |--------------------------------------------------------------------------
 |
-| The ACL filter would check against our RBAC metric to ensure that only 
-| user with the right authorization can access certain part of the 
+| The ACL filter would check against our RBAC metric to ensure that only
+| user with the right authorization can access certain part of the
 | application.
 |
 */
 
-Route::filter('control.manage', function ($route, $request, $value = 'orchestra')
-{
-	$guest = Auth::guest();
+Route::filter('control.manage', function ($route, $request, $value = 'orchestra') {
+    $guest = Auth::guest();
 
-	if ( ! App::acl()->can("manage-{$value}") or $guest)
-	{
-		$redirect = ($guest ? 'login' : '/');
-		
-		return Redirect::to(handles("orchestra::{$redirect}"));
-	}
+    if (! App::acl()->can("manage-{$value}") or $guest) {
+        $redirect = ($guest ? 'login' : '/');
+
+        return Redirect::to(handles("orchestra::{$redirect}"));
+    }
 });
