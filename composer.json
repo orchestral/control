@@ -11,15 +11,15 @@
 		}
 	],
 	"autoload": {
-		"psr-0": { 
-			"Orchestra\\Control" : "src/" 
+		"psr-0": {
+			"Orchestra\\Control" : "src/"
 		}
 	},
 	"require": {
 		"php": ">=5.3.3"
 	},
 	"require-dev": {
-		"mockery/mockery": "0.8.0",
+		"mockery/mockery": "0.8.*",
 		"orchestra/support": "2.1.*",
 		"orchestra/testbench": "2.1.*",
 		"orchestra/foundation": "2.1.*"
