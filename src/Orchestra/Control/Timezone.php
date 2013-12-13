@@ -126,8 +126,6 @@ class Timezone
     /**
      * List the timezone.
      *
-     * @static
-     * @access public
      * @return array
      */
     public static function lists()

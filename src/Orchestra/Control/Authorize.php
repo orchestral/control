@@ -8,8 +8,6 @@ class Authorize
     /**
      * Re-sync administrator access control.
      *
-     * @static
-     * @access public
      * @return void
      */
     public static function sync()

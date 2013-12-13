@@ -8,7 +8,6 @@ class HomeController extends BaseController
     /**
      * Control dashboard.
      *
-     * @access public
      * @return Response
      */
     public function getIndex()

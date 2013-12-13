@@ -1,21 +1,19 @@
-<?php namespace Orchestra\Control\Services;
+<?php namespace Orchestra\Control\Presenter;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\HTML;
 use Orchestra\Support\Facades\Form;
 use Orchestra\Support\Facades\Table;
 
-class RolePresenter
+class Role
 {
     /**
      * View table generator for Orchestra\Model\Role.
      *
-     * @static
-     * @access public
-     * @param  Orchestra\Model\Role $model
-     * @return Orchestra\Html\Table\TableBuilder
+     * @param  \Orchestra\Model\Role    $model
+     * @return \Orchestra\Html\Table\TableBuilder
      */
-    public static function table($model)
+    public function table($model)
     {
         return Table::of('control.roles', function ($table) use ($model) {
             // attach Model and set pagination option to true
@@ -62,10 +60,8 @@ class RolePresenter
     /**
      * View form generator for Orchestra\Model\Role.
      *
-     * @static
-     * @access public
-     * @param  Orchestra\Model\Role $model
-     * @param  string               $type
+     * @param  \Orchestra\Model\Role    $model
+     * @param  string                   $type
      * @return Orchestra\Html\Form\FormBuilder
      */
     public static function form($model, $type = 'create')

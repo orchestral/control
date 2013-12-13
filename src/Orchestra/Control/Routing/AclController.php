@@ -16,27 +16,33 @@ class AclController extends BaseController
     /**
      * Memory instance.
      *
-     * @var Orchestra\Memory\Drivers\Driver
+     * @var \Orchestra\Memory\Drivers\Driver
      */
     protected $memory;
 
     /**
-     * Define the filters.
-     *
-     * @access public
-     * @return void
+     * Setup a new controller.
      */
     public function __construct()
     {
-        $this->beforeFilter('control.manage:acl');
-
         $this->memory = App::memory();
+
+        parent::__construct();
+    }
+
+    /**
+     * Define the filters.
+     *
+     * @return void
+     */
+    protected function setupFilters()
+    {
+        $this->beforeFilter('control.manage:acl');
     }
 
     /**
      * Get default resources landing page.
      *
-     * @access public
      * @return Response
      */
     public function getIndex()
@@ -71,9 +77,8 @@ class AclController extends BaseController
     }
 
     /**
-     * Update ACL metric
+     * Update ACL metric.
      *
-     * @access public
      * @return Response
      */
     public function postIndex()
@@ -106,7 +111,6 @@ class AclController extends BaseController
     /**
      * Get sync roles action.
      *
-     * @access public
      * @param  string   $name
      * @return Response
      */
@@ -138,7 +142,6 @@ class AclController extends BaseController
     /**
      * Get extension name if possible.
      *
-     * @access protected
      * @param  string   $name
      * @return string
      */

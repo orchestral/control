@@ -1,72 +1,77 @@
 <?php namespace Orchestra\Control\Routing;
 
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
-use Orchestra\Support\Facades\App;
-use Orchestra\Support\Facades\Messages;
+use Orchestra\Control\Processor\Theme as ThemeProcessor;
 use Orchestra\Support\Facades\Site;
 use Orchestra\Support\Str;
 
 class ThemesController extends BaseController
 {
     /**
+     * Setup a new controller.
+     *
+     * @param  \Orchestra\Control\Processor\Theme  $processor
+     */
+    public function __construct(ThemeProcessor $processor)
+    {
+        $this->processor = $processor;
+
+        parent::__construct();
+    }
+
+    /**
      * Define the filters.
      *
-     * @access public
      * @return void
      */
-    public function __construct()
+    protected function setupFilters()
     {
-        $this->beforeFilter('control.manage:orchestra');
+        $this->beforeFilter('control.manage:acl');
     }
 
     /**
      * Show frontend/backend theme for Orchestra Platform.
      *
-     * @access public
-     * @param  string   $type       Type of theme either 'frontend' or 'backend'
+     * @param  string   $type
      * @return Response
      */
     public function getIndex($type = 'frontend')
     {
-        if (! in_array($type, array('frontend', 'backend'))) {
-            App::abort(404);
-        }
-
-        $current = App::memory()->get("site.theme.{$type}");
-        $themes  = App::make('orchestra.theme.finder')->detect();
-
-        Site::set('title', trans('orchestra/control::title.themes.list', array(
-            'type' => Str::title($type),
-        )));
-
-        return View::make('orchestra/control::themes', array(
-            'themes'  => $themes,
-            'type'    => $type,
-            'current' => $current,
-        ));
+        return $this->processor->index($this, $type);
     }
 
     /**
      * Set active theme for Orchestra Platform.
      *
-     * @access public
-     * @param  string   $type       Type of theme either 'frontend' or 'backend'
-     * @param  integer  $themeId
+     * @param  string   $type
+     * @param  integer  $id
      * @return Response
      */
-    public function getActivate($type, $themeId)
+    public function getActivate($type, $id)
     {
-        if (! in_array($type, array('frontend', 'backend'))) {
-            App::abort(404);
-        }
+        return $this->processor->activate($this, $type, $id);
+    }
 
-        App::memory()->put("site.theme.{$type}", $themeId);
-
-        Messages::add('success', trans('orchestra/control::response.themes.update', array(
-            'type' => Str::title($type),
+    public function indexSucceed(array $data)
+    {
+        Site::set('title', trans('orchestra/control::title.themes.list', array(
+            'type' => Str::title($data['type']),
         )));
 
-        return Redirect::to(resources("control.themes/index/{$type}"));
+        return View::make('orchestra/control::themes.index', $data);
+    }
+
+    public function activateSucceed($type, $id)
+    {
+        $message = trans('orchestra/control::response.themes.update', array(
+            'type' => Str::title($type),
+        ));
+
+        return $this->redirectWithMessage(resources("control.themes/index/{$type}"), $message);
+    }
+
+    public function themeVerificationFailed()
+    {
+        return $this->suspend(404);
     }
 }
