@@ -16,7 +16,6 @@ class Role extends Validator
     /**
      * On create validations.
      *
-     * @access public
      * @return void
      */
     protected function onCreate()
@@ -27,7 +26,6 @@ class Role extends Validator
     /**
      * On update validations.
      *
-     * @access public
      * @return void
      */
     protected function onUpdate()
