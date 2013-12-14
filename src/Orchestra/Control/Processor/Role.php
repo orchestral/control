@@ -6,7 +6,7 @@ use Orchestra\Control\Presenter\Role as RolePresenter;
 use Orchestra\Control\Validation\Role as RoleValidator;
 use Orchestra\Model\Role as Eloquent;
 
-class Role extends AbstractableBase
+class Role extends AbstractableProcessor
 {
     /**
      * Setup a new processor instance.

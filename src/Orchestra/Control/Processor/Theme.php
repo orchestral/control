@@ -2,7 +2,7 @@
 
 use Orchestra\Support\Facades\App;
 
-class Theme extends AbstractableBase
+class Theme extends AbstractableProcessor
 {
     protected $type = array('frontend', 'backend');
 
