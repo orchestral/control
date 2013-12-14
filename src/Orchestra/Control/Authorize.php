@@ -1,7 +1,6 @@
 <?php namespace Orchestra\Control;
 
-use Orchestra\Support\Facades\Acl;
-use Orchestra\Model\Role;
+use Orchestra\Support\Facades\App;
 
 class Authorize
 {
@@ -12,8 +11,8 @@ class Authorize
      */
     public static function sync()
     {
-        $acl   = Acl::make('orchestra');
-        $admin = Role::admin();
+        $acl   = App::acl();
+        $admin = App::make('orchestra.role')->admin();
 
         $acl->allow($admin->name, array('Manage Users', 'Manage Orchestra', 'Manage Roles', 'Manage Acl'));
     }
