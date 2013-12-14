@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\HTML;
 use Orchestra\Support\Facades\Form;
 use Orchestra\Support\Facades\Table;
+use Orchestra\Model\Role as Eloquent;
 
-class Role
+class Role extends AbstractablePresenter
 {
     /**
      * View table generator for Orchestra\Model\Role.
@@ -13,14 +14,14 @@ class Role
      * @param  \Orchestra\Model\Role    $model
      * @return \Orchestra\Html\Table\TableBuilder
      */
-    public function table($model)
+    public function table(Eloquent $model)
     {
         return Table::of('control.roles', function ($table) use ($model) {
-            // attach Model and set pagination option to true
+            // attach Model and set pagination option to true.
             $table->with($model);
             $table->layout('orchestra/foundation::components.table');
 
-            // Add columns
+            // Add columns.
             $table->column(trans('orchestra/foundation::label.name'), 'name');
             $table->column('action', function ($column) {
                 $column->label('');
@@ -64,25 +65,12 @@ class Role
      * @param  string                   $type
      * @return Orchestra\Html\Form\FormBuilder
      */
-    public static function form($model, $type = 'create')
+    public static function form(Eloquent $model)
     {
-        return Form::of('control.roles', function ($form) use ($model, $type) {
-            $form->row($model);
-            $form->layout('orchestra/foundation::components.form');
+        $me = $this;
 
-            $url    = "orchestra/foundation::resources/control.roles";
-            $method = 'POST';
-
-            if ($type === 'update') {
-                $url    = "orchestra/foundation::resources/control.roles/{$model->id}";
-                $method = 'PUT';
-            }
-
-            $form->attributes(array(
-                'url'    => handles($url),
-                'method' => $method,
-            ));
-
+        return Form::of('control.roles', function ($form) use ($me, $model, $type) {
+            $form->resource($me, 'control.roles', $model);
             $form->hidden('id');
 
             $form->fieldset(function ($fieldset) {
