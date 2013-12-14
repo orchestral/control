@@ -41,6 +41,26 @@ class ThemesController extends BaseController
     }
 
     /**
+     * Show backend theme for Orchestra Platform.
+     *
+     * @return Response
+     */
+    public function getBackend()
+    {
+        return $this->processor->index($this, 'backend');
+    }
+
+    /**
+     * Show frontend theme for Orchestra Platform.
+     *
+     * @return Response
+     */
+    public function getFrontend()
+    {
+        return $this->processor->index($this, 'frontend');
+    }
+
+    /**
      * Set active theme for Orchestra Platform.
      *
      * @param  string   $type
@@ -80,7 +100,7 @@ class ThemesController extends BaseController
             'type' => Str::title($type),
         ));
 
-        return $this->redirectWithMessage(resources("control.themes/index/{$type}"), $message);
+        return $this->redirectWithMessage(resources("control.themes/{$type}"), $message);
     }
 
     /**
