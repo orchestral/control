@@ -1,5 +1,6 @@
 <?php namespace Orchestra\Control\Routing;
 
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
