@@ -4,6 +4,11 @@ use Orchestra\Support\Facades\App;
 
 class Theme extends AbstractableProcessor
 {
+    /**
+     * Available themes type.
+     *
+     * @var array
+     */
     protected $type = array('frontend', 'backend');
 
     public function index($listener, $type)

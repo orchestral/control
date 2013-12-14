@@ -68,7 +68,6 @@ class Role extends AbstractableProcessor
 
     public function update($listener, array $input)
     {
-        // Check if provided id is the same as hidden id, just a pre-caution.
         if ((int) $id !== (int) $input['id']) {
             return $listener->userVerificationFailed();
         }

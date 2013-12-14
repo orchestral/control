@@ -52,6 +52,12 @@ class ThemesController extends BaseController
         return $this->processor->activate($this, $type, $id);
     }
 
+    /**
+     * Response when list themes page succeed.
+     *
+     * @param  array  $data
+     * @return Response
+     */
     public function indexSucceed(array $data)
     {
         Site::set('title', trans('orchestra/control::title.themes.list', array(
@@ -61,6 +67,13 @@ class ThemesController extends BaseController
         return View::make('orchestra/control::themes.index', $data);
     }
 
+    /**
+     * Response when theme activation succeed.
+     *
+     * @param  string  $type
+     * @param  string  $id
+     * @return Response
+     */
     public function activateSucceed($type, $id)
     {
         $message = trans('orchestra/control::response.themes.update', array(
@@ -70,6 +83,11 @@ class ThemesController extends BaseController
         return $this->redirectWithMessage(resources("control.themes/index/{$type}"), $message);
     }
 
+    /**
+     * Response when theme verification failed.
+     *
+     * @return Response
+     */
     public function themeVerificationFailed()
     {
         return $this->suspend(404);

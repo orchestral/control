@@ -30,8 +30,6 @@ abstract class BaseController extends Controller
      */
     abstract protected function setupFilters();
 
-
-
     /**
      * Queue notification and redirect.
      *

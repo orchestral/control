@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\View;
 use Orchestra\Control\Processor\Role as RoleProcessor;
 use Orchestra\Support\Facades\Site;
+use Orchestra\Model\Role;
 
 class RolesController extends BaseController
 {
@@ -112,6 +113,12 @@ class RolesController extends BaseController
         return $this->processor->destroy($this, $id);
     }
 
+    /**
+     * Response when list roles page succeed.
+     *
+     * @param  array  $data
+     * @return Response
+     */
     public function indexSucceed(array $data)
     {
         Site::set('title', trans('orchestra/control::title.roles.list'));
@@ -119,6 +126,12 @@ class RolesController extends BaseController
         return View::make('orchestra/control::roles.index', $data);
     }
 
+    /**
+     * Response when create role page succeed.
+     *
+     * @param  array  $data
+     * @return Response
+     */
     public function createSucceed(array $data)
     {
         Site::set('title', trans('orchestra/control::title.roles.create'));
@@ -126,6 +139,12 @@ class RolesController extends BaseController
         return View::make('orchestra/control::roles.edit', $data);
     }
 
+    /**
+     * Response when edit role page succeed.
+     *
+     * @param  array  $data
+     * @return Response
+     */
     public function editSucceed(array $data)
     {
         Site::set('title', trans('orchestra/control::title.roles.update'));
@@ -133,11 +152,23 @@ class RolesController extends BaseController
         return View::make('orchestra/control::roles.edit', $data);
     }
 
+     /**
+     * Response when storing role failed on validation.
+     *
+     * @param  object  $validation
+     * @return Response
+     */
     public function storeValidationFailed($validation)
     {
         return $this->redirectWithErrors(resources('control.roles/create'), $validation);
     }
 
+    /**
+     * Response when storing role failed.
+     *
+     * @param  array    $error
+     * @return Response
+     */
     public function storeFailed(array $error)
     {
         $message = trans('orchestra/foundation::response.db-failed', $error);
@@ -145,6 +176,12 @@ class RolesController extends BaseController
         return $this->redirectWithMessage(resources('control.roles'), $message);
     }
 
+    /**
+     * Response when storing user succeed.
+     *
+     * @param  \Orchestra\Model\Role   $role
+     * @return Response
+     */
     public function storeSucceed(Role $role)
     {
         $message = trans('orchestra/control::response.roles.create', array('name' => $role->name));
@@ -152,11 +189,25 @@ class RolesController extends BaseController
         return $this->redirectWithMessage(resources('control.roles'), $message);
     }
 
+
+    /**
+     * Response when updating role failed on validation.
+     *
+     * @param  object  $validation
+     * @param  integer $id
+     * @return Response
+     */
     public function updateValidationFailed($validation, $id)
     {
         return $this->redirectWithErrors(resources("control.roles/{$id}/edit"), $validation);
     }
 
+    /**
+     * Response when updating role failed.
+     *
+     * @param  array   $error
+     * @return Response
+     */
     public function updateFailed(array $error)
     {
         $message = trans('orchestra/foundation::response.db-failed', $error);
@@ -164,6 +215,12 @@ class RolesController extends BaseController
         return $this->redirectWithMessage(resources('control.roles'), $message);
     }
 
+    /**
+     * Response when updating role succeed.
+     *
+     * @param  \Orchestra\Model\Role   $role
+     * @return Response
+     */
     public function updateSucceed(Role $role)
     {
         $message = trans('orchestra/control::response.roles.update', array('name' => $role->name));
@@ -171,6 +228,12 @@ class RolesController extends BaseController
         return $this->redirectWithMessage(resources('control.roles'), $message);
     }
 
+    /**
+     * Response when deleting role failed.
+     *
+     * @param  array   $error
+     * @return Response
+     */
     public function destroyFailed(array $error)
     {
         $message = trans('orchestra/foundation::response.db-failed', $error);
@@ -178,6 +241,12 @@ class RolesController extends BaseController
         return $this->redirectWithMessage(resources('control.roles'), $message);
     }
 
+    /**
+     * Response when updating role succeed.
+     *
+     * @param  \Orchestra\Model\Role   $role
+     * @return Response
+     */
     public function destroySucceed(Role $role)
     {
         $message = trans('orchestra/control::response.roles.delete', array('name' => $role->name));
