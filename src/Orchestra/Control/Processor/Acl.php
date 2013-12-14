@@ -1,25 +1,17 @@
 <?php namespace Orchestra\Control\Processor;
 
 use Illuminate\Support\Fluent;
-use Orchestra\Support\Facades\Acl as Service;
 use Orchestra\Support\Facades\App;
 use Orchestra\Support\Str;
 
 class Acl extends AbstractableProcessor
 {
     /**
-     * Memory instance.
+     * ACL instance.
      *
-     * @var \Orchestra\Memory\Drivers\Driver
+     * @var \Orchestra\Auth\Acl\Environment
      */
-    protected $memory;
-
-    /**
-     * Roles instance.
-     *
-     * @var \Orchestra\Model\Role
-     */
-    protected $roles;
+    protected $acl;
 
     /**
      * Setup a new processor.
@@ -27,7 +19,8 @@ class Acl extends AbstractableProcessor
     public function __construct()
     {
         $this->memory = App::memory();
-        $this->roles  = App::make('orchestra.role');
+        $this->acl    = App::make('orchestra.acl');
+        $this->model  = App::make('orchestra.role');
     }
 
     /**
@@ -40,7 +33,7 @@ class Acl extends AbstractableProcessor
     public function index($listener, $id)
     {
         $collection = array();
-        $instances  = Service::all();
+        $instances  = $this->acl->all();
         $active     = null;
 
         foreach ($instances as $name => $instance) {
@@ -69,7 +62,7 @@ class Acl extends AbstractableProcessor
         $uid  = $input['metric'];
         $name = $this->getNameFromUid($uid);
 
-        $acl = Service::get($name);
+        $acl = $this->acl->get($name);
 
         if (is_null($acl)) {
             return $listener->aclVerificationFailed();
@@ -100,14 +93,13 @@ class Acl extends AbstractableProcessor
     {
         $roles = array();
         $name  = $this->getNameFromUid($uid);
-
-        $acl = Service::get($name);
+        $acl   = $this->acl->get($name);
 
         if (is_null($acl)) {
             return $listener->aclVerificationFailed();
         }
 
-        foreach ($this->roles->all() as $role) {
+        foreach ($this->model->all() as $role) {
             $roles[] = $role->name;
         }
 

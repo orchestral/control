@@ -4,7 +4,7 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Orchestra\Control\Presenter\Role as RolePresenter;
 use Orchestra\Control\Validation\Role as RoleValidator;
-use Orchestra\Model\Role as Eloquent;
+use Orchestra\Support\Facades\App;
 
 class Role extends AbstractableProcessor
 {
@@ -18,32 +18,59 @@ class Role extends AbstractableProcessor
     {
         $this->presenter = $presenter;
         $this->validator = $validator;
+        $this->model     = App::make('orchestra.role');
     }
 
+    /**
+     * View list roles page.
+     *
+     * @param  object  $listener
+     * @return mixed
+     */
     public function index($listener)
     {
-        $eloquent = Eloquent::paginate();
+        $eloquent = $this->model->paginate();
         $table    = $this->presenter->table($eloquent);
 
         return $listener->indexSucceed(compact('eloquent', 'table'));
     }
 
+    /**
+     * View create a role page.
+     *
+     * @param  object  $listener
+     * @return mixed
+     */
     public function create($listener)
     {
-        $eloquent = new Eloquent;
+        $eloquent = $this->model;
         $form     = $this->prsenter->form($eloquent, 'create');
 
         return $listener->createSucceed(compact('eloquent', 'form'));
     }
 
+    /**
+     * View edit a role page.
+     *
+     * @param  object          $listener
+     * @param  string|integer  $id
+     * @return mixed
+     */
     public function edit($listener, $id)
     {
-        $eloquent = Eloquent::findOrFail($id);
+        $eloquent = $this->model->findOrFail($id);
         $form     = $this->presenter->form($eloquent, 'update');
 
         return $listener->updateSucceed(compact('eloquent', 'form'));
     }
 
+    /**
+     * Store a role.
+     *
+     * @param  object  $listener
+     * @param  array   $input
+     * @return mixed
+     */
     public function store($listener, array $input)
     {
         $validation = $this->validator->on('create')->with($input);
@@ -52,7 +79,7 @@ class Role extends AbstractableProcessor
             return $listener->storeValidationFailed($validation);
         }
 
-        $role = new Eloquent;
+        $role       = $this->model;
         $role->name = $input['name'];
 
         try {
@@ -66,6 +93,13 @@ class Role extends AbstractableProcessor
         return $listener->storeSucceed($role);
     }
 
+    /**
+     * Update a role.
+     *
+     * @param  object  $listener
+     * @param  array   $input
+     * @return mixed
+     */
     public function update($listener, array $input)
     {
         if ((int) $id !== (int) $input['id']) {
@@ -78,7 +112,7 @@ class Role extends AbstractableProcessor
             return $listener->updateValidationFailed($validation, $id);
         }
 
-        $role = Eloquent::findOrFail($id);
+        $role = $this->model->findOrFail($id);
         $role->name = $input['name'];
 
         try {
@@ -92,9 +126,16 @@ class Role extends AbstractableProcessor
         return $listener->updateSucceed($role);
     }
 
+    /**
+     * Delete a role.
+     *
+     * @param  object          $listener
+     * @param  string|integer  $id
+     * @return mixed
+     */
     public function destroy($listener, $id)
     {
-        $role = Eloquent::findOrFail($id);
+        $role = $this->model->findOrFail($id);
 
         try {
             DB::transaction(function () use ($role) {

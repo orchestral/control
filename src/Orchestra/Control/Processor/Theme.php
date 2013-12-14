@@ -11,25 +11,48 @@ class Theme extends AbstractableProcessor
      */
     protected $type = array('frontend', 'backend');
 
+    /**
+     * Setup a new processor.
+     */
+    public function __construct()
+    {
+        $this->memory = App::memory();
+    }
+
+    /**
+     * List available theme.
+     *
+     * @param  object  $listener
+     * @param  string  $type
+     * @return mixed
+     */
     public function index($listener, $type)
     {
         if (! in_array($type, $this->type)) {
             return $listener->themeVerificationFailed();
         }
 
-        $current = App::memory()->get("site.theme.{$type}");
+        $current = $this->memory->get("site.theme.{$type}");
         $themes  = App::make('orchestra.theme.finder')->detect();
 
         return $listener->indexSucceed(compact('current', 'themes', 'type'));
     }
 
+    /**
+     * Activate a theme.
+     *
+     * @param  object  $listener
+     * @param  string  $type
+     * @param  string  $id
+     * @return mixed
+     */
     public function activate($listener, $type, $id)
     {
         if (! in_array($type, $this->type)) {
             return $listener->themeVerificationFailed();
         }
 
-        App::memory()->put("site.theme.{$type}", $id);
+        $this->memory->put("site.theme.{$type}", $id);
 
         return $listener->updateSucceed($type, $id);
     }

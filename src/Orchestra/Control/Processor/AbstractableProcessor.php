@@ -3,6 +3,20 @@
 abstract class AbstractableProcessor
 {
     /**
+     * Memory instance.
+     *
+     * @var \Orchestra\Memory\Drivers\Driver
+     */
+    protected $memory;
+
+    /**
+     * Model instance.
+     *
+     * @var \Illuminate\Database\Eloquent\Model
+     */
+    protected $model;
+
+    /**
      * Presenter instance.
      *
      * @var object
