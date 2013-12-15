@@ -88,7 +88,7 @@ class RolesController extends BaseController
      */
     public function update($id)
     {
-        return $this->processor->update($this, Input::all());
+        return $this->processor->update($this, Input::all(), $id);
     }
 
     /**

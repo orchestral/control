@@ -62,14 +62,13 @@ class Role extends AbstractablePresenter
      * View form generator for Orchestra\Model\Role.
      *
      * @param  \Orchestra\Model\Role    $model
-     * @param  string                   $type
      * @return Orchestra\Html\Form\FormBuilder
      */
-    public static function form(Eloquent $model)
+    public function form(Eloquent $model)
     {
         $me = $this;
 
-        return Form::of('control.roles', function ($form) use ($me, $model, $type) {
+        return Form::of('control.roles', function ($form) use ($me, $model) {
             $form->resource($me, 'control.roles', $model);
             $form->hidden('id');
 

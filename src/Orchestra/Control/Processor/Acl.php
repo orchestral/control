@@ -92,7 +92,7 @@ class Acl extends AbstractableProcessor
     public function sync($listener, $id)
     {
         $roles = array();
-        $name  = $this->getNameFromUid($uid);
+        $name  = $this->getNameFromUid($id);
         $acl   = $this->acl->get($name);
 
         if (is_null($acl)) {
@@ -138,7 +138,7 @@ class Acl extends AbstractableProcessor
      */
     protected function getExtensionName($name)
     {
-        $extension = $this->memory->get("extensions.available.{$name}");
+        $extension = $this->memory->get("extensions.available.{$name}.name");
 
         $name !== 'orchestra' or $extension = 'Orchestra Platform';
 

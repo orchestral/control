@@ -44,7 +44,7 @@ class Role extends AbstractableProcessor
     public function create($listener)
     {
         $eloquent = $this->model;
-        $form     = $this->prsenter->form($eloquent, 'create');
+        $form     = $this->presenter->form($eloquent);
 
         return $listener->createSucceed(compact('eloquent', 'form'));
     }
@@ -59,9 +59,9 @@ class Role extends AbstractableProcessor
     public function edit($listener, $id)
     {
         $eloquent = $this->model->findOrFail($id);
-        $form     = $this->presenter->form($eloquent, 'update');
+        $form     = $this->presenter->form($eloquent);
 
-        return $listener->updateSucceed(compact('eloquent', 'form'));
+        return $listener->editSucceed(compact('eloquent', 'form'));
     }
 
     /**
@@ -98,9 +98,10 @@ class Role extends AbstractableProcessor
      *
      * @param  object  $listener
      * @param  array   $input
+     * @param  integer $id
      * @return mixed
      */
-    public function update($listener, array $input)
+    public function update($listener, array $input, $id)
     {
         if ((int) $id !== (int) $input['id']) {
             return $listener->userVerificationFailed();
