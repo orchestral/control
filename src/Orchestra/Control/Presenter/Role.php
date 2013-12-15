@@ -11,10 +11,10 @@ class Role extends AbstractablePresenter
     /**
      * View table generator for Orchestra\Model\Role.
      *
-     * @param  \Orchestra\Model\Role    $model
+     * @param  \Orchestra\Model\Role|\Illuminate\Pagination\Paginator  $model
      * @return \Orchestra\Html\Table\TableBuilder
      */
-    public function table(Eloquent $model)
+    public function table($model)
     {
         return Table::of('control.roles', function ($table) use ($model) {
             // attach Model and set pagination option to true.
