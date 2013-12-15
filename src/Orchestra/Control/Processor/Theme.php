@@ -54,6 +54,6 @@ class Theme extends AbstractableProcessor
 
         $this->memory->put("site.theme.{$type}", $id);
 
-        return $listener->updateSucceed($type, $id);
+        return $listener->activateSucceed($type, $id);
     }
 }
