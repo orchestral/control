@@ -13,11 +13,12 @@ class OrchestraControlSeedAcls extends Migration
      */
     public function up()
     {
-        $role    = Role::admin();
-        $acl     = App::acl();
+        $role = Role::admin();
+        $acl  = App::acl();
+
         $actions = array('Manage Roles', 'Manage Acl');
 
-        $acl->actions()->fill($actions);
+        $acl->actions()->attach($actions);
         $acl->allow($role->name, $actions);
     }
 

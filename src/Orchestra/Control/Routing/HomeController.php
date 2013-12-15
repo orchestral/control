@@ -6,9 +6,18 @@ use Orchestra\Support\Facades\Site;
 class HomeController extends BaseController
 {
     /**
+     * Define the filters.
+     *
+     * @return void
+     */
+    protected function setupFilters()
+    {
+        //
+    }
+
+    /**
      * Control dashboard.
      *
-     * @access public
      * @return Response
      */
     public function getIndex()

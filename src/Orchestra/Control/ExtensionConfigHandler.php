@@ -9,9 +9,8 @@ class ExtensionConfigHandler
     /**
      * Handle `orchestra.form: extension.orchestra/control` event.
      *
-     * @access public
-     * @param  Orchestra\Model\User             $model
-     * @param  Orchestra\Html\Form\FormBuilder  $form
+     * @param  \Orchestra\Model\User            $model
+     * @param  \Orchestra\Html\Form\FormBuilder $form
      * @return void
      */
     public function onViewForm($model, $form)
@@ -50,11 +49,10 @@ class ExtensionConfigHandler
     /**
      * Handle `orchestra.saved: extension.orchestra/control` event.
      *
-     * @access public
-     * @param  array    $input
+     * @param  array   $input
      * @return void
      */
-    public function onSaved($input)
+    public function onSaved(array $input)
     {
         $localtime = ($input['localtime'] === 'yes');
 

@@ -1,36 +1,45 @@
-<?php namespace Orchestra\Control\Tests;
+<?php namespace Orchestra\Control\TestCase;
 
-use Orchestra\Foundation\Services\ApplicationTestCase;
+use Mockery as m;
+use Illuminate\Support\Facades\Facade;
+use Orchestra\Support\Facades\App;
+use Orchestra\Control\Authorize;
 
-class AuthorizeTest extends ApplicationTestCase {
+class AuthorizeTest extends \PHPUnit_Framework_TestCase
+{
+    public function setUp()
+    {
+        $app = new \Illuminate\Foundation\Application;
 
-	protected function getEnvironmentSetUp($app)
-	{
-		parent::getEnvironmentSetUp($app);
+        Facade::clearResolvedInstances();
+        Facade::setFacadeApplication($app);
+    }
 
-		$app['path.base'] = __DIR__.'/../';
-		$app['config']->set('database.default', 'testbench');
-		$app['config']->set('database.connections.testbench', array(
-			'driver'    => 'sqlite',
-			'database'  => ':memory:',
-			'prefix'    => '',
-		));
-	}
+    /**
+     * Test Orchestra\Control\Authorize::sync() method.
+     *
+     * @test
+     */
+    public function testSyncMethod()
+    {
+        $app  = m::mock('\Orchestra\Foundation\Application')->shouldDeferMissing();
+        $acl  = m::mock('\Orchestra\Auth\Acl\Container');
+        $role = m::mock('Role');
 
-	/**
-	 * Test Orchestra\Control\Authorize::sync() method.
-	 *
-	 * @test
-	 */
-	public function testSyncMethod()
-	{
-		$role = $this->app['orchestra.role']->admin();
-		$acl  = $this->app['orchestra.app']->acl();
+        $admin = (object) array(
+            'id'   => 1,
+            'name' => 'Administrator',
+        );
 
-		$acl->deny($role->name, 'Manage Orchestra');
+        $app->shouldReceive('acl')->once()->andReturn($acl)
+            ->shouldReceive('make')->once()->with('orchestra.role')->andReturn($role);
+        $acl->shouldReceive('allow')->once()
+                ->with('Administrator', array('Manage Users', 'Manage Orchestra', 'Manage Roles', 'Manage Acl'))
+                ->andReturn(null);
+        $role->shouldReceive('admin')->once()->andReturn($admin);
 
-		$this->assertFalse($acl->can('Manage Orchestra'));
+        App::swap($app);
 
-		//\Orchestra\Control\Authorize::sync();	
-	}
+        Authorize::sync();
+    }
 }

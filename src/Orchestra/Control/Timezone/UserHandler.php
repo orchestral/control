@@ -10,9 +10,8 @@ class UserHandler
     /**
      * Handle `orchestra.form: user.account` event.
      *
-     * @access public
-     * @param  Orchestra\Model\User             $user
-     * @param  Orchestra\Html\Form\FormBuilder  $form
+     * @param  \Orchestra\Model\User            $user
+     * @param  \Orchestra\Html\Form\FormBuilder $form
      * @return void
      */
     public function onViewForm($user, $form)
@@ -27,9 +26,9 @@ class UserHandler
                     $control->label('Timezone');
                     $control->options(Timezone::lists());
                     $control->value(function ($row) {
-                        $userMeta = Memory::make('user');
+                        $meta = Memory::make('user');
 
-                        return $userMeta->get("timezone.{$row->id}", Config::get('app.timezone'));
+                        return $meta->get("timezone.{$row->id}", Config::get('app.timezone'));
                     });
                 });
             });
@@ -39,8 +38,7 @@ class UserHandler
     /**
      * Handle `orchestra.saved: user.account` event.
      *
-     * @access public
-     * @param  Orchestra\Model\User $user
+     * @param  \Orchestra\Model\User   $user
      * @return void
      */
     public function onSaved($user)
@@ -49,9 +47,9 @@ class UserHandler
             return;
         }
 
-        $userId   = $user->id;
-        $userMeta = Memory::make('user');
+        $userId = $user->id;
+        $meta   = Memory::make('user');
 
-        $userMeta->put("timezone.{$userId}", Input::get('meta_timezone'));
+        $meta->put("timezone.{$userId}", Input::get('meta_timezone'));
     }
 }

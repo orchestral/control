@@ -1,17 +1,19 @@
 <?php namespace Orchestra\Control\Tests;
 
-class TimezoneTest extends \PHPUnit_Framework_TestCase {
+use Orchestra\Control\Timezone;
 
-	/**
-	 * Test Orchestra\Control\Timezone::lists() method
-	 *
-	 * @test
-	 */
-	public function testTimezoneListsMethod()
-	{
-		$list = \Orchestra\Control\Timezone::lists();
+class TimezoneTest extends \PHPUnit_Framework_TestCase
+{
+    /**
+     * Test Orchestra\Control\Timezone::lists() method
+     *
+     * @test
+     */
+    public function testTimezoneListsMethod()
+    {
+        $list = Timezone::lists();
 
-		$this->assertTrue(array_key_exists('UTC', $list));
-		$this->assertTrue(array_key_exists('Asia/Kuala_Lumpur', $list));
-	}
+        $this->assertTrue(array_key_exists('UTC', $list));
+        $this->assertTrue(array_key_exists('Asia/Kuala_Lumpur', $list));
+    }
 }

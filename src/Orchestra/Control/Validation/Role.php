@@ -1,8 +1,8 @@
-<?php namespace Orchestra\Control\Services;
+<?php namespace Orchestra\Control\Validation;
 
 use Orchestra\Support\Validator;
 
-class RoleValidation extends Validator
+class Role extends Validator
 {
     /**
      * List of rules
@@ -16,7 +16,6 @@ class RoleValidation extends Validator
     /**
      * On create validations.
      *
-     * @access public
      * @return void
      */
     protected function onCreate()
@@ -27,7 +26,6 @@ class RoleValidation extends Validator
     /**
      * On update validations.
      *
-     * @access public
      * @return void
      */
     protected function onUpdate()

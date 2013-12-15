@@ -1,153 +1,117 @@
 <?php namespace Orchestra\Control\Routing;
 
+use Illuminate\Support\Fluent;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
-use Orchestra\Support\Facades\App;
-use Orchestra\Support\Facades\Acl;
-use Orchestra\Support\Facades\Messages;
-use Orchestra\Support\Facades\Site;
 use Orchestra\Control\Authorize;
-use Orchestra\Model\Role;
-use Orchestra\Support\Str;
+use Orchestra\Control\Processor\Acl as AclProcessor;
+use Orchestra\Support\Facades\Site;
 
 class AclController extends BaseController
 {
     /**
-     * Memory instance.
+     * Setup a new controller.
      *
-     * @var Orchestra\Memory\Drivers\Driver
+     * @param  \Orchestra\Control\Processor\Acl    $processor
      */
-    protected $memory;
+    public function __construct(AclProcessor $processor)
+    {
+        $this->processor = $processor;
+
+        parent::__construct();
+    }
 
     /**
      * Define the filters.
      *
-     * @access public
      * @return void
      */
-    public function __construct()
+    protected function setupFilters()
     {
         $this->beforeFilter('control.manage:acl');
-
-        $this->memory = App::memory();
     }
 
     /**
      * Get default resources landing page.
      *
-     * @access public
      * @return Response
      */
     public function getIndex()
     {
-        $lists    = array();
-        $selected = Input::get('name', 'orchestra');
-        $acls     = Acl::all();
-        $active   = null;
+        return $this->processor->index($this, Input::get('name', 'orchestra'));
+    }
 
-        foreach ($acls as $name => $instance) {
-            $uid = str_replace('/', '.', $name);
-            $lists[$uid] = $this->getExtensionName($name);
+    /**
+     * Update ACL metric.
+     *
+     * @return Response
+     */
+    public function postIndex()
+    {
+        return $this->processor->update($this, Input::all());
+    }
 
-            if ($uid === $selected) {
-                $active = $instance;
-            }
-        }
+    /**
+     * Get sync roles action.
+     *
+     * @param  string   $id
+     * @return Response
+     */
+    public function getSync($id)
+    {
+        return $this->processor->sync($this, $id);
+    }
 
-        if (is_null($active)) {
-            return App::abort(404);
-        }
-
-        $data     = array(
-            'eloquent' => $active,
-            'lists'    => $lists,
-            'selected' => $selected,
-        );
-
+    /**
+     * Response when lists ACL page succeed.
+     *
+     * @param  array  $data
+     * @return Response
+     */
+    public function indexSucceed(array $data)
+    {
         Site::set('title', trans('orchestra/control::title.acls.list'));
 
         return View::make('orchestra/control::acl.index', $data);
     }
 
     /**
-     * Update ACL metric
+     * Response when ACL is updated.
      *
-     * @access public
+     * @param  string  $id
      * @return Response
      */
-    public function postIndex()
+    public function updateSucceed($id)
     {
-        $metric    = Input::get('metric');
-        $name      = str_replace('.', '/', $metric);
-        $instances = Acl::all();
-
-        if (is_null($name) or ! isset($instances[$name])) {
-            return App::abort(404);
-        }
-
-        $acl = $instances[$name];
-
-        foreach ($acl->roles()->get() as $roleKey => $roleName) {
-            foreach ($acl->actions()->get() as $actionKey => $actionName) {
-                $input = ('yes' === Input::get("acl-{$roleKey}-{$actionKey}", 'no'));
-
-                $acl->allow($roleName, $actionName, $input);
-            }
-        }
-
         Authorize::sync();
 
-        Messages::add('success', trans('orchestra/control::response.acls.update'));
+        $message = trans('orchestra/control::response.acls.update');
 
-        return Redirect::to(resources("control.acl?name={$metric}"));
+        return $this->redirectWithMessage(resources("control.acl?name={$id}"), $message);
     }
 
     /**
-     * Get sync roles action.
+     * Response when sync roles succeed.
      *
-     * @access public
-     * @param  string   $name
+     * @param  \Illuminate\Support\Fluent   $acl
      * @return Response
      */
-    public function getSync($uid)
+    public function syncSucceed(Fluent $acl)
     {
-        $name  = str_replace('.', '/', $uid);
-        $roles = array();
-        $acls  = Acl::all();
+        $message = trans('orchestra/control::response.acls.sync-roles', array(
+            'name' => $acl->name,
+        ));
 
-        if (! isset($acls[$name])) {
-            return App::abort(404);
-        }
-
-        $current = $acls[$name];
-
-        foreach (Role::all() as $role) {
-            $roles[] = $role->name;
-        }
-
-        $current->roles()->fill($roles);
-
-        Messages::add('success', trans('orchestra/control::response.acls.sync-roles', array(
-            'name' => $this->getExtensionName($name),
-        )));
-
-        return Redirect::to(resources("control.acl?name={$uid}"));
+        return $this->redirectWithMessage(resources("control.acl?name={$acl->id}"), $message);
     }
 
     /**
-     * Get extension name if possible.
+     * Response when acl verification failed.
      *
-     * @access protected
-     * @param  string   $name
-     * @return string
+     * @return Response
      */
-    protected function getExtensionName($name)
+    public function aclVerificationFailed()
     {
-        $extension = $this->memory->get("extensions.available.{$name}.name", null);
-
-        $name !== 'orchestra' or $extension = 'Orchestra Platform';
-
-        return (is_null($extension) ? Str::title($name) : $extension);
+        return $this->suspend(404);
     }
 }
