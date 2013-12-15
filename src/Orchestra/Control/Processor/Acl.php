@@ -34,16 +34,16 @@ class Acl extends AbstractableProcessor
     {
         $collection = array();
         $instances  = $this->acl->all();
-        $active     = null;
+        $eloquent   = null;
 
         foreach ($instances as $name => $instance) {
             $uid = $this->getUidFromName($name);
             $collection[$uid] = $this->getExtensionName($name);
 
-            $uid === $id and $active = $instance;
+            $uid === $id and $eloquent = $instance;
         }
 
-        if (is_null($active)) {
+        if (is_null($eloquent)) {
             return $listener->aclVerificationFailed();
         }
 
