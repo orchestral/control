@@ -3,7 +3,7 @@
 	"description": "Orchestra Platform Control Extension",
 	"author": "Mior Muhammad Zaki",
 	"url": "https://github.com/orchestral/control",
-	"version": "2.1.0",
+	"version": "2.2.0-dev",
 	"provide": [
 		"Orchestra\\Control\\ControlServiceProvider"
 	]
