@@ -5,7 +5,7 @@ abstract class AbstractableProcessor
     /**
      * Memory instance.
      *
-     * @var \Orchestra\Memory\Drivers\Driver
+     * @var \Orchestra\Memory\Provider
      */
     protected $memory;
 
