@@ -1,5 +1,6 @@
 <?php namespace Orchestra\Control;
 
+use Illuminate\Support\Fluent;
 use Illuminate\Support\Facades\Config;
 use Orchestra\Support\Facades\App;
 use Orchestra\Model\Role;
@@ -49,10 +50,10 @@ class ExtensionConfigHandler
     /**
      * Handle `orchestra.saved: extension.orchestra/control` event.
      *
-     * @param  array   $input
+     * @param  \Illuminate\Support\Fluent  $input
      * @return void
      */
-    public function onSaved(array $input)
+    public function onSaved(Fluent $input)
     {
         $localtime = ($input['localtime'] === 'yes');
 
