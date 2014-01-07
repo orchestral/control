@@ -1,5 +1,5 @@
 @foreach ($themes as $id => $theme)
-<div class="four columns white themes box">
+<div class="four columns themes box">
     <img src="{{ asset("themes/{$id}/screenshot.png") }}" class="img-thumbnail">
     <h3>{{ $theme->name }}</h3>
     <p>{{ $theme->description }}</p>
