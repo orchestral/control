@@ -66,10 +66,8 @@ class Role extends AbstractablePresenter
      */
     public function form(Eloquent $model)
     {
-        $me = $this;
-
-        return Form::of('control.roles', function ($form) use ($me, $model) {
-            $form->resource($me, 'control.roles', $model);
+        return Form::of('control.roles', function ($form) use ($model) {
+            $form->resource($this, 'control.roles', $model);
             $form->hidden('id');
 
             $form->fieldset(function ($fieldset) {
