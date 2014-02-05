@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\DB;
 use Orchestra\Control\Presenter\Role as RolePresenter;
 use Orchestra\Control\Validation\Role as RoleValidator;
 use Orchestra\Support\Facades\App;
+use Illuminate\Support\Facades\Event;
+use Orchestra\Model\Role as Eloquent;
 
 class Role extends AbstractableProcessor
 {
@@ -46,6 +48,8 @@ class Role extends AbstractableProcessor
         $eloquent = $this->model;
         $form     = $this->presenter->form($eloquent);
 
+        $this->fireEvent('form', array($eloquent, $form));
+
         return $listener->createSucceed(compact('eloquent', 'form'));
     }
 
@@ -60,6 +64,8 @@ class Role extends AbstractableProcessor
     {
         $eloquent = $this->model->findOrFail($id);
         $form     = $this->presenter->form($eloquent);
+
+        $this->fireEvent('form', array($eloquent, $form));
 
         return $listener->editSucceed(compact('eloquent', 'form'));
     }
@@ -79,14 +85,12 @@ class Role extends AbstractableProcessor
             return $listener->storeValidationFailed($validation);
         }
 
-        $role       = $this->model;
-        $role->name = $input['name'];
+        $role = $this->model;
 
         try {
-            DB::transaction(function () use ($role) {
-                $role->save();
-            });
+            $this->saving($role, $input, 'create');
         } catch (Exception $e) {
+            dd($e->getMessage());
             return $listener->storeFailed(array('error' => $e->getMessage()));
         }
 
@@ -114,12 +118,9 @@ class Role extends AbstractableProcessor
         }
 
         $role = $this->model->findOrFail($id);
-        $role->name = $input['name'];
 
         try {
-            DB::transaction(function () use ($role) {
-                $role->save();
-            });
+            $this->saving($role, $input, 'update');
         } catch (Exception $e) {
             return $listener->updateFailed(array('error' => $e->getMessage()));
         }
@@ -147,5 +148,45 @@ class Role extends AbstractableProcessor
         }
 
         return $listener->destroySucceed($role);
+    }
+
+    /**
+     * Save the role.
+     *
+     * @param  Orchestra\Model\Role    $role
+     * @param  array                   $input
+     * @param  string                  $type
+     * @return boolean
+     */
+    protected function saving(Eloquent $role, $input = array(), $type = 'create')
+    {
+        $beforeEvent = ($type === 'create' ? 'creating' : 'updating');
+        $afterEvent  = ($type === 'create' ? 'created' : 'updated');
+
+        $role->name = $input['name'];
+
+        $this->fireEvent($beforeEvent, array($role));
+        $this->fireEvent('saving', array($role));
+
+        DB::transaction(function () use ($role) {
+            $role->save();
+        });
+
+        $this->fireEvent($afterEvent, array($role));
+        $this->fireEvent('saved', array($role));
+
+        return true;
+    }
+
+    /**
+     * Fire Event related to eloquent process.
+     *
+     * @param  string  $type
+     * @param  array   $parameters
+     * @return void
+     */
+    protected function fireEvent($type, array $parameters = array())
+    {
+        Event::fire("orchestra.control.{$type}: roles", $parameters);
     }
 }
