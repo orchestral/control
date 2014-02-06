@@ -1,0 +1,27 @@
+---------------------------------------------------------------------------
+
+by coveralls at 2014-02-05T17:24:42Z
+
+[![Coverage Status](https://coveralls.io/builds/493795/badge)](https://coveralls.io/builds/493795)
+
+Coverage remained the same when pulling **5a02c3c5bcf4b983671a5dcb84d7ddcfae3aa41c on Fed03:new-feature** into **f94ca33e729c73b043f3f900464538c00d74eb8f on orchestral:master**.
+
+---------------------------------------------------------------------------
+
+by coveralls at 2014-02-05T17:24:42Z
+
+[![Coverage Status](https://coveralls.io/builds/493795/badge)](https://coveralls.io/builds/493795)
+
+Coverage remained the same when pulling **5a02c3c5bcf4b983671a5dcb84d7ddcfae3aa41c on Fed03:new-feature** into **f94ca33e729c73b043f3f900464538c00d74eb8f on orchestral:master**.
+
+---------------------------------------------------------------------------
+
+by crynobone at 2014-02-06T01:50:21Z
+
+> I send the PR to the master branch but if I think that this should be included in the 2.1.* version
+
+I\'ll cherry-pick the commit to `2.1` branch later when I pull this in.
+
+> in the future, where have I to send it?
+
+Any not breaking feature can be made to `2.1` (current version) since we\'re still supporting it, else it should be on `master` (next version) which right now alias to `2.2`
