@@ -90,7 +90,6 @@ class Role extends AbstractableProcessor
         try {
             $this->saving($role, $input, 'create');
         } catch (Exception $e) {
-            dd($e->getMessage());
             return $listener->storeFailed(array('error' => $e->getMessage()));
         }
 
