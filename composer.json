@@ -19,7 +19,7 @@
 		"php": ">=5.4.0"
 	},
 	"require-dev": {
-		"mockery/mockery": "0.8.*",
+		"mockery/mockery": "0.9.*",
 		"orchestra/support": "2.2.*",
 		"orchestra/testbench": "2.2.*",
 		"orchestra/foundation": "2.2.*"
