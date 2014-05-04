@@ -2,11 +2,11 @@
 
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Event;
 use Orchestra\Control\Presenter\Role as RolePresenter;
 use Orchestra\Control\Validation\Role as RoleValidator;
-use Orchestra\Support\Facades\App;
-use Illuminate\Support\Facades\Event;
 use Orchestra\Model\Role as Eloquent;
+use Orchestra\Support\Facades\App;
 
 class Role extends AbstractableProcessor
 {

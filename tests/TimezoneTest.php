@@ -1,4 +1,4 @@
-<?php namespace Orchestra\Control\Tests;
+<?php namespace Orchestra\Control\TestCase;
 
 use Orchestra\Control\Timezone;
 

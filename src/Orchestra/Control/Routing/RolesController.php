@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\View;
 use Orchestra\Control\Processor\Role as RoleProcessor;
-use Orchestra\Support\Facades\Site;
 use Orchestra\Model\Role;
+use Orchestra\Support\Facades\Site;
 
 class RolesController extends BaseController
 {
