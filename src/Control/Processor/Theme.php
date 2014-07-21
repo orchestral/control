@@ -33,7 +33,7 @@ class Theme extends AbstractableProcessor
         }
 
         $current = $this->memory->get("site.theme.{$type}");
-        $themes  = App::make('orchestra.theme.finder')->detect();
+        $themes  = App::make('orchestra.theme.finder')->detect($type);
 
         return $listener->indexSucceed(compact('current', 'themes', 'type'));
     }
