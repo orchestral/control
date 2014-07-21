@@ -33,7 +33,7 @@ class Theme extends AbstractableProcessor
         }
 
         $current = $this->memory->get("site.theme.{$type}");
-        $themes  = App::make('orchestra.theme.finder')->detect();
+        $themes  = $this->getAvailableTheme($type);
 
         return $listener->indexSucceed(compact('current', 'themes', 'type'));
     }
@@ -48,12 +48,33 @@ class Theme extends AbstractableProcessor
      */
     public function activate($listener, $type, $id)
     {
-        if (! in_array($type, $this->type)) {
+        $theme = $this->getAvailableTheme($type)->get($id);
+
+        if (! in_array($type, $this->type) || is_null($theme)) {
             return $listener->themeVerificationFailed();
         }
 
         $this->memory->put("site.theme.{$type}", $id);
 
         return $listener->activateSucceed($type, $id);
+    }
+
+    /**
+     * Get all available theme.
+     *
+     * @param  string   $type
+     * @return \Illuminate\Support\Collection
+     */
+    protected function getAvailableTheme($type)
+    {
+        $themes = App::make('orchestra.theme.finder')->detect();
+
+        return $themes->filter(function ($manifest) use ($type) {
+            if (! empty($manifest->type) && ! in_array($type, $manifest->type)) {
+                return ;
+            }
+
+            return $manifest;
+        });
     }
 }
