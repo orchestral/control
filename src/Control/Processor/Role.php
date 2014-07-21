@@ -34,6 +34,13 @@ class Role extends AbstractableProcessor
         $eloquent = $this->model->paginate();
         $table    = $this->presenter->table($eloquent);
 
+        $this->fireEvent('list', array($eloquent, $table));
+
+        // Once all event listening to `orchestra.list: role` is executed,
+        // we can add we can now add the final column, edit and delete
+        // action for roles.
+        $this->presenter->actions($table);
+
         return $listener->indexSucceed(compact('eloquent', 'table'));
     }
 
@@ -152,7 +159,7 @@ class Role extends AbstractableProcessor
     /**
      * Save the role.
      *
-     * @param  Orchestra\Model\Role    $role
+     * @param  \Orchestra\Model\Role   $role
      * @param  array                   $input
      * @param  string                  $type
      * @return boolean
