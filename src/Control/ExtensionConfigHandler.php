@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Facades\Config;
-use Orchestra\Support\Facades\App;
 use Orchestra\Model\Role;
+use Orchestra\Support\Facades\App;
 
 class ExtensionConfigHandler
 {

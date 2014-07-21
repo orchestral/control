@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\HTML;
+use Orchestra\Model\Role as Eloquent;
 use Orchestra\Support\Facades\Form;
 use Orchestra\Support\Facades\Table;
-use Orchestra\Model\Role as Eloquent;
 
 class Role extends AbstractablePresenter
 {
@@ -62,7 +62,7 @@ class Role extends AbstractablePresenter
      * View form generator for Orchestra\Model\Role.
      *
      * @param  \Orchestra\Model\Role    $model
-     * @return Orchestra\Html\Form\FormBuilder
+     * @return \Orchestra\Html\Form\FormBuilder
      */
     public function form(Eloquent $model)
     {
