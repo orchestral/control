@@ -14,6 +14,15 @@ class Role extends Validator
     );
 
     /**
+     * List of events.
+     * 
+     * @var array
+     */
+    protected $events = array(
+        'orchestra.control.validate: roles',
+    );
+
+    /**
      * On create validations.
      *
      * @return void

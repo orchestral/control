@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\HTML;
+use Orchestra\Html\Table\TableBuilder;
+use Orchestra\Model\Role as Eloquent;
 use Orchestra\Support\Facades\Form;
 use Orchestra\Support\Facades\Table;
-use Orchestra\Model\Role as Eloquent;
 
 class Role extends AbstractablePresenter
 {
@@ -23,6 +24,18 @@ class Role extends AbstractablePresenter
 
             // Add columns.
             $table->column(trans('orchestra/foundation::label.name'), 'name');
+        });
+    }
+
+    /**
+     * Table actions View Generator for Orchestra\Model\User.
+     *
+     * @param  \Orchestra\Html\Table\TableBuilder   $table
+     * @return \Orchestra\Html\Table\TableBuilder
+     */
+    public function actions(TableBuilder $table)
+    {
+        return $table->extend(function ($table) {
             $table->column('action', function ($column) {
                 $column->label('');
                 $column->escape(false);
@@ -62,7 +75,7 @@ class Role extends AbstractablePresenter
      * View form generator for Orchestra\Model\Role.
      *
      * @param  \Orchestra\Model\Role    $model
-     * @return Orchestra\Html\Form\FormBuilder
+     * @return \Orchestra\Html\Form\FormBuilder
      */
     public function form(Eloquent $model)
     {
