@@ -5,6 +5,12 @@ title: Control Change Log
 
 ## Version 2.1 {#v2-1}
 
+### v2.1.4 {#v2-1-4}
+
+* Filter theme to only to be shown when the theme support it.
+* Add events to attach fields to roles.
+
+
 ### v2.1.3 {#v2-1-3}
 
 * Added events to hook into the role management.
