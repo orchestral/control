@@ -3,6 +3,13 @@ title: Control Change Log
 
 ---
 
+## Version 2.2 {#v2-2}
+
+### v2.2.0 {#v2-2-0}
+
+* Bump minimum version to PHP v5.4.0.
+* Add support for Orchestra Platform 2.2.
+
 ## Version 2.1 {#v2-1}
 
 ### v2.1.3 {#v2-1-3}
