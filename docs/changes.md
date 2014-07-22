@@ -3,6 +3,26 @@ title: Control Change Log
 
 ---
 
+## Version 2.1 {#v2-1}
+
+### v2.1.3 {#v2-1-3}
+
+* Added events to hook into the role management.
+
+### v2.1.2 {#v2-1-2}
+
+* Fixes `Orchestra\Control\ExtensionConfigHandler` type-hint to use `Illuminate\Support\Fluent` instead of array.
+* Fixes control theme switcher CSS issue.
+
+### v2.1.1 {#v2-1-1}
+
+* Fixed missing `Orchestra\Control\Presenter\AbstractablePresenter` class and add some tests.
+
+### v2.1.0 {#v2-1-0}
+
+* Update support for Orchestra Platform v2.1
+* Implement passive controllers for `orchestra/control`.
+
 ## Version 2.0 {#v2-0}
 
 ### v2.0.13 {#v2-0-13}
