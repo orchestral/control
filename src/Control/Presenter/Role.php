@@ -19,7 +19,11 @@ class Role extends AbstractablePresenter
     {
         return Table::of('control.roles', function ($table) use ($model) {
             // attach Model and set pagination option to true.
-            $table->with($model);
+            $table->with($model)->paginate(true);
+
+            $table->sortable();
+            $table->searchable(array('name'));
+
             $table->layout('orchestra/foundation::components.table');
 
             // Add columns.
