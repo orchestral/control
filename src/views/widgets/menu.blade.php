@@ -1,4 +1,4 @@
-<?
+<?php
 
 use Illuminate\Support\Facades\HTML;
 use Illuminate\Support\Facades\Request;
