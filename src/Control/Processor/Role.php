@@ -31,7 +31,7 @@ class Role extends AbstractableProcessor
      */
     public function index($listener)
     {
-        $eloquent = $this->model->paginate();
+        $eloquent = $this->model->newQuery();
         $table    = $this->presenter->table($eloquent);
 
         $this->fireEvent('list', array($eloquent, $table));
