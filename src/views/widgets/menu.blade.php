@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\HTML;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Fluent;
-use Orchestra\Support\Facades\App; ?>
+use Orchestra\Support\Facades\App;
+use Orchestra\Support\Facades\HTML; ?>
 
 @section('orchestra/control::primary_menu')
 

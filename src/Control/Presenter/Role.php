@@ -1,10 +1,10 @@
 <?php namespace Orchestra\Control\Presenter;
 
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\HTML;
 use Orchestra\Html\Table\TableBuilder;
 use Orchestra\Model\Role as Eloquent;
 use Orchestra\Support\Facades\Form;
+use Orchestra\Support\Facades\HTML;
 use Orchestra\Support\Facades\Table;
 
 class Role extends AbstractablePresenter
