@@ -2,8 +2,8 @@
 
 <?php
 
-use Illuminate\Support\Facades\Form;
 use Illuminate\Support\Facades\URL;
+use Orchestra\Support\Facades\Form;
 use Orchestra\Support\Str;
 
 $actions = $eloquent->actions()->get();
