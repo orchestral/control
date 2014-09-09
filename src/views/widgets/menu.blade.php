@@ -10,14 +10,14 @@ use Orchestra\Support\Facades\HTML; ?>
 
 <ul class="nav navbar-nav">
     @if (App::acl()->can('manage-roles'))
-    <li class="{{ Request::is('*resources/control.roles*') ? 'active' : '' }}">
-        {{ HTML::link(resources('control.roles'), 'Roles') }}
+    <li class="{!! Request::is('*resources/control.roles*') ? 'active' : '' !!}">
+        <a href="{!! resources('control.roles') !!}">Roles</a>
     </li>
     @endif
 
     @if (App::acl()->can('manage-acl'))
-    <li class="{{ Request::is('*resources/control.acl*') ? 'active' : '' }}">
-        {{ HTML::link(resources('control.acl'), 'ACL') }}
+    <li class="{!! Request::is('*resources/control.acl*') ? 'active' : '' !!}">
+         <a href="{!! resources('control.acl') !!}">ACL</a>
     </li>
     @endif
 
@@ -26,10 +26,10 @@ use Orchestra\Support\Facades\HTML; ?>
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes</a>
         <ul class="dropdown-menu">
             <li>
-                <a href="{{ resources("control.themes/index/frontend") }}">Frontend</a>
+                <a href="{!! resources('control.themes/index/frontend') !!}">Frontend</a>
             </li>
             <li>
-                <a href="{{ resources("control.themes/index/backend") }}">Backend</a>
+                <a href="{{ resources('control.themes/index/backend') }}">Backend</a>
             </li>
         </ul>
     </li>

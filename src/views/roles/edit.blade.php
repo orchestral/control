@@ -4,7 +4,7 @@
 	<div class="twelve columns rounded box">
 		<div class="row">
 			<div class="nine columns">
-				{{ $form }}
+				{!! $form !!}
 			</div>
 		</div>
 	</div>
