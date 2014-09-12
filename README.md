@@ -1,7 +1,7 @@
 Control Extension
 ==============
 
-Official Administration Add-on Extension for Orchestra Platform 2 that provide support for:
+Official Administration Add-on Extension for Orchestra Platform that provide support for:
 
 * Role Based Access Control Management &mdash; (formerly [Authorize Extension](https://github.com/orchestral/authorize)).
 * Theme Manager &mdash; (formerly [Melody Theme Manager Extension](https://github.com/orchestral/melody)).
@@ -14,7 +14,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
 	"require": {
-		"orchestra/control": "2.2.*"
+		"orchestra/control": "3.0.*"
 	}
 }
 ```
