@@ -1,7 +1,6 @@
 <?php namespace Orchestra\Control\Routing;
 
-use Illuminate\Support\Facades\View;
-use Orchestra\Support\Facades\Site;
+use Orchestra\Support\Facades\Meta;
 
 class HomeController extends BaseController
 {
@@ -22,8 +21,8 @@ class HomeController extends BaseController
      */
     public function getIndex()
     {
-        Site::set('title', 'Control');
+        Meta::set('title', 'Control');
 
-        return View::make('orchestra/control::home');
+        return view('orchestra/control::home');
     }
 }

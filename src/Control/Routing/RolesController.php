@@ -1,10 +1,9 @@
 <?php namespace Orchestra\Control\Routing;
 
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\View;
-use Orchestra\Control\Processor\Role as RoleProcessor;
 use Orchestra\Model\Role;
-use Orchestra\Support\Facades\Site;
+use Orchestra\Support\Facades\Meta;
+use Illuminate\Support\Facades\Input;
+use Orchestra\Control\Processor\Role as RoleProcessor;
 
 class RolesController extends BaseController
 {
@@ -121,9 +120,9 @@ class RolesController extends BaseController
      */
     public function indexSucceed(array $data)
     {
-        Site::set('title', trans('orchestra/control::title.roles.list'));
+        Meta::set('title', trans('orchestra/control::title.roles.list'));
 
-        return View::make('orchestra/control::roles.index', $data);
+        return view('orchestra/control::roles.index', $data);
     }
 
     /**
@@ -134,9 +133,9 @@ class RolesController extends BaseController
      */
     public function createSucceed(array $data)
     {
-        Site::set('title', trans('orchestra/control::title.roles.create'));
+        Meta::set('title', trans('orchestra/control::title.roles.create'));
 
-        return View::make('orchestra/control::roles.edit', $data);
+        return view('orchestra/control::roles.edit', $data);
     }
 
     /**
@@ -147,9 +146,9 @@ class RolesController extends BaseController
      */
     public function editSucceed(array $data)
     {
-        Site::set('title', trans('orchestra/control::title.roles.update'));
+        Meta::set('title', trans('orchestra/control::title.roles.update'));
 
-        return View::make('orchestra/control::roles.edit', $data);
+        return view('orchestra/control::roles.edit', $data);
     }
 
      /**

@@ -1,6 +1,6 @@
 <?php namespace Orchestra\Control\Processor;
 
-use Orchestra\Support\Facades\App;
+use Orchestra\Support\Facades\Foundation;
 
 class Theme extends AbstractableProcessor
 {
@@ -16,7 +16,7 @@ class Theme extends AbstractableProcessor
      */
     public function __construct()
     {
-        $this->memory = App::memory();
+        $this->memory = Foundation::memory();
     }
 
     /**
@@ -67,7 +67,7 @@ class Theme extends AbstractableProcessor
      */
     protected function getAvailableTheme($type)
     {
-        $themes = App::make('orchestra.theme.finder')->detect();
+        $themes = Foundation::make('orchestra.theme.finder')->detect();
 
         return $themes->filter(function ($manifest) use ($type) {
             if (! empty($manifest->type) && ! in_array($type, $manifest->type)) {

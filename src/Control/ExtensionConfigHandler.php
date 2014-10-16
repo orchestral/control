@@ -1,9 +1,9 @@
 <?php namespace Orchestra\Control;
 
+use Orchestra\Model\Role;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Facades\Config;
-use Orchestra\Model\Role;
-use Orchestra\Support\Facades\App;
+use Orchestra\Support\Facades\Foundation;
 
 class ExtensionConfigHandler
 {
@@ -64,6 +64,6 @@ class ExtensionConfigHandler
 
         Authorize::sync();
 
-        App::memory()->put("extension_orchestra/control.localtime", $localtime);
+        Foundation::memory()->put("extension_orchestra/control.localtime", $localtime);
     }
 }

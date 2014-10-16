@@ -1,11 +1,10 @@
 <?php namespace Orchestra\Control\Routing;
 
 use Illuminate\Support\Fluent;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\View;
 use Orchestra\Control\Authorize;
+use Orchestra\Support\Facades\Meta;
+use Illuminate\Support\Facades\Input;
 use Orchestra\Control\Processor\Acl as AclProcessor;
-use Orchestra\Support\Facades\Site;
 
 class AclController extends BaseController
 {
@@ -70,9 +69,9 @@ class AclController extends BaseController
      */
     public function indexSucceed(array $data)
     {
-        Site::set('title', trans('orchestra/control::title.acls.list'));
+        Meta::set('title', trans('orchestra/control::title.acls.list'));
 
-        return View::make('orchestra/control::acl.index', $data);
+        return view('orchestra/control::acl.index', $data);
     }
 
     /**

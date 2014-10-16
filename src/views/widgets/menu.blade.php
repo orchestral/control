@@ -1,28 +1,22 @@
-<?php
-
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Fluent;
-use Orchestra\Support\Facades\App;
-use Orchestra\Support\Facades\HTML; ?>
+<?php $acl = app('orchestra.platform.acl'); ?>
 
 @section('orchestra/control::primary_menu')
 
 <ul class="nav navbar-nav">
-    @if (App::acl()->can('manage-roles'))
-    <li class="{!! Request::is('*resources/control.roles*') ? 'active' : '' !!}">
+    @if ($acl->can('manage-roles'))
+    <li class="{!! app('request')->is('*resources/control.roles*') ? 'active' : '' !!}">
         <a href="{!! resources('control.roles') !!}">Roles</a>
     </li>
     @endif
 
-    @if (App::acl()->can('manage-acl'))
-    <li class="{!! Request::is('*resources/control.acl*') ? 'active' : '' !!}">
+    @if ($acl->can('manage-acl'))
+    <li class="{!! app('request')->is('*resources/control.acl*') ? 'active' : '' !!}">
          <a href="{!! resources('control.acl') !!}">ACL</a>
     </li>
     @endif
 
-    @if (App::acl()->can('manage-orchestra'))
-    <li class="dropdown{{ Request::is('*resources/control.themes*') ? ' active' : '' }}">
+    @if ($acl->can('manage-orchestra'))
+    <li class="dropdown{{ app('request')->is('*resources/control.themes*') ? ' active' : '' }}">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes</a>
         <ul class="dropdown-menu">
             <li>
@@ -37,12 +31,12 @@ use Orchestra\Support\Facades\HTML; ?>
 </ul>
 @stop
 
-<? $navbar = new Fluent(array(
+<? $navbar = new \Illuminate\Support\Fluent([
     'id'    => 'control',
     'title' => 'Control',
     'url'   => handles('orchestra/foundation::resources/control'),
-    'menu'  => View::yieldContent('orchestra/control::primary_menu'),
-)); ?>
+    'menu'  => app('view')->yieldContent('orchestra/control::primary_menu'),
+]); ?>
 
 @decorator('navbar', $navbar)
 

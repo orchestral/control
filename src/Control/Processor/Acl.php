@@ -1,8 +1,8 @@
 <?php namespace Orchestra\Control\Processor;
 
-use Illuminate\Support\Fluent;
-use Orchestra\Support\Facades\App;
 use Orchestra\Support\Str;
+use Illuminate\Support\Fluent;
+use Orchestra\Support\Facades\Foundation;
 
 class Acl extends AbstractableProcessor
 {
@@ -18,9 +18,9 @@ class Acl extends AbstractableProcessor
      */
     public function __construct()
     {
-        $this->memory = App::memory();
-        $this->acl    = App::make('orchestra.acl');
-        $this->model  = App::make('orchestra.role');
+        $this->memory = Foundation::memory();
+        $this->acl    = Foundation::make('orchestra.acl');
+        $this->model  = Foundation::make('orchestra.role');
     }
 
     /**

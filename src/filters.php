@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirecta;
 use Illuminate\Support\Facades\Route;
-use Orchestra\Support\Facades\App;
+use Illuminate\Support\Facades\Redirect;
+use Orchestra\Support\Facades\Foundation;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +19,7 @@ use Orchestra\Support\Facades\App;
 Route::filter('control.manage', function ($route, $request, $value = 'orchestra') {
     $guest = Auth::guest();
 
-    if (! App::acl()->can("manage-{$value}") or $guest) {
+    if (! Foundation::acl()->can("manage-{$value}") or $guest) {
         $redirect = ($guest ? 'login' : '/');
 
         return Redirect::to(handles("orchestra::{$redirect}"));

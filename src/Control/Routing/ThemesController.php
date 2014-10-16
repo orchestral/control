@@ -1,9 +1,8 @@
 <?php namespace Orchestra\Control\Routing;
 
-use Illuminate\Support\Facades\View;
-use Orchestra\Control\Processor\Theme as ThemeProcessor;
-use Orchestra\Support\Facades\Site;
 use Orchestra\Support\Str;
+use Orchestra\Support\Facades\Meta;
+use Orchestra\Control\Processor\Theme as ThemeProcessor;
 
 class ThemesController extends BaseController
 {
@@ -80,11 +79,11 @@ class ThemesController extends BaseController
      */
     public function indexSucceed(array $data)
     {
-        Site::set('title', trans('orchestra/control::title.themes.list', array(
+        Meta::set('title', trans('orchestra/control::title.themes.list', array(
             'type' => Str::title($data['type']),
         )));
 
-        return View::make('orchestra/control::themes.index', $data);
+        return view('orchestra/control::themes.index', $data);
     }
 
     /**

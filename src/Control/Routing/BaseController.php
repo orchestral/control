@@ -2,9 +2,9 @@
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\App;
+use Orchestra\Support\Facades\Messages;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
-use Orchestra\Support\Facades\Messages;
 
 abstract class BaseController extends Controller
 {

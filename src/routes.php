@@ -1,7 +1,7 @@
 <?php
 
-use Orchestra\Support\Facades\App;
 use Orchestra\Support\Facades\Resources;
+use Orchestra\Support\Facades\Foundation;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +13,15 @@ use Orchestra\Support\Facades\Resources;
 */
 
 Event::listen('orchestra.started: admin', function () {
-    $control = Resources::make('control', array(
+    $control = Resources::make('control', [
         'name'    => 'Control',
         'uses'    => 'restful:Orchestra\Control\Routing\HomeController',
         'visible' => function () {
-            $acl = App::acl();
+            $acl = Foundation::acl();
+
             return ($acl->can('manage acl') or $acl->can('manage roles'));
         }
-    ));
+    ]);
 
     $control['roles']  = 'resource:Orchestra\Control\Routing\RolesController';
     $control['acl']    = 'restful:Orchestra\Control\Routing\AclController';
