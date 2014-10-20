@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Orchestra\Support\Facades\App;
 use Orchestra\Model\Role;
+use Orchestra\Support\Facades\Foundation;
+use Illuminate\Database\Migrations\Migration;
 
 class OrchestraControlSeedAcls extends Migration
 {
@@ -14,7 +14,7 @@ class OrchestraControlSeedAcls extends Migration
     public function up()
     {
         $role = Role::admin();
-        $acl  = App::acl();
+        $acl  = Foundation::acl();
 
         $actions = array('Manage Roles', 'Manage Acl');
 

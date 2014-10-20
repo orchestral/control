@@ -183,7 +183,7 @@ class RolesController extends BaseController
      */
     public function storeSucceed(Role $role)
     {
-        $message = trans('orchestra/control::response.roles.create', array('name' => $role->name));
+        $message = trans('orchestra/control::response.roles.create', ['name' => $role->name]);
 
         return $this->redirectWithMessage(resources('control.roles'), $message);
     }
@@ -222,7 +222,7 @@ class RolesController extends BaseController
      */
     public function updateSucceed(Role $role)
     {
-        $message = trans('orchestra/control::response.roles.update', array('name' => $role->name));
+        $message = trans('orchestra/control::response.roles.update', ['name' => $role->name]);
 
         return $this->redirectWithMessage(resources('control.roles'), $message);
     }
@@ -248,7 +248,7 @@ class RolesController extends BaseController
      */
     public function destroySucceed(Role $role)
     {
-        $message = trans('orchestra/control::response.roles.delete', array('name' => $role->name));
+        $message = trans('orchestra/control::response.roles.delete', ['name' => $role->name]);
 
         return $this->redirectWithMessage(resources('control.roles'), $message);
     }

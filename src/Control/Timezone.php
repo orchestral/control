@@ -7,7 +7,7 @@ class Timezone
      *
      * @var array
      */
-    protected static $lists = array(
+    protected static $lists = [
         'Pacific/Midway'       => "(GMT-11:00) Midway Island",
         'US/Samoa'             => "(GMT-11:00) Samoa",
         'US/Hawaii'            => "(GMT-10:00) Hawaii",
@@ -121,7 +121,7 @@ class Timezone
         'Asia/Magadan'         => "(GMT+12:00) Magadan",
         'Pacific/Auckland'     => "(GMT+12:00) Auckland",
         'Pacific/Fiji'         => "(GMT+12:00) Fiji",
-    );
+    ];
 
     /**
      * List the timezone.

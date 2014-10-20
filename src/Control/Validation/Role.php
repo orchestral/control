@@ -9,18 +9,18 @@ class Role extends Validator
      *
      * @var array
      */
-    protected $rules = array(
-        'name' => array('required'),
-    );
+    protected $rules = [
+        'name' => ['required'],
+    ];
 
     /**
      * List of events.
-     * 
+     *
      * @var array
      */
-    protected $events = array(
+    protected $events = [
         'orchestra.control.validate: roles',
-    );
+    ];
 
     /**
      * On create validations.

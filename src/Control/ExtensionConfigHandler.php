@@ -20,29 +20,26 @@ class ExtensionConfigHandler
             $form->fieldset('Role Configuration', function ($fieldset) {
                 $roles = Role::lists('name', 'id');
 
-                $fieldset->control('select', 'admin_role', function ($control) use ($roles) {
-                    $control->label(trans('orchestra/control::label.roles.admin'));
-                    $control->options($roles);
-                });
+                $fieldset->control('select', 'admin_role')
+                    ->label(trans('orchestra/control::label.roles.admin'))
+                    ->options($roles);
 
-                $fieldset->control('select', 'member_role', function ($control) use ($roles) {
-                    $control->label(trans('orchestra/control::label.roles.member'));
-                    $control->options($roles);
-                });
+                $fieldset->control('select', 'member_role')
+                    ->label(trans('orchestra/control::label.roles.member'))
+                    ->options($roles);
             });
 
             $form->fieldset('Timezone', function ($fieldset) {
-                $fieldset->control('select', 'localtime', function ($control) {
-                    $control->attributes(array('role' => 'switcher'));
-                    $control->label(trans('orchestra/control::label.enable-timezone'));
-                    $control->options(array(
+                $fieldset->control('select', 'localtime')
+                    ->attributes(['role' => 'switcher'])
+                    ->label(trans('orchestra/control::label.enable-timezone'))
+                    ->options([
                         'yes' => 'Yes',
                         'no'  => 'No',
-                    ));
-                    $control->value(function ($row) {
+                    ])
+                    ->value(function ($row) {
                         return ($row->localtime === true) ? 'yes' : 'no';
                     });
-                });
             });
         });
     }

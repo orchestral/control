@@ -1,6 +1,6 @@
 <?php namespace Orchestra\Control\Processor;
 
-abstract class AbstractableProcessor
+abstract class Processor
 {
     /**
      * Memory instance.

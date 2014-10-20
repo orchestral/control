@@ -79,9 +79,9 @@ class ThemesController extends BaseController
      */
     public function indexSucceed(array $data)
     {
-        Meta::set('title', trans('orchestra/control::title.themes.list', array(
+        Meta::set('title', trans('orchestra/control::title.themes.list', [
             'type' => Str::title($data['type']),
-        )));
+        ]));
 
         return view('orchestra/control::themes.index', $data);
     }
@@ -95,9 +95,9 @@ class ThemesController extends BaseController
      */
     public function activateSucceed($type, $id)
     {
-        $message = trans('orchestra/control::response.themes.update', array(
+        $message = trans('orchestra/control::response.themes.update', [
             'type' => Str::title($type),
-        ));
+        ]);
 
         return $this->redirectWithMessage(resources("control.themes/{$type}"), $message);
     }

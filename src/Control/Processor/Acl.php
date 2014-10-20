@@ -4,7 +4,7 @@ use Orchestra\Support\Str;
 use Illuminate\Support\Fluent;
 use Orchestra\Support\Facades\Foundation;
 
-class Acl extends AbstractableProcessor
+class Acl extends Processor
 {
     /**
      * ACL instance.
@@ -32,7 +32,7 @@ class Acl extends AbstractableProcessor
      */
     public function index($listener, $id)
     {
-        $collection = array();
+        $collection = [];
         $instances  = $this->acl->all();
         $eloquent   = null;
 
@@ -91,7 +91,7 @@ class Acl extends AbstractableProcessor
      */
     public function sync($listener, $id)
     {
-        $roles = array();
+        $roles = [];
         $name  = $this->getNameFromUid($id);
         $acl   = $this->acl->get($name);
 

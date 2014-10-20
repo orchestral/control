@@ -14,6 +14,6 @@ class Authorize
         $acl   = Foundation::acl();
         $admin = Foundation::make('orchestra.role')->admin();
 
-        $acl->allow($admin->name, array('Manage Users', 'Manage Orchestra', 'Manage Roles', 'Manage Acl'));
+        $acl->allow($admin->name, ['Manage Users', 'Manage Orchestra', 'Manage Roles', 'Manage Acl']);
     }
 }

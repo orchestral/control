@@ -2,14 +2,14 @@
 
 use Orchestra\Support\Facades\Foundation;
 
-class Theme extends AbstractableProcessor
+class Theme extends Processor
 {
     /**
      * Available themes type.
      *
      * @var array
      */
-    protected $type = array('frontend', 'backend');
+    protected $type = ['frontend', 'backend'];
 
     /**
      * Setup a new processor.

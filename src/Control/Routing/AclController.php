@@ -97,9 +97,9 @@ class AclController extends BaseController
      */
     public function syncSucceed(Fluent $acl)
     {
-        $message = trans('orchestra/control::response.acls.sync-roles', array(
+        $message = trans('orchestra/control::response.acls.sync-roles', [
             'name' => $acl->name,
-        ));
+        ]);
 
         return $this->redirectWithMessage(resources("control.acl?name={$acl->id}"), $message);
     }

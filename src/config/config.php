@@ -1,8 +1,8 @@
 <?php
 
-return array(
+return [
 
-    'localtime' => array(
+    'localtime' => [
         /*
         |------------------------------------------------------------------
         | Enable Localtime
@@ -14,5 +14,5 @@ return array(
         */
 
         'enable' => false,
-    ),
-);
+    ],
+];

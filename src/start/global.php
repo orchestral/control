@@ -9,11 +9,11 @@ use Orchestra\Support\Facades\Config;
 |--------------------------------------------------------------------------
 */
 
-Config::map('orchestra/control', array(
+Config::map('orchestra/control', [
     'localtime'   => 'orchestra/control::localtime.enable',
     'admin_role'  => 'orchestra/foundation::roles.admin',
     'member_role' => 'orchestra/foundation::roles.member'
-));
+]);
 
 /*
 |--------------------------------------------------------------------------

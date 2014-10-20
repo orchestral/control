@@ -3,12 +3,12 @@
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
+use Orchestra\Model\Role as Eloquent;
+use Orchestra\Support\Facades\Foundation;
 use Orchestra\Control\Presenter\Role as RolePresenter;
 use Orchestra\Control\Validation\Role as RoleValidator;
-use Orchestra\Model\Role as Eloquent;
-use Orchestra\Support\Facades\App;
 
-class Role extends AbstractableProcessor
+class Role extends Processor
 {
     /**
      * Setup a new processor instance.
@@ -20,7 +20,7 @@ class Role extends AbstractableProcessor
     {
         $this->presenter = $presenter;
         $this->validator = $validator;
-        $this->model     = App::make('orchestra.role');
+        $this->model     = Foundation::make('orchestra.role');
     }
 
     /**
@@ -34,7 +34,7 @@ class Role extends AbstractableProcessor
         $eloquent = $this->model->newQuery();
         $table    = $this->presenter->table($eloquent);
 
-        $this->fireEvent('list', array($eloquent, $table));
+        $this->fireEvent('list', [$eloquent, $table]);
 
         // Once all event listening to `orchestra.list: role` is executed,
         // we can add we can now add the final column, edit and delete
@@ -55,7 +55,7 @@ class Role extends AbstractableProcessor
         $eloquent = $this->model;
         $form     = $this->presenter->form($eloquent);
 
-        $this->fireEvent('form', array($eloquent, $form));
+        $this->fireEvent('form', [$eloquent, $form]);
 
         return $listener->createSucceed(compact('eloquent', 'form'));
     }
@@ -72,7 +72,7 @@ class Role extends AbstractableProcessor
         $eloquent = $this->model->findOrFail($id);
         $form     = $this->presenter->form($eloquent);
 
-        $this->fireEvent('form', array($eloquent, $form));
+        $this->fireEvent('form', [$eloquent, $form]);
 
         return $listener->editSucceed(compact('eloquent', 'form'));
     }
@@ -98,7 +98,7 @@ class Role extends AbstractableProcessor
             $this->saving($role, $input, 'create');
         } catch (Exception $e) {
             dd($e->getMessage());
-            return $listener->storeFailed(array('error' => $e->getMessage()));
+            return $listener->storeFailed(['error' => $e->getMessage()]);
         }
 
         return $listener->storeSucceed($role);
@@ -118,7 +118,7 @@ class Role extends AbstractableProcessor
             return $listener->userVerificationFailed();
         }
 
-        $validation = $this->validator->on('update')->bind(array('roleID' => $id))->with($input);
+        $validation = $this->validator->on('update')->bind(['roleID' => $id])->with($input);
 
         if ($validation->fails()) {
             return $listener->updateValidationFailed($validation, $id);
@@ -129,7 +129,7 @@ class Role extends AbstractableProcessor
         try {
             $this->saving($role, $input, 'update');
         } catch (Exception $e) {
-            return $listener->updateFailed(array('error' => $e->getMessage()));
+            return $listener->updateFailed(['error' => $e->getMessage()]);
         }
 
         return $listener->updateSucceed($role);
@@ -151,7 +151,7 @@ class Role extends AbstractableProcessor
                 $role->delete();
             });
         } catch (Exception $e) {
-            return $listener->destroyFailed(array('error' => $e->getMessage()));
+            return $listener->destroyFailed(['error' => $e->getMessage()]);
         }
 
         return $listener->destroySucceed($role);
@@ -163,24 +163,24 @@ class Role extends AbstractableProcessor
      * @param  \Orchestra\Model\Role   $role
      * @param  array                   $input
      * @param  string                  $type
-     * @return boolean
+     * @return bool
      */
-    protected function saving(Eloquent $role, $input = array(), $type = 'create')
+    protected function saving(Eloquent $role, $input = [], $type = 'create')
     {
         $beforeEvent = ($type === 'create' ? 'creating' : 'updating');
         $afterEvent  = ($type === 'create' ? 'created' : 'updated');
 
         $role->name = $input['name'];
 
-        $this->fireEvent($beforeEvent, array($role));
-        $this->fireEvent('saving', array($role));
+        $this->fireEvent($beforeEvent, [$role]);
+        $this->fireEvent('saving', [$role]);
 
         DB::transaction(function () use ($role) {
             $role->save();
         });
 
-        $this->fireEvent($afterEvent, array($role));
-        $this->fireEvent('saved', array($role));
+        $this->fireEvent($afterEvent, [$role]);
+        $this->fireEvent('saved', [$role]);
 
         return true;
     }
@@ -192,7 +192,7 @@ class Role extends AbstractableProcessor
      * @param  array   $parameters
      * @return void
      */
-    protected function fireEvent($type, array $parameters = array())
+    protected function fireEvent($type, array $parameters = [])
     {
         Event::fire("orchestra.control.{$type}: roles", $parameters);
     }
