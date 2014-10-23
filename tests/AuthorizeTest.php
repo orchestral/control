@@ -1,9 +1,9 @@
 <?php namespace Orchestra\Control\TestCase;
 
 use Mockery as m;
-use Illuminate\Support\Facades\Facade;
-use Orchestra\Support\Facades\App;
 use Orchestra\Control\Authorize;
+use Illuminate\Support\Facades\Facade;
+use Orchestra\Support\Facades\Foundation;
 
 class AuthorizeTest extends \PHPUnit_Framework_TestCase
 {
@@ -38,7 +38,7 @@ class AuthorizeTest extends \PHPUnit_Framework_TestCase
                 ->andReturn(null);
         $role->shouldReceive('admin')->once()->andReturn($admin);
 
-        App::swap($app);
+        Foundation::swap($app);
 
         Authorize::sync();
     }
