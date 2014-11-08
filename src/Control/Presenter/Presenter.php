@@ -11,6 +11,7 @@ abstract class Presenter implements PresenterContract
      * @var \Orchestra\Contracts\Html\Form\Factory
      */
     protected $form;
+
     /**
      * Implementation of table contract.
      *
