@@ -1,23 +1,39 @@
 <?php namespace Orchestra\Control\Presenter;
 
-use Orchestra\Support\Facades\Form;
-use Orchestra\Support\Facades\HTML;
-use Orchestra\Support\Facades\Table;
+use Orchestra\Html\Form\Fieldset;
 use Orchestra\Model\Role as Eloquent;
-use Orchestra\Html\Table\TableBuilder;
-use Illuminate\Support\Facades\Config;
+use Illuminate\Contracts\Config\Repository;
+use Orchestra\Contracts\Html\Form\Grid as FormGrid;
+use Orchestra\Contracts\Html\Table\Grid as TableGrid;
+use Orchestra\Contracts\Html\Form\Factory as FormFactory;
+use Orchestra\Contracts\Html\Table\Builder as TableBuilder;
+use Orchestra\Contracts\Html\Table\Factory as TableFactory;
 
 class Role extends Presenter
 {
     /**
+     * Implement of config contract.
+     *
+     * @var \Illuminate\Contracts\Config\Repository
+     */
+    protected $config;
+
+    public function __construct(Repository $config, FormFactory $form, TableFactory $table)
+    {
+        $this->config = $config;
+        $this->form = $form;
+        $this->table = $table;
+    }
+
+    /**
      * View table generator for Orchestra\Model\Role.
      *
-     * @param  \Orchestra\Model\Role|\Illuminate\Pagination\Paginator  $model
-     * @return \Orchestra\Html\Table\TableBuilder
+     * @param  \Orchestra\Model\Role|\Illuminate\Pagination\Paginator   $model
+     * @return \Orchestra\Contracts\Html\Table\Builder
      */
     public function table($model)
     {
-        return Table::of('control.roles', function ($table) use ($model) {
+        return $this->table->of('control.roles', function (TableGrid $table) use ($model) {
             // attach Model and set pagination option to true.
             $table->with($model)->paginate(true);
 
@@ -34,12 +50,12 @@ class Role extends Presenter
     /**
      * Table actions View Generator for Orchestra\Model\User.
      *
-     * @param  \Orchestra\Html\Table\TableBuilder   $table
-     * @return \Orchestra\Html\Table\TableBuilder
+     * @param  \Orchestra\Contracts\Html\Table\Builder   $table
+     * @return \Orchestra\Contracts\Html\Table\Builder
      */
     public function actions(TableBuilder $table)
     {
-        return $table->extend(function ($table) {
+        return $table->extend(function (TableGrid $table) {
             $table->column('action')
                 ->label('')
                 ->escape(false)
@@ -48,7 +64,7 @@ class Role extends Presenter
                 })
                 ->value(function ($row) {
                     $html = [
-                        HTML::link(
+                        app('html')->link(
                             handles("orchestra/foundation::resources/control.roles/{$row->id}/edit"),
                             trans('orchestra/foundation::label.edit'),
                             ['class' => 'btn btn-mini btn-warning']
@@ -56,19 +72,19 @@ class Role extends Presenter
                     ];
 
                     $roles = [
-                        (int) Config::get('orchestra/foundation::roles.admin'),
-                        (int) Config::get('orchestra/foundation::roles.member'),
+                        (int) $this->config->get('orchestra/foundation::roles.admin'),
+                        (int) $this->config->get('orchestra/foundation::roles.member'),
                     ];
 
                     if (! in_array((int) $row->id, $roles)) {
-                        $html[] = HTML::link(
+                        $html[] = app('html')->link(
                             handles("orchestra/foundation::resources/control.roles/{$row->id}/delete"),
                             trans('orchestra/foundation::label.delete'),
                             ['class' => 'btn btn-mini btn-danger']
                         );
                     }
 
-                    return HTML::create('div', HTML::raw(implode('', $html)), ['class' => 'btn-group']);
+                    return app('html')->create('div', app('html')->raw(implode('', $html)), ['class' => 'btn-group']);
                 });
         });
     }
@@ -77,15 +93,15 @@ class Role extends Presenter
      * View form generator for Orchestra\Model\Role.
      *
      * @param  \Orchestra\Model\Role    $model
-     * @return \Orchestra\Html\Form\FormBuilder
+     * @return \Orchestra\Contracts\Html\Form\BUilder
      */
     public function form(Eloquent $model)
     {
-        return Form::of('control.roles', function ($form) use ($model) {
+        return $this->form->of('control.roles', function (FormGrid $form) use ($model) {
             $form->resource($this, 'control.roles', $model);
             $form->hidden('id');
 
-            $form->fieldset(function ($fieldset) {
+            $form->fieldset(function (Fieldset $fieldset) {
                 $fieldset->control('input:text', 'name')
                     ->label(trans('orchestra/control::label.name'));
             });

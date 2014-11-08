@@ -22,7 +22,13 @@ class RoleTest extends \PHPUnit_Framework_TestCase
      */
     public function testContructMethod()
     {
-        $stub = new Role;
+        $config = m::mock('\Illuminate\Contracts\Config\Repository');
+        $form   = m::mock('\Orchestra\Contracts\Html\Form\Factory');
+        $table  = m::mock('\Orchestra\Contracts\Html\Table\Factory');
+
+        $stub = new Role($config, $form, $table);
+
+        $this->assertInstanceOf('\Orchestra\Contracts\Html\Form\Presenter', $stub);
     }
 
     /**
@@ -32,14 +38,16 @@ class RoleTest extends \PHPUnit_Framework_TestCase
      */
     public function testTableMethod()
     {
-        $table = m::mock('\Orchestra\Html\Table\Environment');
-        $model = m::mock('\Orchestra\Model\Role');
+        $config = m::mock('\Illuminate\Contracts\Config\Repository');
+        $form   = m::mock('\Orchestra\Contracts\Html\Form\Factory');
+        $table  = m::mock('\Orchestra\Contracts\Html\Table\Factory');
+        $model  = m::mock('\Orchestra\Model\Role');
 
         $table->shouldReceive('of')->once()->with('control.roles', m::type('Closure'))
             ->andReturnUsing(function ($n, $c) {
                 return true;
             });
-        $stub = new Role;
+        $stub = new Role($config, $form, $table);
 
         Table::swap($table);
 
@@ -53,16 +61,16 @@ class RoleTest extends \PHPUnit_Framework_TestCase
      */
     public function testFormMethod()
     {
-        $form = m::mock('\Orchestra\Html\Form\Environment');
-        $model = m::mock('\Orchestra\Model\Role');
+        $config = m::mock('\Illuminate\Contracts\Config\Repository');
+        $form   = m::mock('\Orchestra\Contracts\Html\Form\Factory');
+        $table  = m::mock('\Orchestra\Contracts\Html\Table\Factory');
+        $model  = m::mock('\Orchestra\Model\Role');
 
         $form->shouldReceive('of')->once()->with('control.roles', m::type('Closure'))
             ->andReturnUsing(function ($n, $c) {
                 return true;
             });
-        $stub = new Role;
-
-        Form::swap($form);
+        $stub = new Role($config, $form, $table);
 
         $this->assertTrue($stub->form($model));
     }
