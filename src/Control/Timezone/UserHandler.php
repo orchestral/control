@@ -1,9 +1,9 @@
 <?php namespace Orchestra\Control\Timezone;
 
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Input;
 use Orchestra\Control\Timezone;
+use Illuminate\Support\Facades\Input;
 use Orchestra\Support\Facades\Memory;
+use Illuminate\Support\Facades\Config;
 
 class UserHandler
 {

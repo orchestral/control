@@ -2,14 +2,40 @@
 
 use Orchestra\Model\Role;
 use Illuminate\Support\Fluent;
-use Illuminate\Support\Facades\Config;
-use Orchestra\Support\Facades\Foundation;
+use Orchestra\Contracts\Memory\Provider;
+use Illuminate\Contracts\Config\Repository;
 use Orchestra\Contracts\Html\Form\Fieldset;
 use Orchestra\Contracts\Html\Form\Grid as FormGrid;
 use Orchestra\Contracts\Html\Form\Builder as FormBuilder;
 
 class ExtensionConfigHandler
 {
+    /**
+     * The config implementation.
+     *
+     * @var \Illuminate\Contracts\Config\Repository
+     */
+    protected $config;
+
+    /**
+     * The memory implementation.
+     *
+     * @var \Orchestra\Contracts\Memory\Provider
+     */
+    protected $memory;
+
+    /**
+     * Construct a new config handler.
+     *
+     * @param  \Illuminate\Contracts\Config\Repository   $config
+     * @param  \Orchestra\Contracts\Memory\Provider   $memory
+     */
+    public function __construct(Repository $config, Provider $memory)
+    {
+        $this->config = $config;
+        $this->memory = $memory;
+    }
+
     /**
      * Handle `orchestra.form: extension.orchestra/control` event.
      *
@@ -33,13 +59,12 @@ class ExtensionConfigHandler
             });
 
             $form->fieldset('Timezone', function (Fieldset $fieldset) {
+                $agreement = ['yes' => 'Yes', 'no'  => 'No'];
+
                 $fieldset->control('select', 'localtime')
                     ->attributes(['role' => 'agreement'])
                     ->label(trans('orchestra/control::label.enable-timezone'))
-                    ->options([
-                        'yes' => 'Yes',
-                        'no'  => 'No',
-                    ])
+                    ->options($agreement)
                     ->value(function ($row) {
                         return ($row->localtime === true) ? 'yes' : 'no';
                     });
@@ -57,13 +82,13 @@ class ExtensionConfigHandler
     {
         $localtime = ($input['localtime'] === 'yes');
 
-        Config::set('orchestra/foundation::roles.admin', (int) $input['admin_role']);
-        Config::set('orchestra/foundation::roles.member', (int) $input['member_role']);
+        $this->config->set('orchestra/foundation::roles.admin', (int) $input['admin_role']);
+        $this->config->set('orchestra/foundation::roles.member', (int) $input['member_role']);
 
-        Role::setDefaultRoles(Config::get('orchestra/foundation::roles'));
+        Role::setDefaultRoles($this->config->get('orchestra/foundation::roles'));
 
         Authorize::sync();
 
-        Foundation::memory()->put("extension_orchestra/control.localtime", $localtime);
+        $this->memory->put("extension_orchestra/control.localtime", $localtime);
     }
 }
