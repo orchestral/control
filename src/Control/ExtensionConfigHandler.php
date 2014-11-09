@@ -4,20 +4,23 @@ use Orchestra\Model\Role;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Facades\Config;
 use Orchestra\Support\Facades\Foundation;
+use Orchestra\Contracts\Html\Form\Fieldset;
+use Orchestra\Contracts\Html\Form\Grid as FormGrid;
+use Orchestra\Contracts\Html\Form\Builder as FormBuilder;
 
 class ExtensionConfigHandler
 {
     /**
      * Handle `orchestra.form: extension.orchestra/control` event.
      *
-     * @param  \Orchestra\Model\User            $model
-     * @param  \Orchestra\Html\Form\FormBuilder $form
+     * @param  \Orchestra\Model\User   $model
+     * @param  \Orchestra\Contracts\Html\Form\Builder   $form
      * @return void
      */
-    public function onViewForm($model, $form)
+    public function onViewForm($model, FormBuilder $form)
     {
-        $form->extend(function ($form) {
-            $form->fieldset('Role Configuration', function ($fieldset) {
+        $form->extend(function (FormGrid $form) {
+            $form->fieldset('Role Configuration', function (Fieldset $fieldset) {
                 $roles = Role::lists('name', 'id');
 
                 $fieldset->control('select', 'admin_role')
@@ -29,9 +32,9 @@ class ExtensionConfigHandler
                     ->options($roles);
             });
 
-            $form->fieldset('Timezone', function ($fieldset) {
+            $form->fieldset('Timezone', function (Fieldset $fieldset) {
                 $fieldset->control('select', 'localtime')
-                    ->attributes(['role' => 'switcher'])
+                    ->attributes(['role' => 'agreement'])
                     ->label(trans('orchestra/control::label.enable-timezone'))
                     ->options([
                         'yes' => 'Yes',
@@ -47,7 +50,7 @@ class ExtensionConfigHandler
     /**
      * Handle `orchestra.saved: extension.orchestra/control` event.
      *
-     * @param  \Illuminate\Support\Fluent  $input
+     * @param  \Illuminate\Support\Fluent   $input
      * @return void
      */
     public function onSaved(Fluent $input)
