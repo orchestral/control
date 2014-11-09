@@ -1,38 +1,76 @@
 <?php namespace Orchestra\Control\Timezone;
 
 use Orchestra\Control\Timezone;
+use Orchestra\Html\Form\Fieldset;
+use Orchestra\Memory\MemoryManager;
 use Illuminate\Support\Facades\Input;
-use Orchestra\Support\Facades\Memory;
-use Illuminate\Support\Facades\Config;
+use Illuminate\Contracts\Config\Repository;
+use Orchestra\Contracts\Html\Form\Grid as FormGrid;
+use Orchestra\Contracts\Html\Form\Builder as FormBuilder;
 
 class UserHandler
 {
     /**
+     * The config implementation.
+     *
+     * @var \Illuminate\Contracts\Config\Repository
+     */
+    protected $config;
+
+    /**
+     * The memory implementation.
+     *
+     * @var \Orchestra\Contracts\Memory\Provider
+     */
+    protected $memory;
+
+    /**
+     * Construct a new config handler.
+     *
+     * @param  \Illuminate\Contracts\Config\Repository   $config
+     * @param  \Orchestra\Memory\MemoryManager   $memory
+     */
+    public function __construct(Repository $config, MemoryManager $memory)
+    {
+        $this->config = $config;
+        $this->memory = $memory;
+    }
+
+    /**
      * Handle `orchestra.form: user.account` event.
      *
-     * @param  \Orchestra\Model\User            $user
-     * @param  \Orchestra\Html\Form\FormBuilder $form
+     * @param  \Orchestra\Model\User   $user
+     * @param  \Orchestra\Contracts\Html\Form\Builder   $form
      * @return void
      */
-    public function onViewForm($user, $form)
+    public function onViewForm($user, FormBuilder $form)
     {
-        if (false === Config::get('orchestra/control::localtime.enable', false)) {
-            return;
+        if (! $this->isLocaltimeEnabled()) {
+            return ;
         }
 
-        $form->extend(function ($form) {
-            $form->fieldset('Timezone', function ($fieldset) {
-                $fieldset->control('select', 'meta_timezone', function ($control) {
-                    $control->label('Timezone');
-                    $control->options(Timezone::lists());
-                    $control->value(function ($row) {
-                        $meta = Memory::make('user');
+        $form->extend(function (FormGrid $form) {
+            $form->fieldset('Timezone', function (Fieldset $fieldset) {
+                $fieldset->control('select', 'meta_timezone')
+                    ->label('Timezone')
+                    ->options(Timezone::lists())
+                    ->value(function ($row) {
+                        $meta = $this->memory->make('user');
 
-                        return $meta->get("timezone.{$row->id}", Config::get('app.timezone'));
+                        return $meta->get("timezone.{$row->id}", $this->config->get('app.timezone'));
                     });
                 });
             });
-        });
+        }
+
+    /**
+     * Is localtime enabled.
+     * 
+     * @return bool
+     */
+    protected function isLocaltimeEnabled()
+    {
+        return !! $this->config->get('orchestra/control::localtime.enable', false);
     }
 
     /**
@@ -43,12 +81,12 @@ class UserHandler
      */
     public function onSaved($user)
     {
-        if (false === Config::get('orchestra/control::localtime.enable', false)) {
-            return;
+        if (! $this->isLocaltimeEnabled()) {
+            return ;
         }
 
         $userId = $user->id;
-        $meta   = Memory::make('user');
+        $meta   = $this->memory->make('user');
 
         $meta->put("timezone.{$userId}", Input::get('meta_timezone'));
     }
