@@ -22,10 +22,10 @@ Foundation::namespaced('Orchestra\Control\Routing', function (Router $router) {
 
         $router->resource('roles', 'RolesController');
 
-        $router->get('themes', 'ThemeController@getIndex');
-        $router->get('themes/backend', 'ThemeController@getBackend');
-        $router->get('themes/frontend', 'ThemeController@getFrontend');
-        $router->get('themes/activate/{type}/{id}', 'ThemeController@getActivate');
+        $router->get('themes', 'ThemesController@getIndex');
+        $router->get('themes/backend', 'ThemesController@getBackend');
+        $router->get('themes/frontend', 'ThemesController@getFrontend');
+        $router->get('themes/activate/{type}/{id}', 'ThemesController@getActivate');
     });
 });
 

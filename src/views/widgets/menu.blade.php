@@ -20,10 +20,10 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes</a>
         <ul class="dropdown-menu">
             <li>
-                <a href="{!! handles('orchestra::control/themes/index/frontend') !!}">Frontend</a>
+                <a href="{!! handles('orchestra::control/themes/frontend') !!}">Frontend</a>
             </li>
             <li>
-                <a href="{{ handles('orchestra::control/themes/index/backend') }}">Backend</a>
+                <a href="{{ handles('orchestra::control/themes/backend') }}">Backend</a>
             </li>
         </ul>
     </li>

@@ -1,3 +1,6 @@
+@extends('orchestra/foundation::layout.page')
+
+@section('content')
 @include('orchestra/control::widgets.menu')
 
 <?php
@@ -45,3 +48,4 @@ $roles = $eloquent->roles()->get(); ?>
     </div>
     {!! app('form')->close() !!}
 </div>
+@stop
