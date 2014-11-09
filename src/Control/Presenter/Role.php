@@ -20,7 +20,7 @@ class Role extends Presenter
 
     /**
      * Create a new Role presenter.
-     * 
+     *
      * @param  \Illuminate\Contracts\Config\Repository   $config
      * @param  \Orchestra\Contracts\Html\Form\Factory   $form
      * @param  \Orchestra\Contracts\Html\Table\Factory   $table
