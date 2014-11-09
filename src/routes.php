@@ -1,6 +1,6 @@
 <?php
 
-use Orchestra\Support\Facades\Resources;
+use Illuminate\Routing\Router;
 use Orchestra\Support\Facades\Foundation;
 
 /*
@@ -12,18 +12,25 @@ use Orchestra\Support\Facades\Foundation;
 |
 */
 
-Event::listen('orchestra.started: admin', function () {
-    $control = Resources::make('control', [
-        'name'    => 'Control',
-        'uses'    => 'restful:Orchestra\Control\Routing\HomeController',
-        'visible' => function () {
-            $acl = Foundation::acl();
+Foundation::namespaced('Orchestra\Control\Routing', function (Router $router) {
+    $router->group(['prefix' => 'control'], function (Router $router) {
+        $router->get('/', 'HomeController@index');
 
-            return ($acl->can('manage acl') or $acl->can('manage roles'));
-        }
-    ]);
+        $router->get('acl', 'AclController@getIndex');
+        $router->post('acl', 'AclController@postIndex');
+        $router->get('acl/sync', 'AclController@getSync');
 
-    $control['roles']  = 'resource:Orchestra\Control\Routing\RolesController';
-    $control['acl']    = 'restful:Orchestra\Control\Routing\AclController';
-    $control['themes'] = 'restful:Orchestra\Control\Routing\ThemesController';
+        $router->resource('roles', 'RolesController');
+
+        $router->get('themes', 'ThemeController@getIndex');
+        $router->get('themes/backend', 'ThemeController@getBackend');
+        $router->get('themes/frontend', 'ThemeController@getFrontend');
+        $router->get('themes/activate/{type}/{id}', 'ThemeController@getActivate');
+    });
+});
+
+Event::listen('orchestra.ready: admin', function () {
+    Foundation::menu()->add('control', '<:extensions')
+        ->title('Control')
+        ->link(handles('orchestra::control'));
 });

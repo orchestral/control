@@ -1,7 +1,6 @@
 <?php namespace Orchestra\Control\Routing;
 
 use Orchestra\Support\Str;
-use Orchestra\Support\Facades\Meta;
 use Orchestra\Control\Processor\Theme as ThemeProcessor;
 
 class ThemesController extends BaseController
@@ -9,7 +8,7 @@ class ThemesController extends BaseController
     /**
      * Setup a new controller.
      *
-     * @param  \Orchestra\Control\Processor\Theme  $processor
+     * @param  \Orchestra\Control\Processor\Theme   $processor
      */
     public function __construct(ThemeProcessor $processor)
     {
@@ -32,7 +31,7 @@ class ThemesController extends BaseController
      * Show frontend/backend theme for Orchestra Platform.
      *
      * @param  string   $type
-     * @return Response
+     * @return mixed
      */
     public function getIndex($type = 'frontend')
     {
@@ -42,7 +41,7 @@ class ThemesController extends BaseController
     /**
      * Show backend theme for Orchestra Platform.
      *
-     * @return Response
+     * @return mixed
      */
     public function getBackend()
     {
@@ -52,7 +51,7 @@ class ThemesController extends BaseController
     /**
      * Show frontend theme for Orchestra Platform.
      *
-     * @return Response
+     * @return mixed
      */
     public function getFrontend()
     {
@@ -64,7 +63,7 @@ class ThemesController extends BaseController
      *
      * @param  string   $type
      * @param  integer  $id
-     * @return Response
+     * @return mixed
      */
     public function getActivate($type, $id)
     {
@@ -75,11 +74,11 @@ class ThemesController extends BaseController
      * Response when list themes page succeed.
      *
      * @param  array  $data
-     * @return Response
+     * @return mixed
      */
     public function indexSucceed(array $data)
     {
-        Meta::set('title', trans('orchestra/control::title.themes.list', [
+        set_meta('title', trans('orchestra/control::title.themes.list', [
             'type' => Str::title($data['type']),
         ]));
 
@@ -91,7 +90,7 @@ class ThemesController extends BaseController
      *
      * @param  string  $type
      * @param  string  $id
-     * @return Response
+     * @return mixed
      */
     public function activateSucceed($type, $id)
     {
@@ -99,13 +98,13 @@ class ThemesController extends BaseController
             'type' => Str::title($type),
         ]);
 
-        return $this->redirectWithMessage(resources("control.themes/{$type}"), $message);
+        return $this->redirectWithMessage(handles("orchestra::control/themes/{$type}"), $message);
     }
 
     /**
      * Response when theme verification failed.
      *
-     * @return Response
+     * @return mixed
      */
     public function themeVerificationFailed()
     {

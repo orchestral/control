@@ -11,7 +11,7 @@ class AclController extends BaseController
     /**
      * Setup a new controller.
      *
-     * @param  \Orchestra\Control\Processor\Acl    $processor
+     * @param  \Orchestra\Control\Processor\Acl   $processor
      */
     public function __construct(AclProcessor $processor)
     {
@@ -33,7 +33,7 @@ class AclController extends BaseController
     /**
      * Get default resources landing page.
      *
-     * @return Response
+     * @return mixed
      */
     public function getIndex()
     {
@@ -43,7 +43,7 @@ class AclController extends BaseController
     /**
      * Update ACL metric.
      *
-     * @return Response
+     * @return mixed
      */
     public function postIndex()
     {
@@ -54,7 +54,7 @@ class AclController extends BaseController
      * Get sync roles action.
      *
      * @param  string   $id
-     * @return Response
+     * @return mixed
      */
     public function getSync($id)
     {
@@ -65,7 +65,7 @@ class AclController extends BaseController
      * Response when lists ACL page succeed.
      *
      * @param  array  $data
-     * @return Response
+     * @return mixed
      */
     public function indexSucceed(array $data)
     {
@@ -78,7 +78,7 @@ class AclController extends BaseController
      * Response when ACL is updated.
      *
      * @param  string  $id
-     * @return Response
+     * @return mixed
      */
     public function updateSucceed($id)
     {
@@ -86,14 +86,14 @@ class AclController extends BaseController
 
         $message = trans('orchestra/control::response.acls.update');
 
-        return $this->redirectWithMessage(resources("control.acl?name={$id}"), $message);
+        return $this->redirectWithMessage(handles("orchestra::control/acl?name={$id}"), $message);
     }
 
     /**
      * Response when sync roles succeed.
      *
      * @param  \Illuminate\Support\Fluent   $acl
-     * @return Response
+     * @return mixed
      */
     public function syncSucceed(Fluent $acl)
     {
@@ -101,13 +101,13 @@ class AclController extends BaseController
             'name' => $acl->name,
         ]);
 
-        return $this->redirectWithMessage(resources("control.acl?name={$acl->id}"), $message);
+        return $this->redirectWithMessage(handles("orchestra::control/acl?name={$acl->id}"), $message);
     }
 
     /**
      * Response when acl verification failed.
      *
-     * @return Response
+     * @return mixed
      */
     public function aclVerificationFailed()
     {

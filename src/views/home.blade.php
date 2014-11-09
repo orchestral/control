@@ -1,3 +1,6 @@
+@extends('orchestra/foundation::layout.page')
+
+@section('content')
 @include('orchestra/control::widgets.menu')
 
 <div class="row">
@@ -7,3 +10,4 @@
 		</div>
 	</div>
 </div>
+@stop

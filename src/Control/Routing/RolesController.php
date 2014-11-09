@@ -1,7 +1,6 @@
 <?php namespace Orchestra\Control\Routing;
 
 use Orchestra\Model\Role;
-use Orchestra\Support\Facades\Meta;
 use Illuminate\Support\Facades\Input;
 use Orchestra\Control\Processor\Role as RoleProcessor;
 
@@ -10,7 +9,7 @@ class RolesController extends BaseController
     /**
      * Setup a new controller.
      *
-     * @param  \Orchestra\Control\Processor\Role    $role
+     * @param  \Orchestra\Control\Processor\Role   $processor
      */
     public function __construct(RoleProcessor $processor)
     {
@@ -32,7 +31,7 @@ class RolesController extends BaseController
     /**
      * List all the roles
      *
-     * @return Response
+     * @return mixed
      */
     public function index()
     {
@@ -42,7 +41,8 @@ class RolesController extends BaseController
     /**
      * Show a role.
      *
-     * @return Response
+     * @param  int   $id
+     * @return mixed
      */
     public function show($id)
     {
@@ -52,7 +52,7 @@ class RolesController extends BaseController
     /**
      * Create a new role.
      *
-     * @return Response
+     * @return mixed
      */
     public function create()
     {
@@ -62,7 +62,8 @@ class RolesController extends BaseController
     /**
      * Edit the role.
      *
-     * @return Response
+     * @param  int   $id
+     * @return mixed
      */
     public function edit($id)
     {
@@ -72,7 +73,7 @@ class RolesController extends BaseController
     /**
      * Create the role.
      *
-     * @return Response
+     * @return mixed
      */
     public function store()
     {
@@ -82,8 +83,8 @@ class RolesController extends BaseController
     /**
      * Update the role.
      *
-     * @param  integer  $id
-     * @return Response
+     * @param  int   $id
+     * @return mixed
      */
     public function update($id)
     {
@@ -93,8 +94,8 @@ class RolesController extends BaseController
     /**
      * Request to delete a role.
      *
-     * @param  integer  $id
-     * @return Response
+     * @param  int   $id
+     * @return mixed
      */
     public function delete($id)
     {
@@ -104,8 +105,8 @@ class RolesController extends BaseController
     /**
      * Request to delete a role.
      *
-     * @param  integer  $id
-     * @return Response
+     * @param  int   $id
+     * @return mixed
      */
     public function destroy($id)
     {
@@ -115,12 +116,12 @@ class RolesController extends BaseController
     /**
      * Response when list roles page succeed.
      *
-     * @param  array  $data
-     * @return Response
+     * @param  array   $data
+     * @return mixed
      */
     public function indexSucceed(array $data)
     {
-        Meta::set('title', trans('orchestra/control::title.roles.list'));
+        set_meta('title', trans('orchestra/control::title.roles.list'));
 
         return view('orchestra/control::roles.index', $data);
     }
@@ -128,12 +129,12 @@ class RolesController extends BaseController
     /**
      * Response when create role page succeed.
      *
-     * @param  array  $data
-     * @return Response
+     * @param  array   $data
+     * @return mixed
      */
     public function createSucceed(array $data)
     {
-        Meta::set('title', trans('orchestra/control::title.roles.create'));
+        set_meta('title', trans('orchestra/control::title.roles.create'));
 
         return view('orchestra/control::roles.edit', $data);
     }
@@ -141,12 +142,12 @@ class RolesController extends BaseController
     /**
      * Response when edit role page succeed.
      *
-     * @param  array  $data
-     * @return Response
+     * @param  array   $data
+     * @return mixed
      */
     public function editSucceed(array $data)
     {
-        Meta::set('title', trans('orchestra/control::title.roles.update'));
+        set_meta('title', trans('orchestra/control::title.roles.update'));
 
         return view('orchestra/control::roles.edit', $data);
     }
@@ -154,109 +155,109 @@ class RolesController extends BaseController
      /**
      * Response when storing role failed on validation.
      *
-     * @param  object  $validation
-     * @return Response
+     * @param  object   $validation
+     * @return mixed
      */
     public function storeValidationFailed($validation)
     {
-        return $this->redirectWithErrors(resources('control.roles/create'), $validation);
+        return $this->redirectWithErrors(handles('orchestra::control/roles/create'), $validation);
     }
 
     /**
      * Response when storing role failed.
      *
-     * @param  array    $error
-     * @return Response
+     * @param  array   $error
+     * @return mixed
      */
     public function storeFailed(array $error)
     {
         $message = trans('orchestra/foundation::response.db-failed', $error);
 
-        return $this->redirectWithMessage(resources('control.roles'), $message);
+        return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
     }
 
     /**
      * Response when storing user succeed.
      *
      * @param  \Orchestra\Model\Role   $role
-     * @return Response
+     * @return mixed
      */
     public function storeSucceed(Role $role)
     {
         $message = trans('orchestra/control::response.roles.create', ['name' => $role->name]);
 
-        return $this->redirectWithMessage(resources('control.roles'), $message);
+        return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
     }
 
 
     /**
      * Response when updating role failed on validation.
      *
-     * @param  object  $validation
-     * @param  integer $id
-     * @return Response
+     * @param  object   $validation
+     * @param  int      $id
+     * @return mixed
      */
     public function updateValidationFailed($validation, $id)
     {
-        return $this->redirectWithErrors(resources("control.roles/{$id}/edit"), $validation);
+        return $this->redirectWithErrors(handles("orchestra::control/roles/{$id}/edit"), $validation);
     }
 
     /**
      * Response when updating role failed.
      *
      * @param  array   $error
-     * @return Response
+     * @return mixed
      */
     public function updateFailed(array $error)
     {
         $message = trans('orchestra/foundation::response.db-failed', $error);
 
-        return $this->redirectWithMessage(resources('control.roles'), $message);
+        return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
     }
 
     /**
      * Response when updating role succeed.
      *
      * @param  \Orchestra\Model\Role   $role
-     * @return Response
+     * @return mixed
      */
     public function updateSucceed(Role $role)
     {
         $message = trans('orchestra/control::response.roles.update', ['name' => $role->name]);
 
-        return $this->redirectWithMessage(resources('control.roles'), $message);
+        return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
     }
 
     /**
      * Response when deleting role failed.
      *
      * @param  array   $error
-     * @return Response
+     * @return mixed
      */
     public function destroyFailed(array $error)
     {
         $message = trans('orchestra/foundation::response.db-failed', $error);
 
-        return $this->redirectWithMessage(resources('control.roles'), $message);
+        return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
     }
 
     /**
      * Response when updating role succeed.
      *
      * @param  \Orchestra\Model\Role   $role
-     * @return Response
+     * @return mixed
      */
     public function destroySucceed(Role $role)
     {
         $message = trans('orchestra/control::response.roles.delete', ['name' => $role->name]);
 
-        return $this->redirectWithMessage(resources('control.roles'), $message);
+        return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
     }
 
     /**
      * Response when user verification failed.
      *
-     * @return Response
+     * @return mixed
      */
     public function userVerificationFailed()
     {

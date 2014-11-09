@@ -1,7 +1,5 @@
 <?php namespace Orchestra\Control\Routing;
 
-use Orchestra\Support\Facades\Meta;
-
 class HomeController extends BaseController
 {
     /**
@@ -17,11 +15,11 @@ class HomeController extends BaseController
     /**
      * Control dashboard.
      *
-     * @return Response
+     * @return mixed
      */
-    public function getIndex()
+    public function index()
     {
-        Meta::set('title', 'Control');
+        set_meta('title', 'Control');
 
         return view('orchestra/control::home');
     }

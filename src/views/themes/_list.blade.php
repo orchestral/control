@@ -9,7 +9,7 @@
             {{ trans('orchestra/control::label.themes.current') }}
         </button>
     @else
-        <a href="{!! resources("control.themes/activate/{$type}/{$id}") !!}" class="btn btn-block btn-primary">
+        <a href="{!! handles("orchestra::control/themes/activate/{$type}/{$id}") !!}" class="btn btn-block btn-primary">
             {{ trans('orchestra/control::label.themes.activate') }}
         </a>
     @endif

@@ -72,7 +72,7 @@ class Role extends Presenter
                 ->value(function ($row) {
                     $html = [
                         app('html')->link(
-                            handles("orchestra/foundation::resources/control.roles/{$row->id}/edit"),
+                            handles("orchestra::control/roles/{$row->id}/edit"),
                             trans('orchestra/foundation::label.edit'),
                             ['class' => 'btn btn-mini btn-warning']
                         )
@@ -85,7 +85,7 @@ class Role extends Presenter
 
                     if (! in_array((int) $row->id, $roles)) {
                         $html[] = app('html')->link(
-                            handles("orchestra/foundation::resources/control.roles/{$row->id}/delete"),
+                            handles("orchestra::control/roles/{$row->id}/delete"),
                             trans('orchestra/foundation::label.delete'),
                             ['class' => 'btn btn-mini btn-danger']
                         );
@@ -105,7 +105,7 @@ class Role extends Presenter
     public function form(Eloquent $model)
     {
         return $this->form->of('control.roles', function (FormGrid $form) use ($model) {
-            $form->resource($this, 'control.roles', $model);
+            $form->resource($this, 'orchestra::control/roles', $model);
             $form->hidden('id');
 
             $form->fieldset(function (Fieldset $fieldset) {

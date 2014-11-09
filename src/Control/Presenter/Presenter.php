@@ -24,7 +24,7 @@ abstract class Presenter implements PresenterContract
      */
     public function handles($url)
     {
-        return resources($url);
+        return handles($url);
     }
 
     /**
