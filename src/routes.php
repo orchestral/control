@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Event;
 use Orchestra\Support\Facades\Foundation;
 
 /*
