@@ -31,6 +31,12 @@ Foundation::namespaced('Orchestra\Control\Routing', function (Router $router) {
 });
 
 Event::listen('orchestra.started: admin', function () {
+    $acl = Foundation::acl();
+
+    if (! ($acl->can('manage roles') || $acl->can('manage acl'))) {
+        return ;
+    }
+
     Foundation::menu()->add('control', '<:extension')
         ->title('Control')
         ->link(handles('orchestra::control'));
