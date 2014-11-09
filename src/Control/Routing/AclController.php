@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Fluent;
 use Orchestra\Control\Authorize;
-use Orchestra\Support\Facades\Meta;
 use Illuminate\Support\Facades\Input;
 use Orchestra\Foundation\Routing\AdminController;
 use Orchestra\Control\Processor\Acl as AclProcessor;
@@ -70,7 +69,7 @@ class AclController extends AdminController
      */
     public function indexSucceed(array $data)
     {
-        Meta::set('title', trans('orchestra/control::title.acls.list'));
+        set_meta('title', trans('orchestra/control::title.acls.list'));
 
         return view('orchestra/control::acl.index', $data);
     }
