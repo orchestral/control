@@ -2,9 +2,10 @@
 
 use Orchestra\Model\Role;
 use Illuminate\Support\Facades\Input;
+use Orchestra\Foundation\Routing\AdminController;
 use Orchestra\Control\Processor\Role as RoleProcessor;
 
-class RolesController extends BaseController
+class RolesController extends AdminController
 {
     /**
      * Setup a new controller.

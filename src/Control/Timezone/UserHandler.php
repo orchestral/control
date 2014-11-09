@@ -65,7 +65,7 @@ class UserHandler
 
     /**
      * Is localtime enabled.
-     * 
+     *
      * @return bool
      */
     protected function isLocaltimeEnabled()

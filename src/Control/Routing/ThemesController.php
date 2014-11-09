@@ -1,9 +1,10 @@
 <?php namespace Orchestra\Control\Routing;
 
 use Orchestra\Support\Str;
+use Orchestra\Foundation\Routing\AdminController;
 use Orchestra\Control\Processor\Theme as ThemeProcessor;
 
-class ThemesController extends BaseController
+class ThemesController extends AdminController
 {
     /**
      * Setup a new controller.

@@ -1,17 +1,9 @@
 <?php namespace Orchestra\Control\Routing;
 
-class HomeController extends BaseController
-{
-    /**
-     * Define the filters.
-     *
-     * @return void
-     */
-    protected function setupFilters()
-    {
-        //
-    }
+use Orchestra\Routing\Controller;
 
+class HomeController extends Controller
+{
     /**
      * Control dashboard.
      *

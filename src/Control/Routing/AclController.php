@@ -4,9 +4,10 @@ use Illuminate\Support\Fluent;
 use Orchestra\Control\Authorize;
 use Orchestra\Support\Facades\Meta;
 use Illuminate\Support\Facades\Input;
+use Orchestra\Foundation\Routing\AdminController;
 use Orchestra\Control\Processor\Acl as AclProcessor;
 
-class AclController extends BaseController
+class AclController extends AdminController
 {
     /**
      * Setup a new controller.
@@ -64,7 +65,7 @@ class AclController extends BaseController
     /**
      * Response when lists ACL page succeed.
      *
-     * @param  array  $data
+     * @param  array   $data
      * @return mixed
      */
     public function indexSucceed(array $data)
