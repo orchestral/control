@@ -19,7 +19,7 @@ $roles = $eloquent->roles()->get(); ?>
     @foreach ($roles as $roleKey => $roleName)
     <div class="twelve columns panel panel-default">
         <div class="panel-heading">
-            {{ Str::humanize($roleName) }}
+            {{ Orchestra\Support\Str::humanize($roleName) }}
         </div>
         <div class="white rounded-bottom box small-padding">
             <div class="row">

@@ -29,8 +29,8 @@ Foundation::namespaced('Orchestra\Control\Routing', function (Router $router) {
     });
 });
 
-Event::listen('orchestra.ready: admin', function () {
-    Foundation::menu()->add('control', '<:extensions')
+Event::listen('orchestra.started: admin', function () {
+    Foundation::menu()->add('control', '<:extension')
         ->title('Control')
         ->link(handles('orchestra::control'));
 });
