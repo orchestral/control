@@ -70,9 +70,9 @@ class AclController extends BaseController
      */
     public function indexSucceed(array $data)
     {
-        Site::set('title', trans('orchestra/control::title.acls.list'));
+        set_meta('title', trans('orchestra/control::title.acls.list'));
 
-        return View::make('orchestra/control::acl.index', $data);
+        return view('orchestra/control::acl.index', $data);
     }
 
     /**
@@ -98,11 +98,11 @@ class AclController extends BaseController
      */
     public function syncSucceed(Fluent $acl)
     {
-        $message = trans('orchestra/control::response.acls.sync-roles', array(
-            'name' => $acl->name,
-        ));
+        $message = trans('orchestra/control::response.acls.sync-roles', [
+            'name' => $acl->get('name'),
+        ]);
 
-        return $this->redirectWithMessage(resources("control.acl?name={$acl->id}"), $message);
+        return $this->redirectWithMessage(handles("orchestra::control/acl?name={$acl->get('id')}"), $message);
     }
 
     /**
