@@ -29,6 +29,9 @@ class AclController extends BaseController
     protected function setupFilters()
     {
         $this->beforeFilter('control.manage:acl');
+        $this->beforeFilter('orchestra.csrf', array(
+            'only' => array('postIndex', 'getSync'),
+        ));
     }
 
     /**

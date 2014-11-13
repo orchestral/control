@@ -42,7 +42,7 @@ $roles = $eloquent->roles()->get(); ?>
     <div class="row">
         <div class="twelve columns">
             <button type="submit" class="btn btn-primary">{{ trans('orchestra/foundation::label.submit') }}</button>
-            <a href="{{ resources("control.acl/sync/{$id}") }}" class="btn btn-link">
+            <a href="{{ resources("control.acl/sync/{$id}", array('csrf' => true)) }}" class="btn btn-link">
                 {{ trans('orchestra/control::label.sync-roles') }}
             </a>
         </div>
