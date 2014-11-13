@@ -5,6 +5,10 @@ title: Control Change Log
 
 ## Version 2.2 {#v2-2}
 
+### v2.2.3 {#v2-2-3}
+
+* Improves CSRF support.
+
 ### v2.2.2 {#v2-2-2}
 
 * Allow Roles table to be search and sorted using `Orchestra\Html\Table\Grid` new functionality.
