@@ -5,6 +5,10 @@ title: Control Change Log
 
 ## Version 2.1 {#v2-1}
 
+### v2.1.5 {#v2-1-5}
+
+* Improves CSRF support.
+
 ### v2.1.4 {#v2-1-4}
 
 * Filter theme to only to be shown when the theme support it.
@@ -78,7 +82,7 @@ title: Control Change Log
 * Revert use of `.checkbox-inline` and use bootstrap grid.
 * Fixed syncing roles issue on `vendor/package` ACL metric.
 * Improve ACL name to show extension name if exist.
-* Fixed route filter not is called before registered. 
+* Fixed route filter not is called before registered.
 
 ### v2.0.3 {#v2-0-3}
 
