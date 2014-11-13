@@ -27,8 +27,8 @@ class UserHandler
     /**
      * Construct a new config handler.
      *
-     * @param  \Illuminate\Contracts\Config\Repository   $config
-     * @param  \Orchestra\Memory\MemoryManager   $memory
+     * @param  \Illuminate\Contracts\Config\Repository  $config
+     * @param  \Orchestra\Memory\MemoryManager  $memory
      */
     public function __construct(Repository $config, MemoryManager $memory)
     {
@@ -39,8 +39,8 @@ class UserHandler
     /**
      * Handle `orchestra.form: user.account` event.
      *
-     * @param  \Orchestra\Model\User   $user
-     * @param  \Orchestra\Contracts\Html\Form\Builder   $form
+     * @param  \Orchestra\Model\User  $user
+     * @param  \Orchestra\Contracts\Html\Form\Builder  $form
      * @return void
      */
     public function onViewForm($user, FormBuilder $form)
@@ -76,7 +76,7 @@ class UserHandler
     /**
      * Handle `orchestra.saved: user.account` event.
      *
-     * @param  \Orchestra\Model\User   $user
+     * @param  \Orchestra\Model\User  $user
      * @return void
      */
     public function onSaved($user)

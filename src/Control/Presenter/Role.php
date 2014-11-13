@@ -21,9 +21,9 @@ class Role extends Presenter
     /**
      * Create a new Role presenter.
      *
-     * @param  \Illuminate\Contracts\Config\Repository   $config
-     * @param  \Orchestra\Contracts\Html\Form\Factory   $form
-     * @param  \Orchestra\Contracts\Html\Table\Factory   $table
+     * @param  \Illuminate\Contracts\Config\Repository  $config
+     * @param  \Orchestra\Contracts\Html\Form\Factory  $form
+     * @param  \Orchestra\Contracts\Html\Table\Factory  $table
      */
     public function __construct(Repository $config, FormFactory $form, TableFactory $table)
     {
@@ -35,7 +35,7 @@ class Role extends Presenter
     /**
      * View table generator for Orchestra\Model\Role.
      *
-     * @param  \Orchestra\Model\Role|\Illuminate\Pagination\Paginator   $model
+     * @param  \Orchestra\Model\Role|\Illuminate\Pagination\Paginator  $model
      * @return \Orchestra\Contracts\Html\Table\Builder
      */
     public function table($model)
@@ -57,7 +57,7 @@ class Role extends Presenter
     /**
      * Table actions View Generator for Orchestra\Model\User.
      *
-     * @param  \Orchestra\Contracts\Html\Table\Builder   $table
+     * @param  \Orchestra\Contracts\Html\Table\Builder  $table
      * @return \Orchestra\Contracts\Html\Table\Builder
      */
     public function actions(TableBuilder $table)
@@ -99,7 +99,7 @@ class Role extends Presenter
     /**
      * View form generator for Orchestra\Model\Role.
      *
-     * @param  \Orchestra\Model\Role    $model
+     * @param  \Orchestra\Model\Role  $model
      * @return \Orchestra\Contracts\Html\Form\BUilder
      */
     public function form(Eloquent $model)

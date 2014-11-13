@@ -9,7 +9,7 @@ class ThemesController extends AdminController
     /**
      * Setup a new controller.
      *
-     * @param  \Orchestra\Control\Processor\Theme   $processor
+     * @param  \Orchestra\Control\Processor\Theme  $processor
      */
     public function __construct(ThemeProcessor $processor)
     {
@@ -31,7 +31,7 @@ class ThemesController extends AdminController
     /**
      * Show frontend/backend theme for Orchestra Platform.
      *
-     * @param  string   $type
+     * @param  string  $type
      * @return mixed
      */
     public function getIndex($type = 'frontend')
@@ -62,8 +62,8 @@ class ThemesController extends AdminController
     /**
      * Set active theme for Orchestra Platform.
      *
-     * @param  string   $type
-     * @param  integer  $id
+     * @param  string  $type
+     * @param  int     $id
      * @return mixed
      */
     public function getActivate($type, $id)

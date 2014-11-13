@@ -2,16 +2,17 @@
 
 use Illuminate\Support\Fluent;
 use Orchestra\Control\Authorize;
+use Orchestra\Support\Facades\Site;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Input;
-use Orchestra\Foundation\Routing\AdminController;
 use Orchestra\Control\Processor\Acl as AclProcessor;
 
-class AclController extends AdminController
+class AclController extends BaseController
 {
     /**
      * Setup a new controller.
      *
-     * @param  \Orchestra\Control\Processor\Acl   $processor
+     * @param  \Orchestra\Control\Processor\Acl  $processor
      */
     public function __construct(AclProcessor $processor)
     {
@@ -53,7 +54,7 @@ class AclController extends AdminController
     /**
      * Get sync roles action.
      *
-     * @param  string   $id
+     * @param  string  $id
      * @return mixed
      */
     public function getSync($id)
@@ -64,14 +65,14 @@ class AclController extends AdminController
     /**
      * Response when lists ACL page succeed.
      *
-     * @param  array   $data
+     * @param  array  $data
      * @return mixed
      */
     public function indexSucceed(array $data)
     {
-        set_meta('title', trans('orchestra/control::title.acls.list'));
+        Site::set('title', trans('orchestra/control::title.acls.list'));
 
-        return view('orchestra/control::acl.index', $data);
+        return View::make('orchestra/control::acl.index', $data);
     }
 
     /**
@@ -86,7 +87,7 @@ class AclController extends AdminController
 
         $message = trans('orchestra/control::response.acls.update');
 
-        return $this->redirectWithMessage(handles("orchestra::control/acl?name={$id}"), $message);
+        return $this->redirectWithMessage(resources("control.acl?name={$id}"), $message);
     }
 
     /**
@@ -97,11 +98,11 @@ class AclController extends AdminController
      */
     public function syncSucceed(Fluent $acl)
     {
-        $message = trans('orchestra/control::response.acls.sync-roles', [
+        $message = trans('orchestra/control::response.acls.sync-roles', array(
             'name' => $acl->name,
-        ]);
+        ));
 
-        return $this->redirectWithMessage(handles("orchestra::control/acl?name={$acl->id}"), $message);
+        return $this->redirectWithMessage(resources("control.acl?name={$acl->id}"), $message);
     }
 
     /**

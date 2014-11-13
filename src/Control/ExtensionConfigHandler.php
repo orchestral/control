@@ -27,8 +27,8 @@ class ExtensionConfigHandler
     /**
      * Construct a new config handler.
      *
-     * @param  \Illuminate\Contracts\Config\Repository   $config
-     * @param  \Orchestra\Contracts\Memory\Provider   $memory
+     * @param  \Illuminate\Contracts\Config\Repository  $config
+     * @param  \Orchestra\Contracts\Memory\Provider  $memory
      */
     public function __construct(Repository $config, Provider $memory)
     {
@@ -39,8 +39,8 @@ class ExtensionConfigHandler
     /**
      * Handle `orchestra.form: extension.orchestra/control` event.
      *
-     * @param  \Orchestra\Model\User   $model
-     * @param  \Orchestra\Contracts\Html\Form\Builder   $form
+     * @param  \Orchestra\Model\User  $model
+     * @param  \Orchestra\Contracts\Html\Form\Builder  $form
      * @return void
      */
     public function onViewForm($model, FormBuilder $form)
@@ -75,7 +75,7 @@ class ExtensionConfigHandler
     /**
      * Handle `orchestra.saved: extension.orchestra/control` event.
      *
-     * @param  \Illuminate\Support\Fluent   $input
+     * @param  \Illuminate\Support\Fluent  $input
      * @return void
      */
     public function onSaved(Fluent $input)
