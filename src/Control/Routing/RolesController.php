@@ -28,6 +28,9 @@ class RolesController extends BaseController
     protected function setupFilters()
     {
         $this->beforeFilter('control.manage:roles');
+        $this->beforeFilter('orchestra.csrf', array(
+            'on' => array('post', 'put', 'delete'),
+        ));
     }
 
     /**

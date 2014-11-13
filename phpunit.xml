@@ -27,7 +27,7 @@
 
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src/Orchestra/</directory>
+            <directory suffix=".php">src/Control/</directory>
 
             <exclude>
                 <directory>vendor/</directory>
