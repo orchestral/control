@@ -20,7 +20,7 @@ class UserHandler
     /**
      * The memory implementation.
      *
-     * @var \Orchestra\Contracts\Memory\Provider
+     * @var \Orchestra\Memory\MemoryManager
      */
     protected $memory;
 
@@ -59,9 +59,9 @@ class UserHandler
 
                         return $meta->get("timezone.{$row->id}", $this->config->get('app.timezone'));
                     });
-                });
             });
-        }
+        });
+    }
 
     /**
      * Is localtime enabled.
@@ -85,7 +85,7 @@ class UserHandler
             return ;
         }
 
-        $userId = $user->id;
+        $userId = $user->getAttribute('id');
         $meta   = $this->memory->make('user');
 
         $meta->put("timezone.{$userId}", Input::get('meta_timezone'));

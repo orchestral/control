@@ -31,7 +31,7 @@
 </ul>
 @stop
 
-<? $navbar = new \Illuminate\Support\Fluent([
+<?php $navbar = new \Illuminate\Support\Fluent([
     'id'    => 'control',
     'title' => 'Control',
     'url'   => handles('orchestra::control'),

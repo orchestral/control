@@ -139,9 +139,8 @@ class Acl extends Processor
     protected function getExtensionName($name)
     {
         $extension = $this->memory->get("extensions.available.{$name}.name");
+        $title = ($name !== 'orchestra') ? $extension : 'Orchestra Platform';
 
-        $name !== 'orchestra' or $extension = 'Orchestra Platform';
-
-        return (is_null($extension) ? Str::title($name) : $extension);
+        return (is_null($extension) ? Str::title($name) : $title);
     }
 }

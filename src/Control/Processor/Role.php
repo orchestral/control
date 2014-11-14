@@ -170,7 +170,7 @@ class Role extends Processor
         $beforeEvent = ($type === 'create' ? 'creating' : 'updating');
         $afterEvent  = ($type === 'create' ? 'created' : 'updated');
 
-        $role->name = $input['name'];
+        $role->setAttribute('name', $input['name']);
 
         $this->fireEvent($beforeEvent, [$role]);
         $this->fireEvent('saving', [$role]);
