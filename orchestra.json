@@ -4,7 +4,7 @@
 	"author": "Mior Muhammad Zaki",
 	"url": "https://github.com/orchestral/control",
 	"version": "3.0.0@dev",
-	"provide": [
+	"provides": [
 		"Orchestra\\Control\\ControlServiceProvider"
 	]
 }
