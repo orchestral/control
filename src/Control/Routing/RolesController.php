@@ -249,7 +249,7 @@ class RolesController extends AdminController
      */
     public function destroySucceed(Role $role)
     {
-        $message = trans('orchestra/control::response.roles.delete', ['name' => $role->name]);
+        $message = trans('orchestra/control::response.roles.delete', ['name' => $role->getAttribute('name')]);
 
         return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
     }
