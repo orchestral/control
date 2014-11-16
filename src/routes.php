@@ -29,15 +29,3 @@ Foundation::namespaced('Orchestra\Control\Routing', function (Router $router) {
         $router->get('themes/activate/{type}/{id}', 'ThemesController@getActivate');
     });
 });
-
-Event::listen('orchestra.started: admin', function () {
-    $acl = Foundation::acl();
-
-    if (! ($acl->can('manage roles') || $acl->can('manage acl'))) {
-        return ;
-    }
-
-    Foundation::menu()->add('control', '<:extension')
-        ->title('Control')
-        ->link(handles('orchestra::control'));
-});

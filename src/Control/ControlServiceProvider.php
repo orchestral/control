@@ -29,9 +29,9 @@ class ControlServiceProvider extends ServiceProvider
 
         $this->bootExtensionEvents();
 
-        $this->bootTimezoneEvents();
-
         $this->bootExtensionRouting($path);
+
+        $this->bootTimezoneEvents();
     }
 
     /**
@@ -46,6 +46,16 @@ class ControlServiceProvider extends ServiceProvider
 
         $events->listen('orchestra.form: extension.orchestra/control', "{$handler}@onViewForm");
         $events->listen('orchestra.saved: extension.orchestra/control', "{$handler}@onSaved");
+    }
+
+    /**
+     * Boot extension menu handler.
+     *
+     * @return void
+     */
+    protected function bootExtensionMenuEvents()
+    {
+        $this->app['events']->filter('orchestra.started: admin', 'Orchestra\Control\ControlMenuHandler');
     }
 
     /**
