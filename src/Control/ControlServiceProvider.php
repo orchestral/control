@@ -31,8 +31,7 @@ class ControlServiceProvider extends ServiceProvider
 
         $this->bootTimezoneEvents();
 
-        require_once "{$path}/filters.php";
-        require_once "{$path}/routes.php";
+        $this->bootExtensionRouting($path);
     }
 
     /**
@@ -47,6 +46,19 @@ class ControlServiceProvider extends ServiceProvider
 
         $events->listen('orchestra.form: extension.orchestra/control', "{$handler}@onViewForm");
         $events->listen('orchestra.saved: extension.orchestra/control', "{$handler}@onSaved");
+    }
+
+    /**
+     * Boot extension routing.
+     *
+     * @param  string  $path
+     * @return void
+     */
+    protected function bootExtensionRouting($path)
+    {
+        $this->app['router']->filter('control.manage', 'Orchestra\Foundation\Filters\CanManage');
+
+        require_once "{$path}/routes.php";
     }
 
     /**
