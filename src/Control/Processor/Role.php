@@ -13,7 +13,7 @@ class Role extends Processor
     /**
      * Setup a new processor instance.
      *
-     * @param  \Orchestra\Control\Presenter\Role   $presenter
+     * @param  \Orchestra\Control\Presenter\Role  $presenter
      * @param  \Orchestra\Control\Validation\Role  $validator
      */
     public function __construct(RolePresenter $presenter, RoleValidator $validator)
@@ -63,8 +63,8 @@ class Role extends Processor
     /**
      * View edit a role page.
      *
-     * @param  object          $listener
-     * @param  string|integer  $id
+     * @param  object  $listener
+     * @param  string|int  $id
      * @return mixed
      */
     public function edit($listener, $id)
@@ -109,7 +109,7 @@ class Role extends Processor
      *
      * @param  object  $listener
      * @param  array   $input
-     * @param  integer $id
+     * @param  int     $id
      * @return mixed
      */
     public function update($listener, array $input, $id)
@@ -138,8 +138,8 @@ class Role extends Processor
     /**
      * Delete a role.
      *
-     * @param  object          $listener
-     * @param  string|integer  $id
+     * @param  object  $listener
+     * @param  string|int  $id
      * @return mixed
      */
     public function destroy($listener, $id)
@@ -160,9 +160,9 @@ class Role extends Processor
     /**
      * Save the role.
      *
-     * @param  \Orchestra\Model\Role   $role
-     * @param  array                   $input
-     * @param  string                  $type
+     * @param  \Orchestra\Model\Role  $role
+     * @param  array  $input
+     * @param  string  $type
      * @return bool
      */
     protected function saving(Eloquent $role, $input = [], $type = 'create')

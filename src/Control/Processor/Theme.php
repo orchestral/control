@@ -62,7 +62,7 @@ class Theme extends Processor
     /**
      * Get all available theme.
      *
-     * @param  string   $type
+     * @param  string  $type
      * @return \Illuminate\Support\Collection
      */
     protected function getAvailableTheme($type)

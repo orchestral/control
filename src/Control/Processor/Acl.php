@@ -133,7 +133,7 @@ class Acl extends Processor
     /**
      * Get extension name (if available).
      *
-     * @param  string   $name
+     * @param  string  $name
      * @return string
      */
     protected function getExtensionName($name)
