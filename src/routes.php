@@ -1,17 +1,7 @@
 <?php
 
 use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\Event;
 use Orchestra\Support\Facades\Foundation;
-
-/*
-|--------------------------------------------------------------------------
-| Control Resources Route
-|--------------------------------------------------------------------------
-|
-| Register Control Extension as a resources.
-|
-*/
 
 Foundation::namespaced('Orchestra\Control\Routing', function (Router $router) {
     $router->group(['prefix' => 'control'], function (Router $router) {
