@@ -31,6 +31,8 @@ class ControlServiceProvider extends ServiceProvider
 
         $this->bootExtensionRouting($path);
 
+        $this->bootExtensionMenuEvents();
+
         $this->bootTimezoneEvents();
     }
 

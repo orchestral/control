@@ -36,8 +36,6 @@ class ControlMenuHandler
      */
     public function handle()
     {
-        $acl = Foundation::acl();
-
         if (! ($this->acl->can('manage roles') || $this->acl->can('manage acl'))) {
             return ;
         }
