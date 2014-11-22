@@ -2,16 +2,17 @@
 
 use Orchestra\Support\Str;
 use Orchestra\Foundation\Routing\AdminController;
-use Orchestra\Control\Processor\Theme as ThemeProcessor;
+use Orchestra\Control\Processor\Theme as Processor;
+use Orchestra\Control\Contracts\Listener\ThemeSelector;
 
-class ThemesController extends AdminController
+class ThemesController extends AdminController implements ThemeSelector
 {
     /**
      * Setup a new controller.
      *
      * @param  \Orchestra\Control\Processor\Theme  $processor
      */
-    public function __construct(ThemeProcessor $processor)
+    public function __construct(Processor $processor)
     {
         $this->processor = $processor;
 
@@ -78,7 +79,7 @@ class ThemesController extends AdminController
      * @param  array  $data
      * @return mixed
      */
-    public function indexSucceed(array $data)
+    public function showThemeSelection(array $data)
     {
         set_meta('title', trans('orchestra/control::title.themes.list', [
             'type' => Str::title($data['type']),
@@ -94,7 +95,7 @@ class ThemesController extends AdminController
      * @param  string  $id
      * @return mixed
      */
-    public function activateSucceed($type, $id)
+    public function themeHasActivated($type, $id)
     {
         $message = trans('orchestra/control::response.themes.update', [
             'type' => Str::title($type),
@@ -108,7 +109,7 @@ class ThemesController extends AdminController
      *
      * @return mixed
      */
-    public function themeVerificationFailed()
+    public function themeFailedVerification()
     {
         return $this->suspend(404);
     }

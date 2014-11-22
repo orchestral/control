@@ -1,6 +1,7 @@
 <?php namespace Orchestra\Control\Processor;
 
 use Orchestra\Contracts\Foundation\Foundation;
+use Orchestra\Control\Contracts\Listener\ThemeSelector;
 
 class Theme extends Processor
 {
@@ -25,41 +26,41 @@ class Theme extends Processor
     /**
      * List available theme.
      *
-     * @param  object  $listener
+     * @param  \Orchestra\Control\Contracts\Listener\ThemeSelector  $listener
      * @param  string  $type
      * @return mixed
      */
-    public function showByType($listener, $type)
+    public function showByType(ThemeSelector $listener, $type)
     {
         if (! in_array($type, $this->type)) {
-            return $listener->themeVerificationFailed();
+            return $listener->themeFailedVerification();
         }
 
         $current = $this->memory->get("site.theme.{$type}");
         $themes  = $this->getAvailableTheme($type);
 
-        return $listener->indexSucceed(compact('current', 'themes', 'type'));
+        return $listener->showThemeSelection(compact('current', 'themes', 'type'));
     }
 
     /**
      * Activate a theme.
      *
-     * @param  object  $listener
+     * @param  \Orchestra\Control\Contracts\Listener\ThemeSelector  $listener
      * @param  string  $type
      * @param  string  $id
      * @return mixed
      */
-    public function activate($listener, $type, $id)
+    public function activate(ThemeSelector $listener, $type, $id)
     {
         $theme = $this->getAvailableTheme($type)->get($id);
 
         if (! in_array($type, $this->type) || is_null($theme)) {
-            return $listener->themeVerificationFailed();
+            return $listener->themeFailedVerification();
         }
 
         $this->memory->put("site.theme.{$type}", $id);
 
-        return $listener->activateSucceed($type, $id);
+        return $listener->themeHasActivated($type, $id);
     }
 
     /**
