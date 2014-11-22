@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Fluent;
 use Orchestra\Control\Authorize;
-use Orchestra\Support\Facades\Site;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Input;
 use Orchestra\Control\Processor\Acl as AclProcessor;
 
