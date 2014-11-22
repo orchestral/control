@@ -69,6 +69,7 @@ class ControlServiceProvider extends ServiceProvider
     protected function bootExtensionRouting($path)
     {
         $this->app['router']->filter('control.manage', 'Orchestra\Foundation\Filters\CanManage');
+        $this->app['router']->filter('control.csrf', 'Orchestra\Foundation\Filters\VerifyCsrfToken');
 
         require_once "{$path}/routes.php";
     }

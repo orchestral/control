@@ -29,6 +29,7 @@ class AclController extends BaseController
     protected function setupFilters()
     {
         $this->beforeFilter('control.manage:acl');
+        $this->beforeFilter('control.csrf', ['only' => 'sync']);
     }
 
     /**
@@ -36,7 +37,7 @@ class AclController extends BaseController
      *
      * @return mixed
      */
-    public function getIndex()
+    public function edit()
     {
         return $this->processor->index($this, Input::get('name', 'orchestra'));
     }
@@ -46,7 +47,7 @@ class AclController extends BaseController
      *
      * @return mixed
      */
-    public function postIndex()
+    public function update()
     {
         return $this->processor->update($this, Input::all());
     }
@@ -57,7 +58,7 @@ class AclController extends BaseController
      * @param  string  $id
      * @return mixed
      */
-    public function getSync($id)
+    public function sync($id)
     {
         return $this->processor->sync($this, $id);
     }

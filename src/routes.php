@@ -7,15 +7,15 @@ Foundation::namespaced('Orchestra\Control\Routing', function (Router $router) {
     $router->group(['prefix' => 'control'], function (Router $router) {
         $router->get('/', 'HomeController@index');
 
-        $router->get('acl', 'AclController@getIndex');
-        $router->post('acl', 'AclController@postIndex');
-        $router->get('acl/sync', 'AclController@getSync');
+        $router->get('acl', 'AclController@edit');
+        $router->post('acl', 'AclController@update');
+        $router->get('acl/sync', 'AclController@sync');
 
         $router->resource('roles', 'RolesController');
 
-        $router->get('themes', 'ThemesController@getIndex');
-        $router->get('themes/backend', 'ThemesController@getBackend');
-        $router->get('themes/frontend', 'ThemesController@getFrontend');
-        $router->get('themes/activate/{type}/{id}', 'ThemesController@getActivate');
+        $router->get('themes', 'ThemesController@index');
+        $router->get('themes/backend', 'ThemesController@backend');
+        $router->get('themes/frontend', 'ThemesController@frontend');
+        $router->get('themes/activate/{type}/{id}', 'ThemesController@activate');
     });
 });

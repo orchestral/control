@@ -26,6 +26,7 @@ class ThemesController extends AdminController
     protected function setupFilters()
     {
         $this->beforeFilter('control.manage:acl');
+        $this->beforeFilter('control.csrf', ['only' => 'activate']);
     }
 
     /**
@@ -34,7 +35,7 @@ class ThemesController extends AdminController
      * @param  string  $type
      * @return mixed
      */
-    public function getIndex($type = 'frontend')
+    public function index($type = 'frontend')
     {
         return $this->processor->index($this, $type);
     }
@@ -44,7 +45,7 @@ class ThemesController extends AdminController
      *
      * @return mixed
      */
-    public function getBackend()
+    public function backend()
     {
         return $this->processor->index($this, 'backend');
     }
@@ -54,7 +55,7 @@ class ThemesController extends AdminController
      *
      * @return mixed
      */
-    public function getFrontend()
+    public function frontend()
     {
         return $this->processor->index($this, 'frontend');
     }
@@ -66,7 +67,7 @@ class ThemesController extends AdminController
      * @param  int     $id
      * @return mixed
      */
-    public function getActivate($type, $id)
+    public function activate($type, $id)
     {
         return $this->processor->activate($this, $type, $id);
     }
