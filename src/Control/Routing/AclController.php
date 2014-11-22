@@ -37,7 +37,7 @@ class AclController extends BaseController
      */
     public function edit()
     {
-        return $this->processor->index($this, Input::get('name', 'orchestra'));
+        return $this->processor->edit($this, Input::get('name', 'orchestra'));
     }
 
     /**

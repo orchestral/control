@@ -33,7 +33,7 @@ class Acl extends Processor
      * @param  string  $id
      * @return mixed
      */
-    public function index($listener, $id)
+    public function edit($listener, $id)
     {
         $collection = [];
         $instances  = $this->acl->all();
