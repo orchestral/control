@@ -37,7 +37,7 @@ class ThemesController extends AdminController
      */
     public function index($type = 'frontend')
     {
-        return $this->processor->index($this, $type);
+        return $this->processor->showByType($this, $type);
     }
 
     /**
@@ -47,7 +47,7 @@ class ThemesController extends AdminController
      */
     public function backend()
     {
-        return $this->processor->index($this, 'backend');
+        return $this->processor->showByType($this, 'backend');
     }
 
     /**
@@ -57,7 +57,7 @@ class ThemesController extends AdminController
      */
     public function frontend()
     {
-        return $this->processor->index($this, 'frontend');
+        return $this->processor->showByType($this, 'frontend');
     }
 
     /**

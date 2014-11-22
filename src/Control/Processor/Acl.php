@@ -2,25 +2,28 @@
 
 use Orchestra\Support\Str;
 use Illuminate\Support\Fluent;
-use Orchestra\Support\Facades\Foundation;
+use Orchestra\Contracts\Foundation\Foundation;
 
 class Acl extends Processor
 {
     /**
      * ACL instance.
      *
-     * @var \Orchestra\Auth\Acl\Environment
+     * @var \Orchestra\Contracts\Auth\Acl\Acl
      */
     protected $acl;
 
     /**
      * Setup a new processor.
+     *
+     * @param  \Orchestra\Contracts\Foundation\Foundation  $foundation
      */
-    public function __construct()
+    public function __construct(Foundation $foundation)
     {
-        $this->memory = Foundation::memory();
-        $this->acl    = Foundation::make('orchestra.acl');
-        $this->model  = Foundation::make('orchestra.role');
+        $this->foundation = $foundation;
+        $this->memory     = $foundation->memory();
+        $this->acl        = $foundation->acl();
+        $this->model      = $foundation->make('orchestra.role');
     }
 
     /**

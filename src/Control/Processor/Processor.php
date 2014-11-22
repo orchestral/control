@@ -3,9 +3,16 @@
 abstract class Processor
 {
     /**
+     * The foundation implementation.
+     *
+     * @var \Orchestra\Contracts\Foundation\Foundation
+     */
+    protected $foundation;
+
+    /**
      * Memory instance.
      *
-     * @var \Orchestra\Memory\Provider
+     * @var \Orchestra\Contracts\Memory\Provider
      */
     protected $memory;
 

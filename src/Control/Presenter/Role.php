@@ -100,7 +100,7 @@ class Role extends Presenter
      * View form generator for Orchestra\Model\Role.
      *
      * @param  \Orchestra\Model\Role  $model
-     * @return \Orchestra\Contracts\Html\Form\BUilder
+     * @return \Orchestra\Contracts\Html\Form\Builder
      */
     public function form(Eloquent $model)
     {

@@ -4,7 +4,7 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Orchestra\Model\Role as Eloquent;
-use Orchestra\Support\Facades\Foundation;
+use Orchestra\Contracts\Foundation\Foundation;
 use Orchestra\Control\Presenter\Role as RolePresenter;
 use Orchestra\Control\Validation\Role as RoleValidator;
 
@@ -15,12 +15,14 @@ class Role extends Processor
      *
      * @param  \Orchestra\Control\Presenter\Role  $presenter
      * @param  \Orchestra\Control\Validation\Role  $validator
+     * @param  \Orchestra\Contracts\Foundation\Foundation  $foundation
      */
-    public function __construct(RolePresenter $presenter, RoleValidator $validator)
+    public function __construct(RolePresenter $presenter, RoleValidator $validator, Foundation $foundation)
     {
-        $this->presenter = $presenter;
-        $this->validator = $validator;
-        $this->model     = Foundation::make('orchestra.role');
+        $this->presenter  = $presenter;
+        $this->validator  = $validator;
+        $this->foundation = $foundation;
+        $this->model      = $foundation->make('orchestra.role');
     }
 
     /**

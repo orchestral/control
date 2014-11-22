@@ -1,6 +1,6 @@
 <?php namespace Orchestra\Control\Processor;
 
-use Orchestra\Support\Facades\Foundation;
+use Orchestra\Contracts\Foundation\Foundation;
 
 class Theme extends Processor
 {
@@ -13,10 +13,13 @@ class Theme extends Processor
 
     /**
      * Setup a new processor.
+     *
+     * @param  \Orchestra\Contracts\Foundation\Foundation  $foundation
      */
-    public function __construct()
+    public function __construct(Foundation $foundation)
     {
-        $this->memory = Foundation::memory();
+        $this->foundation = $foundation;
+        $this->memory     = $foundation->memory();
     }
 
     /**
@@ -26,7 +29,7 @@ class Theme extends Processor
      * @param  string  $type
      * @return mixed
      */
-    public function index($listener, $type)
+    public function showByType($listener, $type)
     {
         if (! in_array($type, $this->type)) {
             return $listener->themeVerificationFailed();
@@ -67,7 +70,7 @@ class Theme extends Processor
      */
     protected function getAvailableTheme($type)
     {
-        $themes = Foundation::make('orchestra.theme.finder')->detect();
+        $themes = $this->foundation->make('orchestra.theme.finder')->detect();
 
         return $themes->filter(function ($manifest) use ($type) {
             if (! empty($manifest->type) && ! in_array($type, $manifest->type)) {
