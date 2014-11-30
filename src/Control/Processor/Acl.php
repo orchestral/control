@@ -9,7 +9,7 @@ class Acl extends Processor
     /**
      * ACL instance.
      *
-     * @var \Orchestra\Contracts\Auth\Acl\Acl
+     * @var \Orchestra\Contracts\Auth\Authorization
      */
     protected $acl;
 
