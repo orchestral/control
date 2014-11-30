@@ -87,7 +87,7 @@ class AuthorizationController extends AdminController
 
         $message = trans('orchestra/control::response.acls.update');
 
-        return $this->redirectWithMessage(resources("control.acl?name={$id}"), $message);
+        return $this->redirectWithMessage(handles("orchestra::control/acl?name={$id}"), $message);
     }
 
     /**
