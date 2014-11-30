@@ -1,7 +1,7 @@
 <?php namespace Orchestra\Control\Processor;
 
 use Orchestra\Contracts\Foundation\Foundation;
-use Orchestra\Control\Contracts\Listener\ThemeSelector;
+use Orchestra\Contracts\Theme\Listener\Selector;
 
 class Theme extends Processor
 {
@@ -26,11 +26,11 @@ class Theme extends Processor
     /**
      * List available theme.
      *
-     * @param  \Orchestra\Control\Contracts\Listener\ThemeSelector  $listener
+     * @param  \Orchestra\Contracts\Theme\Listener\Selector  $listener
      * @param  string  $type
      * @return mixed
      */
-    public function showByType(ThemeSelector $listener, $type)
+    public function showByType(Selector $listener, $type)
     {
         if (! in_array($type, $this->type)) {
             return $listener->themeFailedVerification();
@@ -45,12 +45,12 @@ class Theme extends Processor
     /**
      * Activate a theme.
      *
-     * @param  \Orchestra\Control\Contracts\Listener\ThemeSelector  $listener
+     * @param  \Orchestra\Contracts\Theme\Listener\Selector  $listener
      * @param  string  $type
      * @param  string  $id
      * @return mixed
      */
-    public function activate(ThemeSelector $listener, $type, $id)
+    public function activate(Selector $listener, $type, $id)
     {
         $theme = $this->getAvailableTheme($type)->get($id);
 

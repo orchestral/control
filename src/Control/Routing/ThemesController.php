@@ -1,11 +1,11 @@
 <?php namespace Orchestra\Control\Routing;
 
 use Orchestra\Support\Str;
+use Orchestra\Contracts\Theme\Listener\Selector;
 use Orchestra\Foundation\Routing\AdminController;
 use Orchestra\Control\Processor\Theme as Processor;
-use Orchestra\Control\Contracts\Listener\ThemeSelector;
 
-class ThemesController extends AdminController implements ThemeSelector
+class ThemesController extends AdminController implements Selector
 {
     /**
      * Setup a new controller.
