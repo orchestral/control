@@ -3,16 +3,16 @@
 use Illuminate\Support\Fluent;
 use Orchestra\Control\Authorize;
 use Illuminate\Support\Facades\Input;
-use Orchestra\Control\Processor\Acl as AclProcessor;
+use Orchestra\Control\Processor\Authorization;
 
-class AclController extends BaseController
+class AuthorizationController extends BaseController
 {
     /**
      * Setup a new controller.
      *
-     * @param  \Orchestra\Control\Processor\Acl  $processor
+     * @param  \Orchestra\Control\Processor\Authorization  $processor
      */
-    public function __construct(AclProcessor $processor)
+    public function __construct(Authorization $processor)
     {
         $this->processor = $processor;
 

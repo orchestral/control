@@ -4,7 +4,7 @@ use Orchestra\Support\Str;
 use Illuminate\Support\Fluent;
 use Orchestra\Contracts\Foundation\Foundation;
 
-class Acl extends Processor
+class Authorization extends Processor
 {
     /**
      * ACL instance.

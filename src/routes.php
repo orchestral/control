@@ -7,9 +7,9 @@ Foundation::namespaced('Orchestra\Control\Routing', function (Router $router) {
     $router->group(['prefix' => 'control'], function (Router $router) {
         $router->get('/', 'HomeController@index');
 
-        $router->get('acl', 'AclController@edit');
-        $router->post('acl', 'AclController@update');
-        $router->get('acl/sync', 'AclController@sync');
+        $router->get('acl', 'AuthorizationController@edit');
+        $router->post('acl', 'AuthorizationController@update');
+        $router->get('acl/sync', 'AuthorizationController@sync');
 
         $router->resource('roles', 'RolesController');
 
