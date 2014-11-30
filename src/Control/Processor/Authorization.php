@@ -2,7 +2,7 @@
 
 use Orchestra\Support\Str;
 use Illuminate\Support\Fluent;
-use Orchestra\Auth\Authorization\Factory;
+use Orchestra\Contracts\Authorization\Factory;
 use Orchestra\Contracts\Foundation\Foundation;
 
 class Authorization extends Processor
@@ -10,7 +10,7 @@ class Authorization extends Processor
     /**
      * ACL instance.
      *
-     * @var \Orchestra\Auth\Authorization\Factory
+     * @var \Orchestra\Contracts\Authorization\Factory
      */
     protected $acl;
 
@@ -18,6 +18,7 @@ class Authorization extends Processor
      * Setup a new processor.
      *
      * @param  \Orchestra\Contracts\Foundation\Foundation  $foundation
+     * @param  \Orchestra\Contracts\Authorization\Factory  $acl
      */
     public function __construct(Foundation $foundation, Factory $acl)
     {
