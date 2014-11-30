@@ -1,4 +1,4 @@
-@extends('orchestra/foundation::layout.page')
+@extends('orchestra/foundation::layouts.page')
 
 <?php set_meta('header::add-button', true); ?>
 

@@ -4,8 +4,9 @@ use Illuminate\Support\Fluent;
 use Orchestra\Control\Authorize;
 use Illuminate\Support\Facades\Input;
 use Orchestra\Control\Processor\Authorization;
+use Orchestra\Foundation\Routing\AdminController;
 
-class AuthorizationController extends BaseController
+class AuthorizationController extends AdminController
 {
     /**
      * Setup a new controller.

@@ -2,6 +2,7 @@
 
 use Orchestra\Support\Str;
 use Illuminate\Support\Fluent;
+use Orchestra\Auth\Authorization\Factory;
 use Orchestra\Contracts\Foundation\Foundation;
 
 class Authorization extends Processor
@@ -9,7 +10,7 @@ class Authorization extends Processor
     /**
      * ACL instance.
      *
-     * @var \Orchestra\Contracts\Auth\Authorization
+     * @var \Orchestra\Auth\Authorization\Factory
      */
     protected $acl;
 
@@ -18,11 +19,11 @@ class Authorization extends Processor
      *
      * @param  \Orchestra\Contracts\Foundation\Foundation  $foundation
      */
-    public function __construct(Foundation $foundation)
+    public function __construct(Foundation $foundation, Factory $acl)
     {
         $this->foundation = $foundation;
         $this->memory     = $foundation->memory();
-        $this->acl        = $foundation->acl();
+        $this->acl        = $acl;
         $this->model      = $foundation->make('orchestra.role');
     }
 
