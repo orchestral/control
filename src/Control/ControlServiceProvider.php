@@ -57,7 +57,7 @@ class ControlServiceProvider extends ServiceProvider
      */
     protected function bootExtensionMenuEvents()
     {
-        $this->app['events']->listen('orchestra.started: admin', 'Orchestra\Control\ControlMenuHandler');
+        $this->app['events']->listen('orchestra.ready: admin', 'Orchestra\Control\ControlMenuHandler');
     }
 
     /**
