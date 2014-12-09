@@ -1,6 +1,6 @@
 <?php namespace Orchestra\Control;
 
-use Illuminate\Support\ServiceProvider;
+use Orchestra\Support\Provider\ServiceProvider;
 
 class ControlServiceProvider extends ServiceProvider
 {
@@ -23,7 +23,7 @@ class ControlServiceProvider extends ServiceProvider
     {
         $path = realpath(__DIR__.'/../');
 
-        $this->package('orchestra/control', 'orchestra/control', $path);
+        $this->package('orchestra/control', 'orchestra/control', $path.'/resources');
 
         $this->mapExtensionConfig();
 
@@ -71,7 +71,7 @@ class ControlServiceProvider extends ServiceProvider
         $this->app['router']->filter('control.manage', 'Orchestra\Foundation\Filters\CanManage');
         $this->app['router']->filter('control.csrf', 'Orchestra\Foundation\Filters\VerifyCsrfToken');
 
-        require_once "{$path}/routes.php";
+        require_once "{$path}/src/routes.php";
     }
 
     /**
