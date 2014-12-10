@@ -1,6 +1,6 @@
 <?php namespace Orchestra\Control;
 
-use Orchestra\Support\Provider\ServiceProvider;
+use Orchestra\Support\Providers\ServiceProvider;
 
 class ControlServiceProvider extends ServiceProvider
 {
