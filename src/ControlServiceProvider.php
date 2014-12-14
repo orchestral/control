@@ -84,7 +84,7 @@ class ControlServiceProvider extends ServiceProvider
         $events = $this->app['events'];
         $handler = 'Orchestra\Control\Timezone\UserHandler';
 
-        $events->listen('orchestra.form: user.account', "{$handler}onViewForm");
+        $events->listen('orchestra.form: user.account', "{$handler}@onViewForm");
         $events->listen('orchestra.saved: user.account', "{$handler}@onSaved");
     }
 
