@@ -40,7 +40,9 @@ class ControlMenuHandler
             return ;
         }
 
-        $this->menu->add('control', '^:extensions')
+        $parent = $this->menu->has('extensions') ? '^:extensions' : '<:home';
+
+        $this->menu->add('control', $parent)
             ->title('Control')
             ->link(handles('orchestra::control'));
     }
