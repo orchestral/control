@@ -40,7 +40,7 @@ class ControlMenuHandler
             return ;
         }
 
-        $parent = $this->menu->has('extensions') ? '^:extensions' : '<:home';
+        $parent = $this->menu->has('extensions') ? '^:extensions' : '>:home';
 
         $this->menu->add('control', $parent)
             ->title('Control')
