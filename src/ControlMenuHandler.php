@@ -1,49 +1,58 @@
 <?php namespace Orchestra\Control;
 
-use Orchestra\Contracts\Foundation\Foundation;
+use Orchestra\Foundation\Support\MenuHandler;
+use Orchestra\Contracts\Authorization\Authorization;
 
-class ControlMenuHandler
+class ControlMenuHandler extends MenuHandler
 {
     /**
-     * ACL instance.
+     * Get ID.
      *
-     * @var \Orchestra\Contracts\Authorization\Authorization
+     * @return string
      */
-    protected $acl;
-
-    /**
-     * Menu instance.
-     *
-     * @var \Orchestra\Widget\Handlers\Menu
-     */
-    protected $menu;
-
-    /**
-     * Construct a new handler.
-     *
-     * @param  \Orchestra\Contracts\Foundation\Foundation  $foundation
-     */
-    public function __construct(Foundation $foundation)
+    protected function getId()
     {
-        $this->menu = $foundation->menu();
-        $this->acl = $foundation->acl();
+        return 'control';
     }
 
     /**
-     * Create a handler for `orchestra.ready: admin` event.
+     * Get position.
      *
-     * @return void
+     * @return string
      */
-    public function handle()
+    protected function getPosition()
     {
-        if (! ($this->acl->can('manage roles') || $this->acl->can('manage acl'))) {
-            return ;
-        }
+        return $this->menu->has('extensions') ? '^:extensions' : '>:home';
+    }
 
-        $parent = $this->menu->has('extensions') ? '^:extensions' : '>:home';
+    /**
+     * Get the URL.
+     *
+     * @return string
+     */
+    protected function getLink()
+    {
+        return handles('orchestra::control');
+    }
 
-        $this->menu->add('control', $parent)
-            ->title('Control')
-            ->link(handles('orchestra::control'));
+    /**
+     * Get the title.
+     *
+     * @return string
+     */
+    protected function getTitle()
+    {
+        return 'Control';
+    }
+
+    /**
+     * Check whether the menu should be displayed.
+     *
+     * @param  \Orchestra\Contracts\Authorization\Authorization  $acl
+     * @return bool
+     */
+    public function authorize(Authorization $acl)
+    {
+        return ($acl->can('manage roles') || $acl->can('manage acl'));
     }
 }
