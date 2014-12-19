@@ -6,14 +6,16 @@ use Orchestra\Contracts\Authorization\Authorization;
 class ControlMenuHandler extends MenuHandler
 {
     /**
-     * Get ID.
+     * Menu configuration.
      *
-     * @return string
+     * @var array
      */
-    protected function getId()
-    {
-        return 'control';
-    }
+    protected $menu = [
+        'id'    => 'control',
+        'title' => 'Control',
+        'link'  => 'orchestra::control',
+        'icon'  => null,
+    ];
 
     /**
      * Get position.
@@ -22,27 +24,7 @@ class ControlMenuHandler extends MenuHandler
      */
     protected function getPosition()
     {
-        return $this->menu->has('extensions') ? '^:extensions' : '>:home';
-    }
-
-    /**
-     * Get the URL.
-     *
-     * @return string
-     */
-    protected function getLink()
-    {
-        return handles('orchestra::control');
-    }
-
-    /**
-     * Get the title.
-     *
-     * @return string
-     */
-    protected function getTitle()
-    {
-        return 'Control';
+        return $this->handler->has('extensions') ? '^:extensions' : '>:home';
     }
 
     /**
