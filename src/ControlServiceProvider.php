@@ -24,7 +24,7 @@ class ControlServiceProvider extends ServiceProvider
         $path = realpath(__DIR__.'/../resources');
 
         $this->addConfigComponent('orchestra/control', 'orchestra/control', $path.'/config');
-        $this->addLangComponent('orchestra/control', 'orchestra/control', $path.'/lang');
+        $this->addLanguageComponent('orchestra/control', 'orchestra/control', $path.'/lang');
         $this->addViewComponent('orchestra/control', 'orchestra/control', $path.'/views');
 
         $this->mapExtensionConfig();
