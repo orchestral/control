@@ -21,9 +21,11 @@ class ControlServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $path = realpath(__DIR__.'/../');
+        $path = realpath(__DIR__.'/../resources');
 
-        $this->package('orchestra/control', 'orchestra/control', $path.'/resources');
+        $this->addConfigComponent('orchestra/control', 'orchestra/control', $path.'/config');
+        $this->addLangComponent('orchestra/control', 'orchestra/control', $path.'/lang');
+        $this->addViewComponent('orchestra/control', 'orchestra/control', $path.'/views');
 
         $this->mapExtensionConfig();
 
