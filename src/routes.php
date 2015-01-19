@@ -9,13 +9,16 @@ Foundation::namespaced('Orchestra\Control\Routing', function (Router $router) {
 
         $router->get('acl', 'AuthorizationController@edit');
         $router->post('acl', 'AuthorizationController@update');
-        $router->get('acl/sync/{id}', 'AuthorizationController@sync');
+        $router->get('acl/{id}/sync', 'AuthorizationController@sync');
 
         $router->resource('roles', 'RolesController');
 
         $router->get('themes', 'ThemesController@index');
         $router->get('themes/backend', 'ThemesController@backend');
         $router->get('themes/frontend', 'ThemesController@frontend');
-        $router->get('themes/activate/{type}/{id}', 'ThemesController@activate');
+        $router->get('themes/{type}/{id}/activate', [
+            'uses' => 'ThemesController@activate',
+            'where' => ['type' => '(backend|frontend)'],
+        ]);
     });
 });
