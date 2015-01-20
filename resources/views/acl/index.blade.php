@@ -11,13 +11,13 @@ $roles = $eloquent->roles()->get(); ?>
 <div class="row">
     <div class="navbar user-search hidden-phone">
         {!! app('form')->open(['url' => app('url')->current(), 'method' => 'GET', 'class' => 'navbar-form']) !!}
-            {!! app('form')->select('name', $collection, $id, ['class' => '']) !!}&nbsp;
+            {!! app('form')->select('name', $collection, $metric, ['class' => '']) !!}&nbsp;
             <button type="submit" class="btn btn-primary">{{ trans('orchestra/foundation::label.submit') }}</button>
         {!! app('form')->close() !!}
     </div>
 
     {!! app('form')->open(['url' => app('url')->current(), 'method' => 'POST']) !!}
-    {!! app('form')->hidden('metric', $id) !!}
+    {!! app('form')->hidden('metric', $metric) !!}
 
     @foreach ($roles as $roleKey => $roleName)
     <div class="twelve columns panel panel-default">
@@ -41,7 +41,7 @@ $roles = $eloquent->roles()->get(); ?>
     <div class="row">
         <div class="twelve columns">
             <button type="submit" class="btn btn-primary">{{ trans('orchestra/foundation::label.submit') }}</button>
-            <a href="{!! handles("orchestra::control/acl/{$id}/sync", ['csrf' => true]) !!}" class="btn btn-link">
+            <a href="{!! handles("orchestra::control/acl/{$metric}/sync", ['csrf' => true]) !!}" class="btn btn-link">
                 {{ trans('orchestra/control::label.sync-roles') }}
             </a>
         </div>

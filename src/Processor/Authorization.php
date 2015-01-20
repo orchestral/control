@@ -33,10 +33,10 @@ class Authorization extends Processor
      * List ACL collection.
      *
      * @param  object  $listener
-     * @param  string  $id
+     * @param  string  $metric
      * @return mixed
      */
-    public function edit($listener, $id)
+    public function edit($listener, $metric)
     {
         $collection = [];
         $instances  = $this->acl->all();
@@ -45,14 +45,14 @@ class Authorization extends Processor
         foreach ($instances as $name => $instance) {
             $collection[$name] = $this->getAuthorizationName($name);
 
-            $name === $id && $eloquent = $instance;
+            $name === $metric && $eloquent = $instance;
         }
 
         if (is_null($eloquent)) {
             return $listener->aclVerificationFailed();
         }
 
-        return $listener->indexSucceed(compact('eloquent', 'collection', 'id'));
+        return $listener->indexSucceed(compact('eloquent', 'collection', 'metric'));
     }
 
     /**
@@ -97,7 +97,7 @@ class Authorization extends Processor
     {
         $roles = [];
         $name  = $this->getExtension($vendor, $package)->get('name');
-        $acl   = $this->acl->get($metric->get('name'));
+        $acl   = $this->acl->get($name);
 
         if (is_null($acl)) {
             return $listener->aclVerificationFailed();
@@ -111,7 +111,7 @@ class Authorization extends Processor
 
         $acl->sync();
 
-        return $listener->syncSucceed(new Fluent(compact('id', 'name')));
+        return $listener->syncSucceed(new Fluent(compact('vendor', 'package', 'name')));
     }
 
     /**

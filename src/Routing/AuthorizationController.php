@@ -79,16 +79,16 @@ class AuthorizationController extends AdminController
     /**
      * Response when ACL is updated.
      *
-     * @param  string  $id
+     * @param  string  $metric
      * @return mixed
      */
-    public function updateSucceed($id)
+    public function updateSucceed($metric)
     {
         Authorize::sync();
 
         $message = trans('orchestra/control::response.acls.update');
 
-        return $this->redirectWithMessage(handles("orchestra::control/acl?name={$id}"), $message);
+        return $this->redirectWithMessage(handles("orchestra::control/acl?name={$metric}"), $message);
     }
 
     /**
@@ -103,7 +103,7 @@ class AuthorizationController extends AdminController
             'name' => $acl->get('name'),
         ]);
 
-        return $this->redirectWithMessage(handles("orchestra::control/acl?name={$acl->get('id')}"), $message);
+        return $this->redirectWithMessage(handles("orchestra::control/acl?name={$acl->get('name')}"), $message);
     }
 
     /**
