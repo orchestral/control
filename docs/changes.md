@@ -5,6 +5,11 @@ title: Control Change Log
 
 ## Version 2.2 {#v2-2}
 
+### v2.2.4 {#v2-2-4}
+
+* Add `src/migrations` to composer autoload classmap.
+* Sync ACL after synchronizing roles.
+
 ### v2.2.3 {#v2-2-3}
 
 * Improves CSRF support.
