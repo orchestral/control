@@ -5,6 +5,11 @@ title: Control Change Log
 
 ## Version 2.2 {#v2-2}
 
+### v2.2.4 {#v2-2-4}
+
+* Add `src/migrations` to composer autoload classmap.
+* Sync ACL after synchronizing roles.
+
 ### v2.2.3 {#v2-2-3}
 
 * Improves CSRF support.
@@ -25,6 +30,11 @@ title: Control Change Log
 * Add support for Orchestra Platform 2.2.
 
 ## Version 2.1 {#v2-1}
+
+### v2.1.6 {#v2-1-6}
+
+* Add `src/migrations` to composer autoload classmap.
+* Sync ACL after synchronizing roles.
 
 ### v2.1.5 {#v2-1-5}
 
