@@ -105,6 +105,8 @@ class Acl extends AbstractableProcessor
 
         $acl->roles()->attach($roles);
 
+        $acl->sync();
+
         return $listener->syncSucceed(new Fluent(compact('id', 'name')));
     }
 
