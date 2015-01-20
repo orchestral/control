@@ -1,6 +1,7 @@
 <?php namespace Orchestra\Control\Processor;
 
 use Orchestra\Support\Str;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
 use Orchestra\Contracts\Authorization\Factory;
 use Orchestra\Contracts\Foundation\Foundation;
@@ -78,7 +79,7 @@ class Authorization extends Processor
 
         foreach ($roles as $roleKey => $roleName) {
             foreach ($actions as $actionKey => $actionName) {
-                $value = ('yes' === array_get($input, "acl-{$roleKey}-{$actionKey}", 'no'));
+                $value = ('yes' === Arr::get($input, "acl-{$roleKey}-{$actionKey}", 'no'));
 
                 $acl->allow($roleName, $actionName, $value);
             }
@@ -109,6 +110,8 @@ class Authorization extends Processor
         }
 
         $acl->roles()->attach($roles);
+
+        $acl->sync();
 
         return $listener->syncSucceed(new Fluent(compact('id', 'name')));
     }
