@@ -9,7 +9,8 @@ Foundation::namespaced('Orchestra\Control\Routing', function (Router $router) {
 
         $router->get('acl', 'AuthorizationController@edit');
         $router->post('acl', 'AuthorizationController@update');
-        $router->get('acl/{id}/sync', 'AuthorizationController@sync');
+        $router->get('acl/{vendor}/{package}/sync', 'AuthorizationController@sync');
+        $router->get('acl/{vendor}/sync', 'AuthorizationController@sync');
 
         $router->resource('roles', 'RolesController');
 

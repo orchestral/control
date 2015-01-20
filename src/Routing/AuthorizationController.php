@@ -54,12 +54,13 @@ class AuthorizationController extends AdminController
     /**
      * Get sync roles action.
      *
-     * @param  string  $id
+     * @param  string  $vendor
+     * @param  string|null  $package
      * @return mixed
      */
-    public function sync($id)
+    public function sync($vendor, $package = null)
     {
-        return $this->processor->sync($this, $id);
+        return $this->processor->sync($this, $vendor, $package);
     }
 
     /**

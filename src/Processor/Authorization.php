@@ -24,9 +24,9 @@ class Authorization extends Processor
     public function __construct(Foundation $foundation, Factory $acl)
     {
         $this->foundation = $foundation;
-        $this->memory     = $foundation->memory();
-        $this->acl        = $acl;
-        $this->model      = $foundation->make('orchestra.role');
+        $this->memory = $foundation->memory();
+        $this->acl = $acl;
+        $this->model = $foundation->make('orchestra.role');
     }
 
     /**
@@ -43,10 +43,9 @@ class Authorization extends Processor
         $eloquent   = null;
 
         foreach ($instances as $name => $instance) {
-            $uid = $this->getUidFromName($name);
-            $collection[$uid] = $this->getExtensionName($name);
+            $collection[$name] = $this->getAuthorizationName($name);
 
-            $uid === $id and $eloquent = $instance;
+            $name === $id && $eloquent = $instance;
         }
 
         if (is_null($eloquent)) {
@@ -65,9 +64,7 @@ class Authorization extends Processor
      */
     public function update($listener, array $input)
     {
-        $uid  = $input['metric'];
-        $name = $this->getNameFromUid($uid);
-
+        $name = $input['metric'];
         $acl = $this->acl->get($name);
 
         if (is_null($acl)) {
@@ -85,21 +82,22 @@ class Authorization extends Processor
             }
         }
 
-        return $listener->updateSucceed($uid);
+        return $listener->updateSucceed($name);
     }
 
     /**
      * Sync role for an ACL instance.
      *
      * @param  object  $listener
-     * @param  string  $id
+     * @param  string  $vendor
+     * @param  string|null  $package
      * @return mixed
      */
-    public function sync($listener, $id)
+    public function sync($listener, $vendor, $package = null)
     {
         $roles = [];
-        $name  = $this->getNameFromUid($id);
-        $acl   = $this->acl->get($name);
+        $name  = $this->getExtension($vendor, $package)->get('name');
+        $acl   = $this->acl->get($metric->get('name'));
 
         if (is_null($acl)) {
             return $listener->aclVerificationFailed();
@@ -117,38 +115,30 @@ class Authorization extends Processor
     }
 
     /**
-     * Get ACL uid from name.
-     *
-     * @param  string  $name
-     * @return string
-     */
-    protected function getUidFromName($name)
-    {
-        return str_replace('/', '.', $name);
-    }
-
-    /**
-     * Get ACL name from uid.
-     *
-     * @param  string  $uid
-     * @return string
-     */
-    protected function getNameFromUid($uid)
-    {
-        return str_replace('.', '/', $uid);
-    }
-
-    /**
      * Get extension name (if available).
      *
      * @param  string  $name
      * @return string
      */
-    protected function getExtensionName($name)
+    protected function getAuthorizationName($name)
     {
         $extension = $this->memory->get("extensions.available.{$name}.name");
-        $title = ($name !== 'orchestra') ? $extension : 'Orchestra Platform';
+        $title = ($name === 'orchestra') ? 'Orchestra Platform' : $extension;
 
-        return (is_null($extension) ? Str::title($name) : $title);
+        return (is_null($title) ? Str::title($name) : $title);
+    }
+
+    /**
+     * Get extension information.
+     *
+     * @param  string  $vendor
+     * @param  string|null  $package
+     * @return \Illuminate\Support\Fluent
+     */
+    protected function getExtension($vendor, $package = null)
+    {
+        $name = (is_null($package) ? $vendor : implode('/', [$vendor, $package]));
+
+        return new Fluent(['name' => $name, 'uid' => $name]);
     }
 }
