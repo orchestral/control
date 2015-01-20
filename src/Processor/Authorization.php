@@ -64,8 +64,8 @@ class Authorization extends Processor
      */
     public function update($listener, array $input)
     {
-        $name = $input['metric'];
-        $acl = $this->acl->get($name);
+        $metric = $input['metric'];
+        $acl = $this->acl->get($metric);
 
         if (is_null($acl)) {
             return $listener->aclVerificationFailed();
@@ -82,7 +82,7 @@ class Authorization extends Processor
             }
         }
 
-        return $listener->updateSucceed($name);
+        return $listener->updateSucceed($metric);
     }
 
     /**
