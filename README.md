@@ -7,7 +7,17 @@ Official Administration Add-on Extension for Orchestra Platform that provide sup
 * Theme Manager &mdash; (formerly [Melody Theme Manager Extension](https://github.com/orchestral/melody)).
 * Timezone &mdash; (formerly [Localtime Extension](https://github.com/orchestral/localtime)).
 
-## Quick Installation
+[![Latest Stable Version](https://img.shields.io/github/release/orchestral/control.svg?style=flat)](https://packagist.org/packages/orchestra/control)
+[![Total Downloads](https://img.shields.io/packagist/dt/orchestra/control.svg?style=flat)](https://packagist.org/packages/orchestra/control)
+[![MIT License](https://img.shields.io/packagist/l/orchestra/control.svg?style=flat)](https://packagist.org/packages/orchestra/control)
+[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/control/3.0.svg?style=flat)](https://scrutinizer-ci.com/g/orchestral/control/)
+
+## Table of Content
+
+* [Installation](#installation)
+* [Setup](#setup)
+
+## Installation
 
 To install through composer, simply put the following in your `composer.json` file:
 
@@ -19,34 +29,14 @@ To install through composer, simply put the following in your `composer.json` fi
 }
 ```
 
-### Setup
+And then run `composer install` from the terminal.
+
+### Quick Installation
+
+Above installation can also be simplify by using the following command:
+
+	composer require "orchestra/control=2.2.*"
+
+## Setup
 
 To start using Control, activate the extension from Orchestra Platform Administrator Interface.
-
-## Contributors
-
-* [Mior Muhammad Zaki](http://git.io/crynobone)
-
-## License
-
-	The MIT License
-
-	Copyright (C) 2012 by Mior Muhammad Zaki <http://git.io/crynobone>
-
-	Permission is hereby granted, free of charge, to any person obtaining a copy
-	of this software and associated documentation files (the "Software"), to deal
-	in the Software without restriction, including without limitation the rights
-	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	copies of the Software, and to permit persons to whom the Software is
-	furnished to do so, subject to the following conditions:
-
-	The above copyright notice and this permission notice shall be included in
-	all copies or substantial portions of the Software.
-
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-	THE SOFTWARE.
