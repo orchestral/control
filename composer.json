@@ -23,12 +23,12 @@
 	},
 	"require-dev": {
 		"mockery/mockery": "0.9.*",
-		"orchestra/foundation": "3.0.*",
-		"orchestra/testing": "3.0.*"
+		"orchestra/foundation": "3.1.*",
+		"orchestra/testing": "3.1.*"
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "3.0-dev"
+			"dev-master": "3.1-dev"
 		}
 	},
 	"minimum-stability": "dev"
