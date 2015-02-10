@@ -35,7 +35,7 @@ And then run `composer install` from the terminal.
 
 Above installation can also be simplify by using the following command:
 
-	composer require "orchestra/control=2.2.*"
+	composer require "orchestra/control=3.0.*"
 
 ## Setup
 
