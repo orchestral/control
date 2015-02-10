@@ -3,6 +3,15 @@ title: Control Change Log
 
 ---
 
+## Version 3.0 {#v3-0}
+
+### v3.0.0 {#v3-0-0}
+
+* Update support to Orchestra Platform v3.0.
+* Simplify PSR-4 path.
+* Use basic routing instead of `orchestra/resources`.
+* Move all start-up files to service provider.
+
 ## Version 2.2 {#v2-2}
 
 ### v2.2.4 {#v2-2-4}

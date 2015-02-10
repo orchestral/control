@@ -16,7 +16,7 @@ class OrchestraControlSeedAcls extends Migration
         $role = Role::admin();
         $acl  = Foundation::acl();
 
-        $actions = array('Manage Roles', 'Manage Acl');
+        $actions = ['Manage Roles', 'Manage Acl'];
 
         $acl->actions()->attach($actions);
         $acl->allow($role->name, $actions);
