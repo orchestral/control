@@ -1,6 +1,6 @@
 {
 	"name": "orchestra/control",
-	"description": "Control Extension for Orchestra Platform 2",
+	"description": "Control Extension for Orchestra Platform",
 	"license": "MIT",
 	"keywords": ["orchestra-platform", "orchestral", "extension", "laravel", "rbac", "timezone", "theme"],
 	"authors": [
@@ -11,8 +11,8 @@
 		}
 	],
 	"autoload": {
-		"psr-0": { 
-			"Orchestra\\Control" : "src/" 
+		"psr-0": {
+			"Orchestra\\Control" : "src/"
 		}
 	},
 	"require": {
@@ -26,7 +26,7 @@
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "2.1-dev"
+			"dev-master": "3.1-dev"
 		}
 	},
 	"minimum-stability": "dev"
