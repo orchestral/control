@@ -10,7 +10,7 @@ Official Administration Add-on Extension for Orchestra Platform that provide sup
 [![Latest Stable Version](https://img.shields.io/github/release/orchestral/control.svg?style=flat)](https://packagist.org/packages/orchestra/control)
 [![Total Downloads](https://img.shields.io/packagist/dt/orchestra/control.svg?style=flat)](https://packagist.org/packages/orchestra/control)
 [![MIT License](https://img.shields.io/packagist/l/orchestra/control.svg?style=flat)](https://packagist.org/packages/orchestra/control)
-[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/control/3.0.svg?style=flat)](https://scrutinizer-ci.com/g/orchestral/control/)
+[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/control/master.svg?style=flat)](https://scrutinizer-ci.com/g/orchestral/control/)
 
 ## Table of Content
 
@@ -24,7 +24,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
 	"require": {
-		"orchestra/control": "3.0.*"
+		"orchestra/control": "3.1.*"
 	}
 }
 ```
@@ -35,7 +35,7 @@ And then run `composer install` from the terminal.
 
 Above installation can also be simplify by using the following command:
 
-	composer require "orchestra/control=3.0.*"
+	composer require "orchestra/control=3.1.*"
 
 ## Setup
 
