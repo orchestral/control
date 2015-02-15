@@ -5,6 +5,10 @@ title: Control Change Log
 
 ## Version 3.0 {#v3-0}
 
+### v3.0.1@dev {#v3-0-1}
+
+* Rename `Orchestra\Control\ControlMenuHandler::getPosition()` to `Orchestra\Control\ControlMenuHandler::getPositionAttribute()`.
+
 ### v3.0.0 {#v3-0-0}
 
 * Update support to Orchestra Platform v3.0.
