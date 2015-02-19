@@ -28,13 +28,9 @@ class ControlServiceProvider extends ServiceProvider
         $this->addViewComponent('orchestra/control', 'orchestra/control', $path.'/resources/views');
 
         $this->mapExtensionConfig();
-
         $this->bootExtensionEvents();
-
         $this->bootExtensionRouting($path);
-
         $this->bootExtensionMenuEvents();
-
         $this->bootTimezoneEvents();
     }
 
