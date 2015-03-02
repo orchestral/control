@@ -22,7 +22,7 @@ class ControlMenuHandler extends MenuHandler
      *
      * @return string
      */
-    public function getPosition()
+    public function getPositionAttribute()
     {
         return $this->handler->has('extensions') ? '^:extensions' : '>:home';
     }
@@ -31,6 +31,7 @@ class ControlMenuHandler extends MenuHandler
      * Check whether the menu should be displayed.
      *
      * @param  \Orchestra\Contracts\Authorization\Authorization  $acl
+     *
      * @return bool
      */
     public function authorize(Authorization $acl)

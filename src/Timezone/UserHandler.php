@@ -41,6 +41,7 @@ class UserHandler
      *
      * @param  \Orchestra\Model\User  $user
      * @param  \Orchestra\Contracts\Html\Form\Builder  $form
+     *
      * @return void
      */
     public function onViewForm($user, FormBuilder $form)
@@ -77,6 +78,7 @@ class UserHandler
      * Handle `orchestra.saved: user.account` event.
      *
      * @param  \Orchestra\Model\User  $user
+     *
      * @return void
      */
     public function onSaved($user)

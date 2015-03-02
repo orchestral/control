@@ -15,7 +15,7 @@ class ControlServiceProvider extends ServiceProvider
     }
 
     /**
-     * Boot the service provider
+     * Boot the service provider.
      *
      * @return void
      */
@@ -28,13 +28,9 @@ class ControlServiceProvider extends ServiceProvider
         $this->addViewComponent('orchestra/control', 'orchestra/control', $path.'/resources/views');
 
         $this->mapExtensionConfig();
-
         $this->bootExtensionEvents();
-
         $this->bootExtensionRouting($path);
-
         $this->bootExtensionMenuEvents();
-
         $this->bootTimezoneEvents();
     }
 
@@ -66,6 +62,7 @@ class ControlServiceProvider extends ServiceProvider
      * Boot extension routing.
      *
      * @param  string  $path
+     *
      * @return void
      */
     protected function bootExtensionRouting($path)
@@ -83,7 +80,7 @@ class ControlServiceProvider extends ServiceProvider
      */
     protected function bootTimezoneEvents()
     {
-        $events = $this->app['events'];
+        $events  = $this->app['events'];
         $handler = 'Orchestra\Control\Timezone\UserHandler';
 
         $events->listen('orchestra.form: user.account', "{$handler}@onViewForm");
@@ -100,7 +97,7 @@ class ControlServiceProvider extends ServiceProvider
         $this->app['orchestra.extension.config']->map('orchestra/control', [
             'localtime'   => 'orchestra/control::localtime.enable',
             'admin_role'  => 'orchestra/foundation::roles.admin',
-            'member_role' => 'orchestra/foundation::roles.member'
+            'member_role' => 'orchestra/foundation::roles.member',
         ]);
     }
 }

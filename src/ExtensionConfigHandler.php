@@ -41,6 +41,7 @@ class ExtensionConfigHandler
      *
      * @param  \Orchestra\Model\User  $model
      * @param  \Orchestra\Contracts\Html\Form\Builder  $form
+     *
      * @return void
      */
     public function onViewForm($model, FormBuilder $form)
@@ -76,6 +77,7 @@ class ExtensionConfigHandler
      * Handle `orchestra.saved: extension.orchestra/control` event.
      *
      * @param  \Illuminate\Support\Fluent  $input
+     *
      * @return void
      */
     public function onSaved(Fluent $input)

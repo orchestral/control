@@ -1,18 +1,18 @@
 <?php
 
-return array(
+return [
     'name'            => 'Name',
     'sync-roles'      => 'Sync Roles',
     'enable-timezone' => 'Enable Timezone',
 
-    'roles' => array(
+    'roles' => [
         'configuration' => 'Role Configuration',
         'admin'         => 'Administrator Role',
         'member'        => 'Member Role',
-    ),
+    ],
 
-    'themes' => array(
+    'themes' => [
         'activate' => 'Activate Theme',
         'current'  => 'Current Theme',
-    ),
-);
+    ],
+];

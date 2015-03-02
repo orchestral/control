@@ -28,14 +28,15 @@ class Role extends Presenter
     public function __construct(Repository $config, FormFactory $form, TableFactory $table)
     {
         $this->config = $config;
-        $this->form = $form;
-        $this->table = $table;
+        $this->form   = $form;
+        $this->table  = $table;
     }
 
     /**
      * View table generator for Orchestra\Model\Role.
      *
      * @param  \Orchestra\Model\Role|\Illuminate\Pagination\Paginator  $model
+     *
      * @return \Orchestra\Contracts\Html\Table\Builder
      */
     public function table($model)
@@ -58,6 +59,7 @@ class Role extends Presenter
      * Table actions View Generator for Orchestra\Model\User.
      *
      * @param  \Orchestra\Contracts\Html\Table\Builder  $table
+     *
      * @return \Orchestra\Contracts\Html\Table\Builder
      */
     public function actions(TableBuilder $table)
@@ -75,7 +77,7 @@ class Role extends Presenter
                             handles("orchestra::control/roles/{$row->id}/edit"),
                             trans('orchestra/foundation::label.edit'),
                             ['class' => 'btn btn-mini btn-warning']
-                        )
+                        ),
                     ];
 
                     $roles = [
@@ -100,6 +102,7 @@ class Role extends Presenter
      * View form generator for Orchestra\Model\Role.
      *
      * @param  \Orchestra\Model\Role  $model
+     *
      * @return \Orchestra\Contracts\Html\Form\Builder
      */
     public function form(Eloquent $model)

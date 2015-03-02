@@ -28,6 +28,7 @@ class Theme extends Processor
      *
      * @param  \Orchestra\Contracts\Theme\Listener\Selector  $listener
      * @param  string  $type
+     *
      * @return mixed
      */
     public function showByType(Selector $listener, $type)
@@ -48,6 +49,7 @@ class Theme extends Processor
      * @param  \Orchestra\Contracts\Theme\Listener\Selector  $listener
      * @param  string  $type
      * @param  string  $id
+     *
      * @return mixed
      */
     public function activate(Selector $listener, $type, $id)
@@ -67,6 +69,7 @@ class Theme extends Processor
      * Get all available theme.
      *
      * @param  string  $type
+     *
      * @return \Illuminate\Support\Collection
      */
     protected function getAvailableTheme($type)
