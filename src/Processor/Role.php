@@ -29,6 +29,7 @@ class Role extends Processor
      * View list roles page.
      *
      * @param  object  $listener
+     *
      * @return mixed
      */
     public function index($listener)
@@ -50,6 +51,7 @@ class Role extends Processor
      * View create a role page.
      *
      * @param  object  $listener
+     *
      * @return mixed
      */
     public function create($listener)
@@ -67,6 +69,7 @@ class Role extends Processor
      *
      * @param  object  $listener
      * @param  string|int  $id
+     *
      * @return mixed
      */
     public function edit($listener, $id)
@@ -84,6 +87,7 @@ class Role extends Processor
      *
      * @param  object  $listener
      * @param  array   $input
+     *
      * @return mixed
      */
     public function store($listener, array $input)
@@ -112,6 +116,7 @@ class Role extends Processor
      * @param  object  $listener
      * @param  array   $input
      * @param  int     $id
+     *
      * @return mixed
      */
     public function update($listener, array $input, $id)
@@ -142,6 +147,7 @@ class Role extends Processor
      *
      * @param  object  $listener
      * @param  string|int  $id
+     *
      * @return mixed
      */
     public function destroy($listener, $id)
@@ -165,6 +171,7 @@ class Role extends Processor
      * @param  \Orchestra\Model\Role  $role
      * @param  array  $input
      * @param  string  $type
+     *
      * @return bool
      */
     protected function saving(Eloquent $role, $input = [], $type = 'create')
@@ -192,6 +199,7 @@ class Role extends Processor
      *
      * @param  string  $type
      * @param  array   $parameters
+     *
      * @return void
      */
     protected function fireEvent($type, array $parameters = [])

@@ -31,7 +31,7 @@ class RolesController extends AdminController
     }
 
     /**
-     * List all the roles
+     * List all the roles.
      *
      * @return mixed
      */
@@ -44,6 +44,7 @@ class RolesController extends AdminController
      * Show a role.
      *
      * @param  int  $id
+     *
      * @return mixed
      */
     public function show($id)
@@ -65,6 +66,7 @@ class RolesController extends AdminController
      * Edit the role.
      *
      * @param  int  $id
+     *
      * @return mixed
      */
     public function edit($id)
@@ -86,6 +88,7 @@ class RolesController extends AdminController
      * Update the role.
      *
      * @param  int  $id
+     *
      * @return mixed
      */
     public function update($id)
@@ -97,6 +100,7 @@ class RolesController extends AdminController
      * Request to delete a role.
      *
      * @param  int  $id
+     *
      * @return mixed
      */
     public function delete($id)
@@ -108,6 +112,7 @@ class RolesController extends AdminController
      * Request to delete a role.
      *
      * @param  int  $id
+     *
      * @return mixed
      */
     public function destroy($id)
@@ -119,6 +124,7 @@ class RolesController extends AdminController
      * Response when list roles page succeed.
      *
      * @param  array  $data
+     *
      * @return mixed
      */
     public function indexSucceed(array $data)
@@ -132,6 +138,7 @@ class RolesController extends AdminController
      * Response when create role page succeed.
      *
      * @param  array  $data
+     *
      * @return mixed
      */
     public function createSucceed(array $data)
@@ -145,6 +152,7 @@ class RolesController extends AdminController
      * Response when edit role page succeed.
      *
      * @param  array  $data
+     *
      * @return mixed
      */
     public function editSucceed(array $data)
@@ -154,10 +162,11 @@ class RolesController extends AdminController
         return view('orchestra/control::roles.edit', $data);
     }
 
-     /**
+    /**
      * Response when storing role failed on validation.
      *
      * @param  object  $validation
+     *
      * @return mixed
      */
     public function storeValidationFailed($validation)
@@ -169,6 +178,7 @@ class RolesController extends AdminController
      * Response when storing role failed.
      *
      * @param  array  $error
+     *
      * @return mixed
      */
     public function storeFailed(array $error)
@@ -182,6 +192,7 @@ class RolesController extends AdminController
      * Response when storing user succeed.
      *
      * @param  \Orchestra\Model\Role  $role
+     *
      * @return mixed
      */
     public function storeSucceed(Role $role)
@@ -196,6 +207,7 @@ class RolesController extends AdminController
      *
      * @param  object  $validation
      * @param  int     $id
+     *
      * @return mixed
      */
     public function updateValidationFailed($validation, $id)
@@ -207,6 +219,7 @@ class RolesController extends AdminController
      * Response when updating role failed.
      *
      * @param  array  $error
+     *
      * @return mixed
      */
     public function updateFailed(array $error)
@@ -220,6 +233,7 @@ class RolesController extends AdminController
      * Response when updating role succeed.
      *
      * @param  \Orchestra\Model\Role  $role
+     *
      * @return mixed
      */
     public function updateSucceed(Role $role)
@@ -233,6 +247,7 @@ class RolesController extends AdminController
      * Response when deleting role failed.
      *
      * @param  array  $error
+     *
      * @return mixed
      */
     public function destroyFailed(array $error)
@@ -246,6 +261,7 @@ class RolesController extends AdminController
      * Response when updating role succeed.
      *
      * @param  \Orchestra\Model\Role  $role
+     *
      * @return mixed
      */
     public function destroySucceed(Role $role)

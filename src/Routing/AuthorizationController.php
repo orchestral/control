@@ -56,6 +56,7 @@ class AuthorizationController extends AdminController
      *
      * @param  string  $vendor
      * @param  string|null  $package
+     *
      * @return mixed
      */
     public function sync($vendor, $package = null)
@@ -67,6 +68,7 @@ class AuthorizationController extends AdminController
      * Response when lists ACL page succeed.
      *
      * @param  array  $data
+     *
      * @return mixed
      */
     public function indexSucceed(array $data)
@@ -80,6 +82,7 @@ class AuthorizationController extends AdminController
      * Response when ACL is updated.
      *
      * @param  string  $metric
+     *
      * @return mixed
      */
     public function updateSucceed($metric)
@@ -95,6 +98,7 @@ class AuthorizationController extends AdminController
      * Response when sync roles succeed.
      *
      * @param  \Illuminate\Support\Fluent   $acl
+     *
      * @return mixed
      */
     public function syncSucceed(Fluent $acl)

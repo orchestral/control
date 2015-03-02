@@ -34,6 +34,7 @@ class ThemesController extends AdminController implements Selector
      * Show frontend/backend theme for Orchestra Platform.
      *
      * @param  string  $type
+     *
      * @return mixed
      */
     public function index($type = 'frontend')
@@ -66,6 +67,7 @@ class ThemesController extends AdminController implements Selector
      *
      * @param  string  $type
      * @param  int     $id
+     *
      * @return mixed
      */
     public function activate($type, $id)
@@ -77,6 +79,7 @@ class ThemesController extends AdminController implements Selector
      * Response when list themes page succeed.
      *
      * @param  array  $data
+     *
      * @return mixed
      */
     public function showThemeSelection(array $data)
@@ -93,6 +96,7 @@ class ThemesController extends AdminController implements Selector
      *
      * @param  string  $type
      * @param  string  $id
+     *
      * @return mixed
      */
     public function themeHasActivated($type, $id)

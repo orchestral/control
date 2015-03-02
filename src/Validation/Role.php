@@ -5,7 +5,7 @@ use Orchestra\Support\Validator;
 class Role extends Validator
 {
     /**
-     * List of rules
+     * List of rules.
      *
      * @var array
      */

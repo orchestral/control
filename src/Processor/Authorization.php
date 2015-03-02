@@ -24,9 +24,9 @@ class Authorization extends Processor
     public function __construct(Foundation $foundation, Factory $acl)
     {
         $this->foundation = $foundation;
-        $this->memory = $foundation->memory();
-        $this->acl = $acl;
-        $this->model = $foundation->make('orchestra.role');
+        $this->memory     = $foundation->memory();
+        $this->acl        = $acl;
+        $this->model      = $foundation->make('orchestra.role');
     }
 
     /**
@@ -34,6 +34,7 @@ class Authorization extends Processor
      *
      * @param  object  $listener
      * @param  string  $metric
+     *
      * @return mixed
      */
     public function edit($listener, $metric)
@@ -60,12 +61,13 @@ class Authorization extends Processor
      *
      * @param  object  $listener
      * @param  array   $input
+     *
      * @return mixed
      */
     public function update($listener, array $input)
     {
         $metric = $input['metric'];
-        $acl = $this->acl->get($metric);
+        $acl    = $this->acl->get($metric);
 
         if (is_null($acl)) {
             return $listener->aclVerificationFailed();
@@ -91,6 +93,7 @@ class Authorization extends Processor
      * @param  object  $listener
      * @param  string  $vendor
      * @param  string|null  $package
+     *
      * @return mixed
      */
     public function sync($listener, $vendor, $package = null)
@@ -118,12 +121,13 @@ class Authorization extends Processor
      * Get extension name (if available).
      *
      * @param  string  $name
+     *
      * @return string
      */
     protected function getAuthorizationName($name)
     {
         $extension = $this->memory->get("extensions.available.{$name}.name");
-        $title = ($name === 'orchestra') ? 'Orchestra Platform' : $extension;
+        $title     = ($name === 'orchestra') ? 'Orchestra Platform' : $extension;
 
         return (is_null($title) ? Str::title($name) : $title);
     }
@@ -133,6 +137,7 @@ class Authorization extends Processor
      *
      * @param  string  $vendor
      * @param  string|null  $package
+     *
      * @return \Illuminate\Support\Fluent
      */
     protected function getExtension($vendor, $package = null)
