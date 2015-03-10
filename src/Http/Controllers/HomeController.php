@@ -1,4 +1,4 @@
-<?php namespace Orchestra\Control\Routing;
+<?php namespace Orchestra\Control\Http\Controllers;
 
 use Orchestra\Routing\Controller;
 

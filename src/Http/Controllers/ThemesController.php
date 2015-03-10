@@ -1,9 +1,9 @@
-<?php namespace Orchestra\Control\Routing;
+<?php namespace Orchestra\Control\Http\Controllers;
 
 use Orchestra\Support\Str;
 use Orchestra\Contracts\Theme\Listener\Selector;
-use Orchestra\Foundation\Routing\AdminController;
 use Orchestra\Control\Processor\Theme as Processor;
+use Orchestra\Foundation\Http\Controllers\AdminController;
 
 class ThemesController extends AdminController implements Selector
 {

@@ -1,9 +1,8 @@
-<?php namespace Orchestra\Control\TestCase;
+<?php namespace Orchestra\Control\Http\Presenters\TestCase;
 
 use Mockery as m;
-use Orchestra\Control\Presenter\Role;
-use Orchestra\Support\Facades\Form;
 use Orchestra\Support\Facades\Table;
+use Orchestra\Control\Http\Presenters\Role;
 
 class RoleTest extends \PHPUnit_Framework_TestCase
 {
@@ -16,7 +15,7 @@ class RoleTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test constructing Orchestra\Control\Presenter\Role.
+     * Test constructing Orchestra\Control\Http\Presenters\Role.
      *
      * @test
      */
@@ -32,7 +31,7 @@ class RoleTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Control\Presenter\Role::table() method.
+     * Test Orchestra\Control\Http\Presenters\Role::table() method.
      *
      * @test
      */
@@ -55,7 +54,7 @@ class RoleTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Control\Presenter\Role::form() method.
+     * Test Orchestra\Control\Http\Presenters\Role::form() method.
      *
      * @test
      */

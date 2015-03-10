@@ -1,4 +1,4 @@
-<?php namespace Orchestra\Control\Presenter;
+<?php namespace Orchestra\Control\Http\Presenters;
 
 use Orchestra\Html\Form\Fieldset;
 use Orchestra\Model\Role as Eloquent;

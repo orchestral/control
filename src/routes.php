@@ -3,7 +3,7 @@
 use Illuminate\Routing\Router;
 use Orchestra\Support\Facades\Foundation;
 
-Foundation::namespaced('Orchestra\Control\Routing', function (Router $router) {
+Foundation::namespaced('Orchestra\Control\Http\Controllers', function (Router $router) {
     $router->group(['prefix' => 'control'], function (Router $router) {
         $router->get('/', 'HomeController@index');
 

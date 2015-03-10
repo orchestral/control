@@ -1,9 +1,9 @@
-<?php namespace Orchestra\Control\Routing;
+<?php namespace Orchestra\Control\Http\Controllers;
 
 use Orchestra\Model\Role;
 use Illuminate\Support\Facades\Input;
-use Orchestra\Foundation\Routing\AdminController;
 use Orchestra\Control\Processor\Role as RoleProcessor;
+use Orchestra\Foundation\Http\Controllers\AdminController;
 
 class RolesController extends AdminController
 {
