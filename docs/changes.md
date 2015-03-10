@@ -8,8 +8,9 @@ title: Control Change Log
 ### v3.0.1 {#v3-0-1}
 
 * Rename `Orchestra\Control\ControlMenuHandler` to `Orchestra\Control\Http\Handlers\ControlMenuHandler`.
-* Rename `Orchestra\Control\Routing` namespace to `Orchestra\Control\Http\Controllers` namespace.
-* Rename `Orchestra\Control\Http\Handlers\ControlMenuHandler::getPosition()` to `Orchestra\Control\Http\Handlers\ControlMenuHandler::getPositionAttribute()`.
+* Move `Orchestra\Control\Presenter` namespace to `Orchestra\Control\Http\Presenters`.
+* Move `Orchestra\Control\Routing` namespace to `Orchestra\Control\Http\Controllers`.
+* Rename `Orchestra\Control\Http\Handlers\ControlMenuHandler::getPosition()` method to `Orchestra\Control\Http\Handlers\ControlMenuHandler::getPositionAttribute()`.
 
 ### v3.0.0 {#v3-0-0}
 
