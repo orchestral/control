@@ -1,10 +1,10 @@
-<?php namespace Orchestra\Control\Routing;
+<?php namespace Orchestra\Control\Http\Controllers;
 
 use Illuminate\Support\Fluent;
 use Orchestra\Control\Authorize;
 use Illuminate\Support\Facades\Input;
 use Orchestra\Control\Processor\Authorization;
-use Orchestra\Foundation\Routing\AdminController;
+use Orchestra\Foundation\Http\Controllers\AdminController;
 
 class AuthorizationController extends AdminController
 {

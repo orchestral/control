@@ -1,5 +1,6 @@
-<?php namespace Orchestra\Control\Presenter;
+<?php namespace Orchestra\Control\Http\Presentersrs;
 
+use Orchestra\Control\Http\Presenters\Presenter;
 use Orchestra\Html\Form\Fieldset;
 use Orchestra\Model\Role as Eloquent;
 use Illuminate\Contracts\Config\Repository;
