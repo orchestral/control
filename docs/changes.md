@@ -5,9 +5,11 @@ title: Control Change Log
 
 ## Version 3.0 {#v3-0}
 
-### v3.0.1@dev {#v3-0-1}
+### v3.0.1 {#v3-0-1}
 
-* Rename `Orchestra\Control\ControlMenuHandler::getPosition()` to `Orchestra\Control\ControlMenuHandler::getPositionAttribute()`.
+* Rename `Orchestra\Control\ControlMenuHandler` to `Orchestra\Control\Http\Handlers\ControlMenuHandler`.
+* Rename `Orchestra\Control\Routing` namespace to `Orchestra\Control\Http\Controllers` namespace.
+* Rename `Orchestra\Control\Http\Handlers\ControlMenuHandler::getPosition()` to `Orchestra\Control\Http\Handlers\ControlMenuHandler::getPositionAttribute()`.
 
 ### v3.0.0 {#v3-0-0}
 
