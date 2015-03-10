@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Orchestra\Model\Role as Eloquent;
 use Orchestra\Contracts\Foundation\Foundation;
-use Orchestra\Control\Http\Presentersrs\Role as RolePresenter;
+use Orchestra\Control\Http\Presenters\Role as RolePresenter;
 use Orchestra\Control\Validation\Role as RoleValidator;
 
 class Role extends Processor
@@ -13,7 +13,7 @@ class Role extends Processor
     /**
      * Setup a new processor instance.
      *
-     * @param  \Orchestra\Control\Http\Presentersrs\Role  $presenter
+     * @param  \Orchestra\Control\Http\Presenters\Role  $presenter
      * @param  \Orchestra\Control\Validation\Role  $validator
      * @param  \Orchestra\Contracts\Foundation\Foundation  $foundation
      */

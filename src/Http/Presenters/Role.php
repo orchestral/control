@@ -1,4 +1,4 @@
-<?php namespace Orchestra\Control\Http\Presentersrs;
+<?php namespace Orchestra\Control\Http\Presenters;
 
 use Orchestra\Control\Http\Presenters\Presenter;
 use Orchestra\Html\Form\Fieldset;

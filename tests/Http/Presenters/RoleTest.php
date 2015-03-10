@@ -2,7 +2,7 @@
 
 use Mockery as m;
 use Orchestra\Support\Facades\Table;
-use Orchestra\Control\Http\Presentersrs\Role;
+use Orchestra\Control\Http\Presenters\Role;
 
 class RoleTest extends \PHPUnit_Framework_TestCase
 {
