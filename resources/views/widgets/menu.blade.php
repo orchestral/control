@@ -1,5 +1,3 @@
-<?php $acl = app('orchestra.platform.acl'); ?>
-
 <?php $navbar = new \Illuminate\Support\Fluent([
     'id'    => 'control',
     'title' => 'Control',

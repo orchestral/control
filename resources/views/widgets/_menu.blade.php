@@ -1,3 +1,5 @@
+<?php $acl = app('orchestra.platform.acl'); ?>
+
 <ul class="nav navbar-nav">
 	@if ($acl->can('manage-roles'))
 	<li class="{{ app('request')->is('*control/roles*') ? 'active' : '' }}">
