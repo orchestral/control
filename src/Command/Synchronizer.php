@@ -1,10 +1,10 @@
-<?php namespace Orchestra\Control;
+<?php namespace Orchestra\Control\Command;
 
 use Illuminate\Contracts\Foundation\Application;
 use Orchestra\Contracts\Authorization\Authorization;
-use Orchestra\Control\Contracts\Authorize as AuthorizeContract;
+use Orchestra\Control\Contracts\Command\Synchronizer as SynchronizerContract;
 
-class Authorize implements AuthorizeContract
+class Synchronizer implements SynchronizerContract
 {
     /**
      * The application implementation.
@@ -37,7 +37,7 @@ class Authorize implements AuthorizeContract
      *
      * @return void
      */
-    public function sync()
+    public function handle()
     {
         $admin = $this->app->make('orchestra.role')->admin();
 

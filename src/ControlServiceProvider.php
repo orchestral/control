@@ -11,7 +11,7 @@ class ControlServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('Orchestra\Control\Contracts\Authorize', 'Orchestra\Control\Authorize');
+        $this->app->bind('Orchestra\Control\Contracts\Command\Synchronizer', 'Orchestra\Control\Command\Synchronizer');
     }
 
     /**

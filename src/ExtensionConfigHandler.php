@@ -1,5 +1,6 @@
 <?php namespace Orchestra\Control;
 
+use Orchestra\Control\Command\Synchronizer;
 use Orchestra\Model\Role;
 use Illuminate\Support\Fluent;
 use Orchestra\Contracts\Memory\Provider;
@@ -89,7 +90,7 @@ class ExtensionConfigHandler
 
         Role::setDefaultRoles($this->config->get('orchestra/foundation::roles'));
 
-        Authorize::sync();
+        Synchronizer::sync();
 
         $this->memory->put("extension_orchestra/control.localtime", $localtime);
     }
