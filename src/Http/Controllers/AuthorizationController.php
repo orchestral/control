@@ -1,21 +1,30 @@
 <?php namespace Orchestra\Control\Http\Controllers;
 
 use Illuminate\Support\Fluent;
-use Orchestra\Control\Authorize;
 use Illuminate\Support\Facades\Input;
+use Orchestra\Control\Contracts\Authorize;
 use Orchestra\Control\Processor\Authorization;
 use Orchestra\Foundation\Http\Controllers\AdminController;
 
 class AuthorizationController extends AdminController
 {
     /**
+     * The authorize implementation.
+     *
+     * @var \Orchestra\Control\Contracts\Authorize
+     */
+    protected $authorize;
+
+    /**
      * Setup a new controller.
      *
      * @param  \Orchestra\Control\Processor\Authorization  $processor
+     * @param  \Orchestra\Control\Contracts\Authorize  $authorize
      */
-    public function __construct(Authorization $processor)
+    public function __construct(Authorization $processor, Authorize $authorize)
     {
         $this->processor = $processor;
+        $this->authorize = $authorize;
 
         parent::__construct();
     }
@@ -87,7 +96,7 @@ class AuthorizationController extends AdminController
      */
     public function updateSucceed($metric)
     {
-        Authorize::sync();
+        $this->authorize->sync();
 
         $message = trans('orchestra/control::response.acls.update');
 

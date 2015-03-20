@@ -1,11 +1,10 @@
 before_commands:
-    - 'composer install --prefer-source --no-interaction --dev'
+    - 'composer install --prefer-source --no-interaction'
 filter:
     paths:
         - 'src/*'
     excluded_paths:
         - 'build/*'
-        - 'src/migrations/*'
         - 'vendor/*'
         - 'tests/*'
 tools:
@@ -18,16 +17,13 @@ tools:
         config_path: phpunit.xml
     php_cpd:
         excluded_dirs:
-            - src/migrations
             - vendor
             - tests
     php_loc:
         excluded_dirs:
-            - src/migrations
             - vendor
             - tests
     php_pdepend:
         excluded_dirs:
-            - src/migrations
             - vendor
             - tests
