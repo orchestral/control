@@ -4,7 +4,7 @@
 
 @section('content')
 
-@include('orchestra/control::widgets.menu')
+@include('orchestra/control::widgets.header')
 
 <div class="row">
 	<div class="twelve columns white rounded box">

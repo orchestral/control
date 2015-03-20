@@ -5,6 +5,13 @@ title: Control Change Log
 
 ## Version 3.0 {#v3-0}
 
+### v3.0.2 {#v3-0-2}
+
+* Rename `Orchestra\Control\Authorize` to `Orchestra\Control\Command\Synchronizer`.
+* Convert `Orchestra\Control\Command\Synchronizer` to not use static method.
+* Add `Orchestra\Control\Contracts\Command\Synchronizer` contract.
+* Restructure menu views.
+
 ### v3.0.1 {#v3-0-1}
 
 * Rename `Orchestra\Control\ControlMenuHandler` to `Orchestra\Control\Http\Handlers\ControlMenuHandler`.

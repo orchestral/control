@@ -6,6 +6,7 @@ use Orchestra\Contracts\Memory\Provider;
 use Illuminate\Contracts\Config\Repository;
 use Orchestra\Contracts\Html\Form\Fieldset;
 use Orchestra\Contracts\Html\Form\Grid as FormGrid;
+use Orchestra\Control\Contracts\Command\Synchronizer;
 use Orchestra\Contracts\Html\Form\Builder as FormBuilder;
 
 class ExtensionConfigHandler
@@ -25,15 +26,24 @@ class ExtensionConfigHandler
     protected $memory;
 
     /**
+     * The synchronizer implementation.
+     *
+     * @var \Orchestra\Control\Contracts\Command\Synchronizer
+     */
+    protected $synchronizer;
+
+    /**
      * Construct a new config handler.
      *
      * @param  \Illuminate\Contracts\Config\Repository  $config
      * @param  \Orchestra\Contracts\Memory\Provider  $memory
+     * @param  \Orchestra\Control\Contracts\Command\Synchronizer  $synchronizer
      */
-    public function __construct(Repository $config, Provider $memory)
+    public function __construct(Repository $config, Provider $memory, Synchronizer $synchronizer)
     {
-        $this->config = $config;
-        $this->memory = $memory;
+        $this->config       = $config;
+        $this->memory       = $memory;
+        $this->synchronizer = $synchronizer;
     }
 
     /**
@@ -89,7 +99,7 @@ class ExtensionConfigHandler
 
         Role::setDefaultRoles($this->config->get('orchestra/foundation::roles'));
 
-        Authorize::sync();
+        $this->synchronizer->handle();
 
         $this->memory->put("extension_orchestra/control.localtime", $localtime);
     }
