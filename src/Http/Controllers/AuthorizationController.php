@@ -96,7 +96,7 @@ class AuthorizationController extends AdminController
      */
     public function updateSucceed($metric)
     {
-        $this->synchronizer->sync();
+        $this->synchronizer->handle();
 
         $message = trans('orchestra/control::response.acls.update');
 
