@@ -1,6 +1,6 @@
 @extends('orchestra/foundation::layouts.page')
 
-<?php set_meta('header::add-button', true); ?>
+@set_meta('header::add-button', true)
 
 @section('content')
 

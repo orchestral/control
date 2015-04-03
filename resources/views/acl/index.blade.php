@@ -3,10 +3,8 @@
 @section('content')
 @include('orchestra/control::widgets.header')
 
-<?php
-
-$actions = $eloquent->actions()->get();
-$roles = $eloquent->roles()->get(); ?>
+#{{ $actions = $eloquent->actions()->get() }}
+#{{ $roles = $eloquent->roles()->get() }}
 
 <div class="row">
 	<div class="navbar user-search hidden-phone">
