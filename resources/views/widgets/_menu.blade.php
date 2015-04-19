@@ -1,4 +1,4 @@
-<?php $acl = app('orchestra.platform.acl'); ?>
+#{{ $acl = app('orchestra.platform.acl') }}
 
 <ul class="nav navbar-nav">
 	@if ($acl->can('manage-roles'))

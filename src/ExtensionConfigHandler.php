@@ -101,6 +101,6 @@ class ExtensionConfigHandler
 
         $this->synchronizer->handle();
 
-        $this->memory->put("extension_orchestra/control.localtime", $localtime);
+        $this->memory->put('extension_orchestra/control.localtime', $localtime);
     }
 }
