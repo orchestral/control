@@ -26,8 +26,8 @@ class RolesController extends AdminController
      */
     protected function setupFilters()
     {
-        $this->beforeFilter('control.manage:roles');
-        $this->beforeFilter('control.csrf', ['only' => 'delete']);
+        $this->middleware('control.manage:roles');
+        $this->middleware('control.csrf', ['only' => 'delete']);
     }
 
     /**

@@ -36,8 +36,8 @@ class AuthorizationController extends AdminController
      */
     protected function setupFilters()
     {
-        $this->beforeFilter('control.manage:acl');
-        $this->beforeFilter('control.csrf', ['only' => 'sync']);
+        $this->middleware('control.manage:acl');
+        $this->middleware('control.csrf', ['only' => 'sync']);
     }
 
     /**
