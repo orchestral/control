@@ -26,8 +26,8 @@ class ThemesController extends AdminController implements Selector
      */
     protected function setupFilters()
     {
-        $this->beforeFilter('control.manage:acl');
-        $this->beforeFilter('control.csrf', ['only' => 'activate']);
+        $this->middleware('control.manage:acl');
+        $this->middleware('control.csrf', ['only' => 'activate']);
     }
 
     /**

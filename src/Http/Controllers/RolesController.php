@@ -26,8 +26,8 @@ class RolesController extends AdminController
      */
     protected function setupFilters()
     {
-        $this->beforeFilter('control.manage:roles');
-        $this->beforeFilter('control.csrf', ['only' => 'delete']);
+        $this->middleware('control.manage:roles');
+        $this->middleware('control.csrf', ['only' => 'delete']);
     }
 
     /**
@@ -43,13 +43,13 @@ class RolesController extends AdminController
     /**
      * Show a role.
      *
-     * @param  int  $id
+     * @param  int  $roles
      *
      * @return mixed
      */
-    public function show($id)
+    public function show($roles)
     {
-        return $this->edit($id);
+        return $this->edit($roles);
     }
 
     /**
@@ -65,13 +65,13 @@ class RolesController extends AdminController
     /**
      * Edit the role.
      *
-     * @param  int  $id
+     * @param  int  $roles
      *
      * @return mixed
      */
-    public function edit($id)
+    public function edit($roles)
     {
-        return $this->processor->edit($this, $id);
+        return $this->processor->edit($this, $roles);
     }
 
     /**
@@ -87,37 +87,37 @@ class RolesController extends AdminController
     /**
      * Update the role.
      *
-     * @param  int  $id
+     * @param  int  $roles
      *
      * @return mixed
      */
-    public function update($id)
+    public function update($roles)
     {
-        return $this->processor->update($this, Input::all(), $id);
+        return $this->processor->update($this, Input::all(), $roles);
     }
 
     /**
      * Request to delete a role.
      *
-     * @param  int  $id
+     * @param  int  $roles
      *
      * @return mixed
      */
-    public function delete($id)
+    public function delete($roles)
     {
-        return $this->destroy($id);
+        return $this->destroy($roles);
     }
 
     /**
      * Request to delete a role.
      *
-     * @param  int  $id
+     * @param  int  $roles
      *
      * @return mixed
      */
-    public function destroy($id)
+    public function destroy($roles)
     {
-        return $this->processor->destroy($this, $id);
+        return $this->processor->destroy($this, $roles);
     }
 
     /**
@@ -197,7 +197,9 @@ class RolesController extends AdminController
      */
     public function storeSucceed(Role $role)
     {
-        $message = trans('orchestra/control::response.roles.create', ['name' => $role->name]);
+        $message = trans('orchestra/control::response.roles.create', [
+            'name' => $role->getAttribute('name')
+        ]);
 
         return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
     }
@@ -218,13 +220,13 @@ class RolesController extends AdminController
     /**
      * Response when updating role failed.
      *
-     * @param  array  $error
+     * @param  array  $errors
      *
      * @return mixed
      */
-    public function updateFailed(array $error)
+    public function updateFailed(array $errors)
     {
-        $message = trans('orchestra/foundation::response.db-failed', $error);
+        $message = trans('orchestra/foundation::response.db-failed', $errors);
 
         return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
     }
@@ -238,7 +240,9 @@ class RolesController extends AdminController
      */
     public function updateSucceed(Role $role)
     {
-        $message = trans('orchestra/control::response.roles.update', ['name' => $role->name]);
+        $message = trans('orchestra/control::response.roles.update', [
+            'name' => $role->getAttribute('name')
+        ]);
 
         return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
     }
@@ -266,7 +270,9 @@ class RolesController extends AdminController
      */
     public function destroySucceed(Role $role)
     {
-        $message = trans('orchestra/control::response.roles.delete', ['name' => $role->getAttribute('name')]);
+        $message = trans('orchestra/control::response.roles.delete', [
+            'name' => $role->getAttribute('name')
+        ]);
 
         return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
     }
