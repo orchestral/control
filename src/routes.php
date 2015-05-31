@@ -13,6 +13,7 @@ Foundation::namespaced('Orchestra\Control\Http\Controllers', function (Router $r
         $router->get('acl/{vendor}/sync', 'AuthorizationController@sync');
 
         $router->resource('roles', 'RolesController');
+        $router->match(['GET', 'HEAD', 'DELETE'], 'roles/{roles}/delete', 'RolesController@delete');
 
         $router->get('themes', 'ThemesController@index');
         $router->get('themes/backend', 'ThemesController@backend');
