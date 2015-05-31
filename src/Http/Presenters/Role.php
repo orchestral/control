@@ -87,7 +87,7 @@ class Role extends Presenter
 
                     if (! in_array((int) $row->id, $roles)) {
                         $html[] = app('html')->link(
-                            handles("orchestra::control/roles/{$row->id}/delete"),
+                            handles("orchestra::control/roles/{$row->id}/delete", ['csrf' => true]),
                             trans('orchestra/foundation::label.delete'),
                             ['class' => 'btn btn-mini btn-danger']
                         );
