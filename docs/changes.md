@@ -5,6 +5,10 @@ title: Control Change Log
 
 ## Version 3.0 {#v3-0}
 
+### v3.0.3 {#v3-0-3}
+
+* Fixes missing delete roles route.
+
 ### v3.0.2 {#v3-0-2}
 
 * Rename `Orchestra\Control\Authorize` to `Orchestra\Control\Command\Synchronizer`.
