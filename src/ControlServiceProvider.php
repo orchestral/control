@@ -1,6 +1,10 @@
 <?php namespace Orchestra\Control;
 
+use Orchestra\Control\Command\Synchronizer;
+use Orchestra\Control\Timezone\UserHandler;
 use Orchestra\Support\Providers\ServiceProvider;
+use Orchestra\Control\Http\Handlers\ControlMenuHandler;
+use Orchestra\Control\Contracts\Command\Synchronizer as SynchronizerContract;
 
 class ControlServiceProvider extends ServiceProvider
 {
@@ -11,7 +15,7 @@ class ControlServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('Orchestra\Control\Contracts\Command\Synchronizer', 'Orchestra\Control\Command\Synchronizer');
+        $this->app->bind(SynchronizerContract::class, Synchronizer::class);
     }
 
     /**
@@ -23,9 +27,9 @@ class ControlServiceProvider extends ServiceProvider
     {
         $path = realpath(__DIR__.'/../');
 
-        $this->addConfigComponent('orchestra/control', 'orchestra/control', $path.'/resources/config');
-        $this->addLanguageComponent('orchestra/control', 'orchestra/control', $path.'/resources/lang');
-        $this->addViewComponent('orchestra/control', 'orchestra/control', $path.'/resources/views');
+        $this->addConfigComponent('orchestra/control', 'orchestra/control', "{$path}/resources/config");
+        $this->addLanguageComponent('orchestra/control', 'orchestra/control', "{$path}/resources/lang");
+        $this->addViewComponent('orchestra/control', 'orchestra/control', "{$path}/resources/views");
 
         $this->mapExtensionConfig();
         $this->bootExtensionEvents();
@@ -42,7 +46,7 @@ class ControlServiceProvider extends ServiceProvider
     protected function bootExtensionEvents()
     {
         $events  = $this->app['events'];
-        $handler = 'Orchestra\Control\ExtensionConfigHandler';
+        $handler = ExtensionConfigHandler::class;
 
         $events->listen('orchestra.form: extension.orchestra/control', "{$handler}@onViewForm");
         $events->listen('orchestra.saved: extension.orchestra/control', "{$handler}@onSaved");
@@ -55,7 +59,7 @@ class ControlServiceProvider extends ServiceProvider
      */
     protected function bootExtensionMenuEvents()
     {
-        $this->app['events']->listen('orchestra.ready: admin', 'Orchestra\Control\Http\Handlers\ControlMenuHandler');
+        $this->app['events']->listen('orchestra.ready: admin', ControlMenuHandler::class);
     }
 
     /**
@@ -67,9 +71,6 @@ class ControlServiceProvider extends ServiceProvider
      */
     protected function bootExtensionRouting($path)
     {
-        $this->app['router']->filter('control.manage', 'Orchestra\Foundation\Http\Filters\CanManage');
-        $this->app['router']->filter('control.csrf', 'Orchestra\Foundation\Http\Filters\VerifyCsrfToken');
-
         require_once "{$path}/src/routes.php";
     }
 
@@ -81,7 +82,7 @@ class ControlServiceProvider extends ServiceProvider
     protected function bootTimezoneEvents()
     {
         $events  = $this->app['events'];
-        $handler = 'Orchestra\Control\Timezone\UserHandler';
+        $handler = UserHandler::class;
 
         $events->listen('orchestra.form: user.account', "{$handler}@onViewForm");
         $events->listen('orchestra.saved: user.account', "{$handler}@onSaved");

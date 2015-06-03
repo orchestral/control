@@ -26,8 +26,8 @@ class RolesController extends AdminController
      */
     protected function setupFilters()
     {
-        $this->middleware('control.manage:roles');
-        $this->middleware('control.csrf', ['only' => 'delete']);
+        $this->middleware('orchestra.manage:roles');
+        $this->middleware('orchestra.csrf', ['only' => 'delete']);
     }
 
     /**
@@ -198,7 +198,7 @@ class RolesController extends AdminController
     public function storeSucceed(Role $role)
     {
         $message = trans('orchestra/control::response.roles.create', [
-            'name' => $role->getAttribute('name')
+            'name' => $role->getAttribute('name'),
         ]);
 
         return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
@@ -241,7 +241,7 @@ class RolesController extends AdminController
     public function updateSucceed(Role $role)
     {
         $message = trans('orchestra/control::response.roles.update', [
-            'name' => $role->getAttribute('name')
+            'name' => $role->getAttribute('name'),
         ]);
 
         return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
@@ -271,7 +271,7 @@ class RolesController extends AdminController
     public function destroySucceed(Role $role)
     {
         $message = trans('orchestra/control::response.roles.delete', [
-            'name' => $role->getAttribute('name')
+            'name' => $role->getAttribute('name'),
         ]);
 
         return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
