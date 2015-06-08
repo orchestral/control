@@ -19,12 +19,12 @@ class RolesController extends AdminController
         parent::__construct();
     }
 
-    /**
-     * Define the filters.
+     /**
+     * Define the middleware.
      *
      * @return void
      */
-    protected function setupFilters()
+    protected function setupMiddleware()
     {
         $this->middleware('orchestra.manage:roles');
         $this->middleware('orchestra.csrf', ['only' => 'delete']);
