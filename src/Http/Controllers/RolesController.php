@@ -19,7 +19,7 @@ class RolesController extends AdminController
         parent::__construct();
     }
 
-     /**
+    /**
      * Define the middleware.
      *
      * @return void

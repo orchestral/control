@@ -19,7 +19,7 @@ class ThemesController extends AdminController implements Selector
         parent::__construct();
     }
 
-     /**
+    /**
      * Define the middleware.
      *
      * @return void
