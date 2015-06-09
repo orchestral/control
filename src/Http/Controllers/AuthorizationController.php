@@ -30,11 +30,11 @@ class AuthorizationController extends AdminController
     }
 
     /**
-     * Define the filters.
+     * Define the middleware.
      *
      * @return void
      */
-    protected function setupFilters()
+    protected function setupMiddleware()
     {
         $this->middleware('orchestra.manage:acl');
         $this->middleware('orchestra.csrf', ['only' => 'sync']);
