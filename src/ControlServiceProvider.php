@@ -45,7 +45,7 @@ class ControlServiceProvider extends ServiceProvider
      */
     protected function bootExtensionEvents()
     {
-        $events  = $this->app['events'];
+        $events  = $this->app->make('events');
         $handler = ExtensionConfigHandler::class;
 
         $events->listen('orchestra.form: extension.orchestra/control', "{$handler}@onViewForm");
@@ -59,7 +59,7 @@ class ControlServiceProvider extends ServiceProvider
      */
     protected function bootExtensionMenuEvents()
     {
-        $this->app['events']->listen('orchestra.ready: admin', ControlMenuHandler::class);
+        $this->app->make('events')->listen('orchestra.ready: admin', ControlMenuHandler::class);
     }
 
     /**
@@ -81,7 +81,7 @@ class ControlServiceProvider extends ServiceProvider
      */
     protected function bootTimezoneEvents()
     {
-        $events  = $this->app['events'];
+        $events  = $this->app->make('events');
         $handler = UserHandler::class;
 
         $events->listen('orchestra.form: user.account', "{$handler}@onViewForm");
@@ -95,7 +95,7 @@ class ControlServiceProvider extends ServiceProvider
      */
     protected function mapExtensionConfig()
     {
-        $this->app['orchestra.extension.config']->map('orchestra/control', [
+        $this->app->make('orchestra.extension.config')->map('orchestra/control', [
             'localtime'   => 'orchestra/control::localtime.enable',
             'admin_role'  => 'orchestra/foundation::roles.admin',
             'member_role' => 'orchestra/foundation::roles.member',
