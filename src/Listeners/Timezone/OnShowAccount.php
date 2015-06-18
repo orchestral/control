@@ -16,7 +16,7 @@ class OnShowAccount extends Timezone
      *
      * @return void
      */
-    public function onViewForm($user, FormBuilder $form)
+    public function handle($user, FormBuilder $form)
     {
         if (! $this->isLocaltimeEnabled()) {
             return ;

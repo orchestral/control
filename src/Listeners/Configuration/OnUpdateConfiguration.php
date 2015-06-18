@@ -13,7 +13,7 @@ class OnUpdateConfiguration extends Configuration
      *
      * @return void
      */
-    public function onSaved(Fluent $input)
+    public function handle(Fluent $input)
     {
         $localtime = ($input['localtime'] === 'yes');
 
