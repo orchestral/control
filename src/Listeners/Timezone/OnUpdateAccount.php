@@ -1,5 +1,6 @@
 <?php namespace Orchestra\Control\Listeners\Timezone;
 
+use Illuminate\Support\Facades\Input;
 use Orchestra\Control\Listeners\Timezone;
 
 class OnUpdateAccount extends Timezone
