@@ -72,7 +72,7 @@ class ControlServiceProvider extends ServiceProvider
      */
     protected function bootExtensionRouting($path)
     {
-        require_once "{$path}/src/routes.php";
+        require "{$path}/src/routes.php";
     }
 
     /**
