@@ -20,11 +20,11 @@ class ControlServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'orchestra.ready: admin'                       => ControlMenuHandler::class,
-        'orchestra.form: extension.orchestra/control'  => OnShowConfiguration::class,
-        'orchestra.saved: extension.orchestra/control' => OnUpdateConfiguration::class,
-        'orchestra.form: user.account'                 => OnShowAccount::class,
-        'orchestra.saved: user.account'                => OnUpdateAccount::class,
+        'orchestra.ready: admin'                       => [ControlMenuHandler::class],
+        'orchestra.form: extension.orchestra/control'  => [OnShowConfiguration::class],
+        'orchestra.saved: extension.orchestra/control' => [OnUpdateConfiguration::class],
+        'orchestra.form: user.account'                 => [OnShowAccount::class],
+        'orchestra.saved: user.account'                => [OnUpdateAccount::class],
     ];
 
     /**
