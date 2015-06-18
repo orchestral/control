@@ -1,4 +1,4 @@
-<?php namespace Orchestra\Control\Listeners\Timezone; 
+<?php namespace Orchestra\Control\Listeners\Timezone;
 
 use Orchestra\Control\Listeners\Timezone;
 

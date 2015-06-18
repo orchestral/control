@@ -1,8 +1,6 @@
 <?php namespace Orchestra\Control\Listeners;
 
 use Orchestra\Memory\MemoryManager;
-use Illuminate\Support\Facades\Input;
-use Orchestra\Control\Timezone as Model;
 use Illuminate\Contracts\Config\Repository;
 
 class Timezone

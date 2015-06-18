@@ -1,6 +1,5 @@
 <?php namespace Orchestra\Control;
 
-use Orchestra\Control\Listeners\Timezone;
 use Orchestra\Control\Command\Synchronizer;
 use Orchestra\Support\Providers\ServiceProvider;
 use Orchestra\Control\Http\Handlers\ControlMenuHandler;
@@ -21,11 +20,11 @@ class ControlServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'orchestra.ready: admin' => ControlMenuHandler::class,
-        'orchestra.form: extension.orchestra/control' => OnShowConfiguration::class,
+        'orchestra.ready: admin'                       => ControlMenuHandler::class,
+        'orchestra.form: extension.orchestra/control'  => OnShowConfiguration::class,
         'orchestra.saved: extension.orchestra/control' => OnUpdateConfiguration::class,
-        'orchestra.form: user.account' => OnShowAccount::class,
-        'orchestra.saved: user.account' => OnUpdateAccount::class,
+        'orchestra.form: user.account'                 => OnShowAccount::class,
+        'orchestra.saved: user.account'                => OnUpdateAccount::class,
     ];
 
     /**
