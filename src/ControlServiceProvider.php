@@ -29,6 +29,13 @@ class ControlServiceProvider extends ServiceProvider
     ];
 
     /**
+     * The subscriber classes to register.
+     *
+     * @var array
+     */
+    protected $subscribe = [];
+
+    /**
      * Register service provider.
      *
      * @return void
