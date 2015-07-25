@@ -53,14 +53,36 @@ class ControlServiceProvider extends ServiceProvider
     {
         $path = realpath(__DIR__.'/../');
 
+        $this->bootExtensionComponents($path);
+        $this->mapExtensionConfig();
+        $this->bootExtensionRouting($path);
+    }
+
+    /**
+     * Boot extension components.
+     *
+     * @param  string  $path
+     *
+     * @return void
+     */
+    protected function bootExtensionComponents($path)
+    {
+        $this->registerEventListeners($this->app->make('events'));
+
         $this->addConfigComponent('orchestra/control', 'orchestra/control', "{$path}/resources/config");
         $this->addLanguageComponent('orchestra/control', 'orchestra/control', "{$path}/resources/lang");
         $this->addViewComponent('orchestra/control', 'orchestra/control', "{$path}/resources/views");
+    }
 
-        $this->registerEventListeners($this->app->make('events'));
-
-        $this->mapExtensionConfig();
-
+    /**
+     * Boot extension routing.
+     *
+     * @param  string  $path
+     *
+     * @return void
+     */
+    protected function bootExtensionRouting($path)
+    {
         if (! $this->app->routesAreCached()) {
             require "{$path}/src/routes.php";
         }
