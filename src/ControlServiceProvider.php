@@ -60,19 +60,10 @@ class ControlServiceProvider extends ServiceProvider
         $this->registerEventListeners($this->app->make('events'));
 
         $this->mapExtensionConfig();
-        $this->bootExtensionRouting($path);
-    }
 
-    /**
-     * Boot extension routing.
-     *
-     * @param  string  $path
-     *
-     * @return void
-     */
-    protected function bootExtensionRouting($path)
-    {
-        require "{$path}/src/routes.php";
+        if (! $this->app->routesAreCached()) {
+            require "{$path}/src/routes.php";
+        }
     }
 
     /**
