@@ -5,6 +5,11 @@ title: Control Change Log
 
 ## Version 3.1 {#v3-1}
 
+### v3.1.1 {#v3-1-1}
+
+* Improved performances by reducing call within `Illuminate\Container\Container`.
+* Utilize `Orchestra\Support\Providers\EventProviderTrait` and separate events on to separate class.
+
 ### v3.1.0 {#v3-1-0}
 
 * Update support for Orchestra Platform v3.1.
