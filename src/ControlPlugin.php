@@ -15,7 +15,7 @@ class ControlPlugin extends Plugin
      *
      * @var string
      */
-    protected $extension = 'orchestra/extension';
+    protected $extension = 'orchestra/control';
 
     /**
      * Configuration.
