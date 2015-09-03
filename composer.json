@@ -20,6 +20,7 @@
 	},
 	"require": {
 		"php": ">=5.5.0",
+		"orchestra/extension": "~3.1.8",
 		"orchestra/support": "~3.1.1"
 	},
 	"require-dev": {
