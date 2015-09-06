@@ -2,11 +2,9 @@
 
 use Orchestra\Control\Command\Synchronizer;
 use Orchestra\Support\Providers\ServiceProvider;
-use Orchestra\Control\Http\Handlers\ControlMenuHandler;
 use Orchestra\Control\Listeners\Timezone\OnShowAccount;
 use Orchestra\Control\Listeners\Timezone\OnUpdateAccount;
 use Orchestra\Support\Providers\Traits\EventProviderTrait;
-use Orchestra\Control\Listeners\Configuration\OnShowConfiguration;
 use Orchestra\Control\Listeners\Configuration\OnUpdateConfiguration;
 use Orchestra\Control\Contracts\Command\Synchronizer as SynchronizerContract;
 
