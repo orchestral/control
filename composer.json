@@ -1,36 +1,36 @@
 {
-	"name": "orchestra/control",
-	"description": "Control Extension for Orchestra Platform",
-	"keywords": ["orchestra-platform", "orchestral", "extension", "laravel", "rbac", "timezone", "theme"],
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Mior Muhammad Zaki",
-			"email": "crynobone@gmail.com",
-			"homepage": "https://github.com/crynobone"
-		}
-	],
-	"autoload": {
-		"classmap": [
-			"resources/database/migrations"
-		],
-		"psr-4": {
-			"Orchestra\\Control\\" : "src/"
-		}
-	},
-	"require": {
-		"php": ">=5.5.0",
-		"orchestra/extension": "~3.1.8",
-		"orchestra/support": "~3.1.1"
-	},
-	"require-dev": {
-		"phpspec/phpspec": "~2.1",
-		"orchestra/foundation": "~3.1.0"
-	},
-	"extra": {
-		"branch-alias": {
-			"dev-master": "3.2-dev"
-		}
-	},
-	"minimum-stability": "dev"
+    "name": "orchestra/control",
+    "description": "Control Extension for Orchestra Platform",
+    "keywords": ["orchestra-platform", "orchestral", "extension", "laravel", "rbac", "timezone", "theme"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mior Muhammad Zaki",
+            "email": "crynobone@gmail.com",
+            "homepage": "https://github.com/crynobone"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "resources/database/migrations"
+        ],
+        "psr-4": {
+            "Orchestra\\Control\\" : "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.5.0",
+        "orchestra/extension": "~3.1.8",
+        "orchestra/support": "~3.1.1"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "~2.1",
+        "orchestra/foundation": "~3.1.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.2-dev"
+        }
+    },
+    "minimum-stability": "dev"
 }
