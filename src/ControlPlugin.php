@@ -1,22 +1,56 @@
-<?php namespace Orchestra\Control\Listeners\Configuration;
+<?php namespace Orchestra\Control;
 
 use Orchestra\Model\Role;
+use Illuminate\Support\Fluent;
+use Orchestra\Extension\Plugin;
 use Orchestra\Contracts\Html\Form\Fieldset;
-use Orchestra\Control\Listeners\Configuration;
 use Orchestra\Contracts\Html\Form\Grid as FormGrid;
+use Orchestra\Control\Http\Handlers\ControlMenuHandler;
 use Orchestra\Contracts\Html\Form\Builder as FormBuilder;
 
-class OnShowConfiguration extends Configuration
+class ControlPlugin extends Plugin
 {
     /**
-     * Handle `orchestra.form: extension.orchestra/control` event.
+     * Extension name.
+     *
+     * @var string
+     */
+    protected $extension = 'orchestra/control';
+
+    /**
+     * Configuration.
+     *
+     * @var array
+     */
+    protected $config = [
+        'localtime'   => 'orchestra/control::localtime.enable',
+        'admin_role'  => 'orchestra/foundation::roles.admin',
+        'member_role' => 'orchestra/foundation::roles.member',
+    ];
+
+    /**
+     * Menu handler.
+     *
+     * @var object|null
+     */
+    protected $menu = ControlMenuHandler::class;
+
+    /**
+     * Validation rules.
+     *
+     * @var array
+     */
+    protected $rules = [];
+
+    /**
+     * Setup the form.
      *
      * @param  \Orchestra\Model\User  $model
      * @param  \Orchestra\Contracts\Html\Form\Builder  $form
      *
      * @return void
      */
-    public function handle($model, FormBuilder $form)
+    protected function form(Fluent $model, FormBuilder $form)
     {
         $form->extend(function (FormGrid $form) {
             $form->fieldset('Role Configuration', function (Fieldset $fieldset) {

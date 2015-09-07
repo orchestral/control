@@ -1,10 +1,11 @@
 {
-	"name": "Control",
-	"description": "Orchestra Platform Control Extension",
-	"author": "Mior Muhammad Zaki",
-	"url": "https://github.com/orchestral/control",
-	"version": "3.2.0@dev",
-	"provides": [
-		"Orchestra\\Control\\ControlServiceProvider"
-	]
+    "name": "Control",
+    "description": "Orchestra Platform Control Extension",
+    "author": "Mior Muhammad Zaki",
+    "url": "https://github.com/orchestral/control",
+    "version": "3.2.0@dev",
+    "provides": [
+        "Orchestra\\Control\\ControlServiceProvider"
+    ],
+    "plugin": "Orchestra\\Control\\ControlPlugin"
 }
