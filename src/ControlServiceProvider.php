@@ -1,16 +1,20 @@
 <?php namespace Orchestra\Control;
 
 use Orchestra\Control\Command\Synchronizer;
-use Orchestra\Support\Providers\ServiceProvider;
 use Orchestra\Control\Listeners\Timezone\OnShowAccount;
 use Orchestra\Control\Listeners\Timezone\OnUpdateAccount;
-use Orchestra\Support\Providers\Traits\EventProviderTrait;
 use Orchestra\Control\Listeners\Configuration\OnUpdateConfiguration;
 use Orchestra\Control\Contracts\Command\Synchronizer as SynchronizerContract;
+use Orchestra\Foundation\Support\Providers\ExtensionRouteServiceProvider as ServiceProvider;
 
 class ControlServiceProvider extends ServiceProvider
 {
-    use EventProviderTrait;
+    /**
+     * The application or extension namespace.
+     *
+     * @var string|null
+     */
+    protected $namespace = 'Orchestra\Control\Http\Controllers';
 
     /**
      * The event handler mappings for the application.
@@ -25,13 +29,6 @@ class ControlServiceProvider extends ServiceProvider
     ];
 
     /**
-     * The subscriber classes to register.
-     *
-     * @var array
-     */
-    protected $subscribe = [];
-
-    /**
      * Register service provider.
      *
      * @return void
@@ -42,32 +39,28 @@ class ControlServiceProvider extends ServiceProvider
     }
 
     /**
-     * Boot the service provider.
+     * Boot extension components.
      *
      * @return void
      */
-    public function boot()
+    protected function bootExtensionComponents()
     {
-        $path = realpath(__DIR__.'/../');
+        $path = realpath(__DIR__.'/../resources');
 
-        $this->addConfigComponent('orchestra/control', 'orchestra/control', "{$path}/resources/config");
-        $this->addLanguageComponent('orchestra/control', 'orchestra/control', "{$path}/resources/lang");
-        $this->addViewComponent('orchestra/control', 'orchestra/control', "{$path}/resources/views");
-
-        $this->registerEventListeners($this->app->make('events'));
-
-        $this->bootExtensionRouting($path);
+        $this->addConfigComponent('orchestra/control', 'orchestra/control', "{$path}/config");
+        $this->addLanguageComponent('orchestra/control', 'orchestra/control', "{$path}/lang");
+        $this->addViewComponent('orchestra/control', 'orchestra/control', "{$path}/views");
     }
 
     /**
      * Boot extension routing.
      *
-     * @param  string  $path
-     *
      * @return void
      */
-    protected function bootExtensionRouting($path)
+    protected function loadRoutes()
     {
-        require "{$path}/src/routes.php";
+        $path = realpath(__DIR__);
+
+        $this->loadBackendRoutesFrom("{$path}/Http/backend.php");
     }
 }
