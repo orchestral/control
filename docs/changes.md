@@ -5,6 +5,14 @@ title: Control Change Log
 
 ## Version 3.1 {#v3-1}
 
+### v3.1.3 {#v3-1-3}
+
+* `Orchestra\Control\ControlServiceProvider` should utilize the new `Orchestra\Foundation\Support\Providers\ModuleServiceProvider`.
+
+### v3.1.2 {#v3-1-2}
+
+* Add `Orchestra\Control\ControlPlugin`.
+
 ### v3.1.1 {#v3-1-1}
 
 * Improved performances by reducing call within `Illuminate\Container\Container`.
