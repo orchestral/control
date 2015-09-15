@@ -3,11 +3,11 @@
 use Orchestra\Control\Command\Synchronizer;
 use Orchestra\Control\Listeners\Timezone\OnShowAccount;
 use Orchestra\Control\Listeners\Timezone\OnUpdateAccount;
+use Orchestra\Foundation\Support\Providers\ModuleServiceProvider;
 use Orchestra\Control\Listeners\Configuration\OnUpdateConfiguration;
 use Orchestra\Control\Contracts\Command\Synchronizer as SynchronizerContract;
-use Orchestra\Foundation\Support\Providers\ExtensionRouteServiceProvider as ServiceProvider;
 
-class ControlServiceProvider extends ServiceProvider
+class ControlServiceProvider extends ModuleServiceProvider
 {
     /**
      * The application or extension namespace.
