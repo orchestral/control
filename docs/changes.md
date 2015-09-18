@@ -5,6 +5,10 @@ title: Control Change Log
 
 ## Version 3.1 {#v3-1}
 
+### v3.1.4 {#v3-1-4}
+
+* Remove debugging code.
+
 ### v3.1.3 {#v3-1-3}
 
 * `Orchestra\Control\ControlServiceProvider` should utilize the new `Orchestra\Foundation\Support\Providers\ModuleServiceProvider`.
