@@ -7,7 +7,7 @@ title: Control Change Log
 
 ### v3.0.5 {#v3-0-5}
 
-* Removing debugging code.
+* Remove debugging code.
 
 ### v3.0.4 {#v3-0-4}
 
