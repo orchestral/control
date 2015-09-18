@@ -25,6 +25,10 @@ title: Control Change Log
 
 ## Version 3.0 {#v3-0}
 
+### v3.0.5 {#v3-0-5}
+
+* Removing debugging code.
+
 ### v3.0.4 {#v3-0-4}
 
 * Include csrf token for deleting role route.

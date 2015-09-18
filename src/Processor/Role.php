@@ -103,7 +103,6 @@ class Role extends Processor
         try {
             $this->saving($role, $input, 'create');
         } catch (Exception $e) {
-            dd($e->getMessage());
             return $listener->storeFailed(['error' => $e->getMessage()]);
         }
 
