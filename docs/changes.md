@@ -5,6 +5,10 @@ title: Control Change Log
 
 ## Version 3.1 {#v3-1}
 
+### v3.1.4 {#v3-1-4}
+
+* Remove debugging code.
+
 ### v3.1.3 {#v3-1-3}
 
 * `Orchestra\Control\ControlServiceProvider` should utilize the new `Orchestra\Foundation\Support\Providers\ModuleServiceProvider`.
@@ -24,6 +28,10 @@ title: Control Change Log
 * Convert filter to middleware.
 
 ## Version 3.0 {#v3-0}
+
+### v3.0.5 {#v3-0-5}
+
+* Remove debugging code.
 
 ### v3.0.4 {#v3-0-4}
 
