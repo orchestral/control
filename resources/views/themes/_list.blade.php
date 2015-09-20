@@ -1,4 +1,4 @@
-@foreach ($themes as $id => $theme)
+@foreach($themes as $id => $theme)
 <div class="four columns themes box">
 	<img src="{!! asset("themes/{$id}/screenshot.png") !!}" class="img-thumbnail">
 	<h3>{{ $theme->name }}</h3>
