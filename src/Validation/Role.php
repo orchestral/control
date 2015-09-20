@@ -54,7 +54,13 @@ class Role extends Validator
      */
     protected function extendCreate(ValidatorResolver $validator)
     {
-        $this->disallowReservedRoleName($validator);
+        $name = Keyword::make($validator->getData()['name']);
+
+        $validator->after(function (ValidatorResolver $v) use ($name) {
+            if ($this->isRoleNameAlreadyUsed($name)) {
+                $v->errors()->add('name', trans('orchestra/control::response.roles.reserved-word'));
+            }
+        });
     }
 
     /**
@@ -66,20 +72,10 @@ class Role extends Validator
      */
     protected function extendUpdate(ValidatorResolver $validator)
     {
-        $this->disallowReservedRoleName($validator);
-    }
+        $name = Keyword::make($validator->getData()['name']);
 
-    /**
-     * Disallow reseerved role name.
-     *
-     * @param  \Illuminate\Contracts\Validation\Validator  $validator
-     *
-     * @return void
-     */
-    protected function disallowReservedRoleName(ValidatorResolver $validator)
-    {
-        $validator->after(function (ValidatorResolver $v) {
-            if ($this->roleNameIsAlreadyUsed($v->getData()['name'])) {
+        $validator->after(function (ValidatorResolver $v) use ($name) {
+            if ($this->isRoleNameGuest($name)) {
                 $v->errors()->add('name', trans('orchestra/control::response.roles.reserved-word'));
             }
         });
@@ -88,15 +84,26 @@ class Role extends Validator
     /**
      * Check if role name is already used.
      *
-     * @param  string  $name
+     * @param  \Orchestra\Support\Keyword  $name
      *
      * @return bool
      */
-    protected function roleNameIsAlreadyUsed($name)
+    protected function isRoleNameAlreadyUsed(Keyword $name)
     {
-        $keyword = Keyword::make($name);
-        $roles   = Foundation::acl()->roles()->get();
+        $roles = Foundation::acl()->roles()->get();
 
-        return $keyword->searchIn($roles) >= 0;
+        return $name->searchIn($roles) !== false;
+    }
+
+    /**
+     * Check if role name is "guest".
+     *
+     * @param  \Orchestra\Support\Keyword  $name
+     *
+     * @return bool
+     */
+    protected function isRoleNameGuest(Keyword $name)
+    {
+        return $name->searchIn(['guest']) !== false;
     }
 }
