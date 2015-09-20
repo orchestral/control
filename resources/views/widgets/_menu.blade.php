@@ -1,20 +1,20 @@
-#{{ $acl = app('orchestra.platform.acl') }}
+@inject('acl', 'orchestra.platform.acl')
 
 <ul class="nav navbar-nav">
-	@if ($acl->can('manage-roles'))
-	<li class="{{ app('request')->is('*control/roles*') ? 'active' : '' }}">
+	@if($acl->can('manage-roles'))
+	<li class="{{ Foundation::is('orchestra::control/roles*') ? 'active' : '' }}">
 		<a href="{{ handles('orchestra::control/roles') }}">Roles</a>
 	</li>
 	@endif
 
-	@if ($acl->can('manage-acl'))
-	<li class="{{ app('request')->is('*control/acl*') ? 'active' : '' }}">
+	@if($acl->can('manage-acl'))
+	<li class="{{ Foundation::is('orchestra::control/acl*') ? 'active' : '' }}">
 		 <a href="{{ handles('orchestra::control/acl') }}">ACL</a>
 	</li>
 	@endif
 
-	@if ($acl->can('manage-orchestra'))
-	<li class="dropdown{{ app('request')->is('*control/themes*') ? ' active' : '' }}">
+	@if($acl->can('manage-orchestra'))
+	<li class="dropdown{{ Foundation::is('orchestra::control/themes*') ? ' active' : '' }}">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes</a>
 		<ul class="dropdown-menu">
 			<li>
