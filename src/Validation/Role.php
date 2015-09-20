@@ -10,7 +10,7 @@ class Role extends Validator
      * @var array
      */
     protected $rules = [
-        'name' => ['required'],
+        'name' => ['required', 'not_in:guest'],
     ];
 
     /**
