@@ -4,7 +4,7 @@
 @include('orchestra/control::widgets.header')
 
 <div class="row white">
-	@if (empty($themes))
+	@if(empty($themes))
 	<div class="jumbotron">
 		<div class="page-header">
 			<h2>We can't find any theme yet!</h2>

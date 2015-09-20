@@ -4,7 +4,7 @@
 	<h3>{{ $theme->name }}</h3>
 	<p>{{ $theme->description }}</p>
 	<div>
-	@if ($id === $current)
+	@if($id === $current)
 		<button class="btn btn-block btn-warning disabled">
 			{{ trans('orchestra/control::label.themes.current') }}
 		</button>

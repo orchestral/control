@@ -16,7 +16,7 @@
 	{!! Form::open(['url' => app('url')->current(), 'method' => 'POST']) !!}
 	{!! Form::hidden('metric', $metric) !!}
 
-	@foreach ($roles as $roleKey => $roleName)
+	@foreach($roles as $roleKey => $roleName)
 	<div class="twelve columns panel panel-default">
 		<div class="panel-heading">
 			{{ Str::humanize($roleName) }}
