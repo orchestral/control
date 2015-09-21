@@ -1,33 +1,34 @@
 @extends('orchestra/foundation::layouts.page')
 
+#{{ use Orchestra\Support\Str }}
+
 @section('content')
 @include('orchestra/control::widgets.header')
 
-#{{ $actions = $eloquent->actions()->get() }}
-#{{ $roles = $eloquent->roles()->get() }}
-
 <div class="row">
 	<div class="navbar user-search hidden-phone">
-		{!! app('form')->open(['url' => app('url')->current(), 'method' => 'GET', 'class' => 'navbar-form']) !!}
-			{!! app('form')->select('name', $collection, $metric, ['class' => '']) !!}&nbsp;
+		{!! Form::open(['url' => app('url')->current(), 'method' => 'GET', 'class' => 'navbar-form']) !!}
+			{!! Form::select('name', $collection, $metric, ['class' => '']) !!}&nbsp;
 			<button type="submit" class="btn btn-primary">{{ trans('orchestra/foundation::label.submit') }}</button>
-		{!! app('form')->close() !!}
+		{!! Form::close() !!}
 	</div>
 
-	{!! app('form')->open(['url' => app('url')->current(), 'method' => 'POST']) !!}
-	{!! app('form')->hidden('metric', $metric) !!}
+	{!! Form::open(['url' => app('url')->current(), 'method' => 'POST']) !!}
+	{!! Form::hidden('metric', $metric) !!}
 
-	@foreach ($roles as $roleKey => $roleName)
+	@foreach($roles as $roleKey => $roleName)
 	<div class="twelve columns panel panel-default">
 		<div class="panel-heading">
-			{{ Orchestra\Support\Str::humanize($roleName) }}
+			{{ Str::humanize($roleName) }}
 		</div>
 		<div class="white rounded-bottom box small-padding">
 			<div class="row">
 			@foreach($actions as $actionKey => $actionName)
 				<label for="acl-{!! $roleKey !!}-{!! $actionKey !!}" class="three columns checkboxes">
-					{!! app('form')->checkbox("acl-{$roleKey}-{$actionKey}", 'yes', $eloquent->check($roleName, $actionName), ['id' => "acl-{$roleKey}-{$actionKey}"]) !!}
-					{{ Orchestra\Support\Str::humanize($actionName) }}
+					{!! Form::checkbox("acl-{$roleKey}-{$actionKey}", 'yes', $eloquent->check($roleName, $actionName), [
+						'id' => "acl-{$roleKey}-{$actionKey}",
+					]) !!}
+					{{ Str::humanize($actionName) }}
 					&nbsp;&nbsp;&nbsp;
 				</label>
 			@endforeach
@@ -44,6 +45,6 @@
 			</a>
 		</div>
 	</div>
-	{!! app('form')->close() !!}
+	{!! Form::close() !!}
 </div>
 @stop

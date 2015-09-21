@@ -185,7 +185,7 @@ class RolesController extends AdminController
     {
         $message = trans('orchestra/foundation::response.db-failed', $error);
 
-        return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
+        return $this->redirectWithMessage(handles('orchestra::control/roles'), $message, 'error');
     }
 
     /**

@@ -3,6 +3,7 @@
 use Orchestra\Support\Str;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
+use Illuminate\Support\Collection;
 use Orchestra\Contracts\Authorization\Factory;
 use Orchestra\Contracts\Foundation\Foundation;
 
@@ -53,7 +54,13 @@ class Authorization extends Processor
             return $listener->aclVerificationFailed();
         }
 
-        return $listener->indexSucceed(compact('eloquent', 'collection', 'metric'));
+        $actions = new Collection($eloquent->actions()->get());
+        $roles   = (new Collection($eloquent->roles()->get()))
+                        ->reject(function ($role) {
+                            return in_array($role, ['guest']);
+                        });
+
+        return $listener->indexSucceed(compact('actions', 'roles', 'eloquent', 'collection', 'metric'));
     }
 
     /**
