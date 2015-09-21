@@ -5,6 +5,12 @@ title: Control Change Log
 
 ## Version 3.1 {#v3-1}
 
+### v3.1.5 {#v3-1-5}
+
+* Remove configurating authorization for the default `"Guest"` role.
+* Disable ability to add default `"Guest"` or duplicated roles.
+* Refactor views.
+
 ### v3.1.4 {#v3-1-4}
 
 * Remove debugging code.
