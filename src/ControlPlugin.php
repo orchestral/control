@@ -45,7 +45,7 @@ class ControlPlugin extends Plugin
     /**
      * Setup the form.
      *
-     * @param  \Orchestra\Model\User  $model
+     * @param  \Illuminate\Support\Fluent $model
      * @param  \Orchestra\Contracts\Html\Form\Builder  $form
      *
      * @return void
