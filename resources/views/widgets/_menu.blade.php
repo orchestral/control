@@ -15,7 +15,7 @@
 
 	@if($acl->can('manage-orchestra'))
 	<li class="dropdown{{ Foundation::is('orchestra::control/themes*') ? ' active' : '' }}">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes</a>
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes <span class="caret"></span></a>
 		<ul class="dropdown-menu">
 			<li>
 				<a href="{{ handles('orchestra::control/themes/frontend') }}">Frontend</a>
