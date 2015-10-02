@@ -5,6 +5,11 @@ title: Control Change Log
 
 ## Version 3.1 {#v3-1}
 
+### v3.1.6 {#v3-1-6}
+
+* Use `Orchestra\Authorization\Authorization::canIf()` instead of `Orchestra\Authorization\Authorization::can()`.
+* Tweak views to add caret for dropdown menu.
+
 ### v3.1.5 {#v3-1-5}
 
 * Remove configurating authorization for the default `"Guest"` role.
