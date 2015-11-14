@@ -54,7 +54,7 @@ class ControlPlugin extends Plugin
     {
         $form->extend(function (FormGrid $form) {
             $form->fieldset('Role Configuration', function (Fieldset $fieldset) {
-                $roles = Role::lists('name', 'id');
+                $roles = Role::pluck('name', 'id');
 
                 $fieldset->control('select', 'admin_role')
                     ->label(trans('orchestra/control::label.roles.admin'))

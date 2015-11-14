@@ -26,7 +26,7 @@ class OnShowAccount extends Timezone
             $form->fieldset('Timezone', function (Fieldset $fieldset) {
                 $fieldset->control('select', 'meta_timezone')
                     ->label('Timezone')
-                    ->options(Model::lists())
+                    ->options(Model::pluck())
                     ->value(function ($row) {
                         $meta = $this->memory->make('user');
 
