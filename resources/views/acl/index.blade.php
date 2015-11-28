@@ -16,19 +16,19 @@
 	{!! Form::open(['url' => app('url')->current(), 'method' => 'POST']) !!}
 	{!! Form::hidden('metric', $metric) !!}
 
-	@foreach($roles as $roleKey => $roleName)
+	@foreach($roles as $roleId => $role)
 	<div class="twelve columns panel panel-default">
 		<div class="panel-heading">
-			{{ Str::humanize($roleName) }}
+			{{ $role['name'] }}
 		</div>
 		<div class="white rounded-bottom box small-padding">
 			<div class="row">
-			@foreach($actions as $actionKey => $actionName)
-				<label for="acl-{!! $roleKey !!}-{!! $actionKey !!}" class="three columns checkboxes">
-					{!! Form::checkbox("acl-{$roleKey}-{$actionKey}", 'yes', $eloquent->check($roleName, $actionName), [
-						'id' => "acl-{$roleKey}-{$actionKey}",
+			@foreach($actions as $actionId => $action)
+				<label for="acl-{!! $roleId !!}-{!! $actionId !!}" class="three columns checkboxes">
+					{!! Form::checkbox("acl-{$roleId}-{$actionId}", 'yes', $eloquent->check($role['slug'], $action['slug']), [
+						'id' => "acl-{$roleId}-{$actionId}",
 					]) !!}
-					{{ Str::humanize($actionName) }}
+					{{ $action['name'] }}
 					&nbsp;&nbsp;&nbsp;
 				</label>
 			@endforeach

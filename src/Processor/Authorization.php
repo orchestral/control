@@ -6,6 +6,7 @@ use Illuminate\Support\Fluent;
 use Illuminate\Support\Collection;
 use Orchestra\Contracts\Authorization\Factory;
 use Orchestra\Contracts\Foundation\Foundation;
+use Orchestra\Contracts\Authorization\Authorization as AuthorizationContract;
 
 class Authorization extends Processor
 {
@@ -15,6 +16,13 @@ class Authorization extends Processor
      * @var \Orchestra\Contracts\Authorization\Factory
      */
     protected $acl;
+
+    /**
+     * The translator implementation.
+     *
+     * @var \Illuminate\Tranlation\Translator
+     */
+    protected $translator;
 
     /**
      * Setup a new processor.
@@ -28,6 +36,7 @@ class Authorization extends Processor
         $this->memory     = $foundation->memory();
         $this->acl        = $acl;
         $this->model      = $foundation->make('orchestra.role');
+        $this->translator = $foundation->make('translator');
     }
 
     /**
@@ -54,11 +63,8 @@ class Authorization extends Processor
             return $listener->aclVerificationFailed();
         }
 
-        $actions = new Collection($eloquent->actions()->get());
-        $roles   = (new Collection($eloquent->roles()->get()))
-                        ->reject(function ($role) {
-                            return in_array($role, ['guest']);
-                        });
+        $actions = $this->getAuthorizationActions($eloquent, $metric);
+        $roles   = $this->getAuthorizationRoles($eloquent);
 
         return $listener->indexSucceed(compact('actions', 'roles', 'eloquent', 'collection', 'metric'));
     }
@@ -136,7 +142,43 @@ class Authorization extends Processor
         $extension = $this->memory->get("extensions.available.{$name}.name");
         $title     = ($name === 'orchestra') ? 'Orchestra Platform' : $extension;
 
-        return (is_null($title) ? Str::title($name) : $title);
+        return (is_null($title) ? Str::humanize($name) : $title);
+    }
+
+    /**
+     * Get authorization actions.
+     *
+     * @param  \Orchestra\Contracts\Authorization\Authorization  $acl
+     * @param  string  $metric
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    protected function getAuthorizationActions(AuthorizationContract $acl, $metric)
+    {
+        return collect($acl->actions()->get())->map(function ($slug) use ($metric) {
+            $key = "orchestra/control::acl.{$metric}.{$slug}";
+            $name = $this->translator->has($key) ? $this->translator->get($key) : Str::humanize($slug);
+
+            return compact('slug', 'name');
+        });
+    }
+
+    /**
+     * Get authorization roles.
+     *
+     * @param  \Orchestra\Contracts\Authorization\Authorization  $acl
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    protected function getAuthorizationRoles(AuthorizationContract $acl)
+    {
+        return collect($acl->roles()->get())->reject(function ($role) {
+            return in_array($role, ['guest']);
+        })->map(function ($slug) {
+            $name = Str::humanize($slug);
+
+            return compact('slug', 'name');
+        });
     }
 
     /**
