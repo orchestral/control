@@ -3,7 +3,6 @@
 use Orchestra\Support\Str;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
-use Illuminate\Support\Collection;
 use Orchestra\Contracts\Authorization\Factory;
 use Orchestra\Contracts\Foundation\Foundation;
 use Orchestra\Contracts\Authorization\Authorization as AuthorizationContract;
