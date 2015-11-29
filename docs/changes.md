@@ -5,6 +5,10 @@ title: Control Change Log
 
 ## Version 3.1 {#v3-1}
 
+### v3.1.7 {#v3-1-7}
+
+* Allow ACL names to be use available language files for customisation in application.
+
 ### v3.1.6 {#v3-1-6}
 
 * Use `Orchestra\Authorization\Authorization::canIf()` instead of `Orchestra\Authorization\Authorization::can()`.
