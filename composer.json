@@ -25,7 +25,7 @@
     },
     "require-dev": {
         "mockery/mockery": "^0.9.1",
-        "orchestra/foundation": "~3.1.14"
+        "orchestra/foundation": "~3.1.19"
     },
     "extra": {
         "branch-alias": {
