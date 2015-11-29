@@ -155,7 +155,7 @@ class Authorization extends Processor
     protected function getAuthorizationActions(AuthorizationContract $acl, $metric)
     {
         return collect($acl->actions()->get())->map(function ($slug) use ($metric) {
-            $key = "orchestra/control::acl.{$metric}.{$slug}";
+            $key = "orchestra/foundation::acl.{$metric}.{$slug}";
             $name = $this->translator->has($key) ? $this->translator->get($key) : Str::humanize($slug);
 
             return compact('slug', 'name');
