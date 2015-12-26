@@ -36,7 +36,7 @@ class AuthorizationController extends AdminController
      */
     protected function setupMiddleware()
     {
-        $this->middleware('orchestra.manage:acl');
+        $this->middleware('orchestra.can:manage-acl');
         $this->middleware('orchestra.csrf', ['only' => 'sync']);
     }
 
