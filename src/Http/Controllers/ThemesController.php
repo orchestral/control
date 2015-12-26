@@ -26,7 +26,7 @@ class ThemesController extends AdminController implements Selector
      */
     protected function setupMiddleware()
     {
-        $this->middleware('orchestra.manage:acl');
+        $this->middleware('orchestra.can:manage-acl');
         $this->middleware('orchestra.csrf', ['only' => 'activate']);
     }
 

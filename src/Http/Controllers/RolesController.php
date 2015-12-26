@@ -26,7 +26,7 @@ class RolesController extends AdminController
      */
     protected function setupMiddleware()
     {
-        $this->middleware('orchestra.manage:roles');
+        $this->middleware('orchestra.can:manage-roles');
         $this->middleware('orchestra.csrf', ['only' => 'delete']);
     }
 

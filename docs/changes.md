@@ -3,6 +3,19 @@ title: Control Change Log
 
 ---
 
+## Version 3.2 {#v3-2}
+
+### v3.2.0 {#v3-2-0}
+
+* Update support for Orchestra Platform v3.2.
+* Improved performances by reducing call within `Illuminate\Container\Container`.
+* Utilize `Orchestra\Support\Providers\EventProviderTrait` and separate events on to separate class.
+* Add `Orchestra\Control\ControlPlugin`.
+* `Orchestra\Control\ControlServiceProvider` should utilize the new `Orchestra\Foundation\Support\Providers\ModuleServiceProvider`.
+* Remove configurating authorization for the default `"Guest"` role.
+* Disable ability to add default `"Guest"` or duplicated roles.
+* Allow ACL names to be use available language files for customisation in application.
+
 ## Version 3.1 {#v3-1}
 
 ### v3.1.7 {#v3-1-7}
