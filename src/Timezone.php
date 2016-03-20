@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Control;
+<?php
+
+namespace Orchestra\Control;
 
 class Timezone
 {

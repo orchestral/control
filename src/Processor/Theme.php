@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Control\Processor;
+<?php
+
+namespace Orchestra\Control\Processor;
 
 use Orchestra\Contracts\Foundation\Foundation;
 use Orchestra\Contracts\Theme\Listener\Selector;

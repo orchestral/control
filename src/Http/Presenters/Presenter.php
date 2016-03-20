@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Control\Http\Presenters;
+<?php
+
+namespace Orchestra\Control\Http\Presenters;
 
 use Orchestra\Contracts\Html\Form\Grid;
 use Orchestra\Contracts\Html\Form\Presenter as PresenterContract;

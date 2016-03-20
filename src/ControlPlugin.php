@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Control;
+<?php
+
+namespace Orchestra\Control;
 
 use Orchestra\Model\Role;
 use Illuminate\Support\Fluent;

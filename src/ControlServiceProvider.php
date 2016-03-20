@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Control;
+<?php
+
+namespace Orchestra\Control;
 
 use Orchestra\Control\Command\Synchronizer;
 use Orchestra\Control\Listeners\Timezone\OnShowAccount;

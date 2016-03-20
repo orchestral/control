@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Control\Listeners\Timezone;
+<?php
+
+namespace Orchestra\Control\Listeners\Timezone;
 
 use Illuminate\Support\Facades\Input;
 use Orchestra\Control\Listeners\Timezone;

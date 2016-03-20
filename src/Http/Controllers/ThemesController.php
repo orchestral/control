@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Control\Http\Controllers;
+<?php
+
+namespace Orchestra\Control\Http\Controllers;
 
 use Orchestra\Support\Str;
 use Orchestra\Contracts\Theme\Listener\Selector;

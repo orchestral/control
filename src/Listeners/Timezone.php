@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Control\Listeners;
+<?php
+
+namespace Orchestra\Control\Listeners;
 
 use Orchestra\Memory\MemoryManager;
 use Illuminate\Contracts\Config\Repository;

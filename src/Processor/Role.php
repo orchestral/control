@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Control\Processor;
+<?php
+
+namespace Orchestra\Control\Processor;
 
 use Exception;
 use Illuminate\Support\Facades\DB;

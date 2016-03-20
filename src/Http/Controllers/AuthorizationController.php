@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Control\Http\Controllers;
+<?php
+
+namespace Orchestra\Control\Http\Controllers;
 
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Facades\Input;

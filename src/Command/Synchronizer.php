@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Control\Command;
+<?php
+
+namespace Orchestra\Control\Command;
 
 use Illuminate\Contracts\Foundation\Application;
 use Orchestra\Contracts\Authorization\Authorization;

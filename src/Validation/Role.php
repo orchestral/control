@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Control\Validation;
+<?php
+
+namespace Orchestra\Control\Validation;
 
 use Orchestra\Support\Keyword;
 use Orchestra\Support\Validator;
