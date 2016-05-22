@@ -143,6 +143,6 @@ class Timezone
      */
     public static function lists()
     {
-        return $this->pluck();
+        return static::pluck();
     }
 }
