@@ -130,8 +130,21 @@ class Timezone
      *
      * @return array
      */
-    public static function lists()
+    public static function pluck()
     {
         return static::$lists;
+    }
+
+    /**
+     * List the timezone.
+     *
+     * @deprecated 3.2
+     * @see pluck()
+     *
+     * @return array
+     */
+    public static function lists()
+    {
+        return static::pluck();
     }
 }

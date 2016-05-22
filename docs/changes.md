@@ -5,6 +5,10 @@ title: Control Change Log
 
 ## Version 3.2 {#v3-2}
 
+### v3.2.1 {#v3-2-1}
+
+* Fixes missing `Orchestra\Control\Timezone::pluck()` method.
+
 ### v3.2.0 {#v3-2-0}
 
 * Update support for Orchestra Platform v3.2.
