@@ -13,10 +13,13 @@ class ControlMenuHandler extends MenuHandler
      * @var array
      */
     protected $menu = [
-        'id'    => 'control',
-        'title' => 'Control',
-        'link'  => 'orchestra::control',
-        'icon'  => null,
+        'id'       => 'control',
+        'title'    => 'Control',
+        'link'     => '#!',
+        'icon'     => 'puzzle-piece',
+        'with'     => [
+            RoleMenuHandler::class,
+        ],
     ];
 
     /**
@@ -26,7 +29,7 @@ class ControlMenuHandler extends MenuHandler
      */
     public function getPositionAttribute()
     {
-        return $this->handler->has('extensions') ? '^:extensions' : '>:home';
+        return $this->handler->has('extensions') ? '>:extensions' : '>:home';
     }
 
     /**
