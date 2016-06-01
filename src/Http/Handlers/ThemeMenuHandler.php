@@ -5,7 +5,7 @@ namespace Orchestra\Control\Http\Handlers;
 use Orchestra\Foundation\Support\MenuHandler;
 use Orchestra\Contracts\Authorization\Authorization;
 
-class AclMenuHandler extends MenuHandler
+class ThemeMenuHandler extends MenuHandler
 {
     /**
      * Menu configuration.
