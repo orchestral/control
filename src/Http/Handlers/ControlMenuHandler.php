@@ -20,6 +20,7 @@ class ControlMenuHandler extends MenuHandler
         'with'     => [
             RoleMenuHandler::class,
             AclMenuHandler::class,
+            ThemeMenuHandler::class,
         ],
     ];
 
