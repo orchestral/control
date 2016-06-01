@@ -14,7 +14,7 @@ class AclMenuHandler extends MenuHandler
      */
     protected $menu = [
         'id'    => 'control-acl',
-        'title' => 'ACL',
+        'title' => 'Permission',
         'link'  => 'orchestra::control/acl',
         'icon'  => null,
     ];
