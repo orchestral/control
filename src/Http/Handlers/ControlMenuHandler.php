@@ -19,6 +19,7 @@ class ControlMenuHandler extends MenuHandler
         'icon'     => 'puzzle-piece',
         'with'     => [
             RoleMenuHandler::class,
+            AclMenuHandler::class,
         ],
     ];
 
@@ -41,6 +42,6 @@ class ControlMenuHandler extends MenuHandler
      */
     public function authorize(Authorization $acl)
     {
-        return ($acl->canIf('manage roles') || $acl->canIf('manage acl'));
+        return true;
     }
 }
