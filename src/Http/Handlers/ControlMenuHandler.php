@@ -13,11 +13,11 @@ class ControlMenuHandler extends MenuHandler
      * @var array
      */
     protected $menu = [
-        'id'       => 'control',
-        'title'    => 'Control',
-        'link'     => '#!',
-        'icon'     => 'puzzle-piece',
-        'with'     => [
+        'id'    => 'control',
+        'title' => 'Control',
+        'link'  => '#!',
+        'icon'  => 'puzzle-piece',
+        'with'  => [
             RoleMenuHandler::class,
             AclMenuHandler::class,
             ThemeMenuHandler::class,
