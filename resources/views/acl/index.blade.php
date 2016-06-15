@@ -26,7 +26,7 @@ use Orchestra\Support\Str;
           {{ Form::checkbox("acl-{$roleId}-{$actionId}", 'yes', $eloquent->check($role['slug'], $action['slug']), [
             'id' => "acl-{$roleId}-{$actionId}",
           ]) }}
-          <label for="acl-{!! $roleId !!}-{!! $actionId !!}" class="three columns checkboxes">
+          <label for="acl-{{ $roleId }}-{{ $actionId }}" class="three columns checkboxes">
             {{ $action['name'] }}
             &nbsp;&nbsp;&nbsp;
           </label>
@@ -39,14 +39,13 @@ use Orchestra\Support\Str;
   <div class="row">
     <div class="twelve columns">
       <button type="submit" class="btn btn-primary">{{ trans('orchestra/foundation::label.submit') }}</button>
-      <a href="{!! handles("orchestra::control/acl/{$metric}/sync", ['csrf' => true]) !!}" class="btn btn-link">
+      <a href="{{ handles("orchestra::control/acl/{$metric}/sync", ['csrf' => true]) }}" class="btn btn-link">
         {{ trans('orchestra/control::label.sync-roles') }}
       </a>
     </div>
   </div>
 </form>
 @stop
-
 
 @push('orchestra.footer')
 <script>
