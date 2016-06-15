@@ -1,10 +1,10 @@
 @extends('orchestra/foundation::layouts.page')
 
-#{{ use Orchestra\Support\Str }}
+@php
+use Orchestra\Support\Str;
+@endphp
 
 @section('content')
-@include('orchestra/control::widgets.header')
-
 <div class="row">
 	<div class="navbar user-search hidden-phone">
 		{!! Form::open(['url' => app('url')->current(), 'method' => 'GET', 'class' => 'navbar-form']) !!}
@@ -48,3 +48,16 @@
 	{!! Form::close() !!}
 </div>
 @stop
+
+
+@push('orchestra.footer')
+<script>
+  var app = new App({
+    data: {
+      sidebar: {
+        active: 'control-acl'
+      }
+    }
+  }).$mount('body')
+</script>
+@endpush
