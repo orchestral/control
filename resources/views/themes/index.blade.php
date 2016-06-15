@@ -14,3 +14,16 @@
 	@endif
 </div>
 @stop
+
+
+@push('orchestra.footer')
+<script>
+  var app = new App({
+    data: {
+      sidebar: {
+        active: 'control-acl'
+      }
+    }
+  }).$mount('body')
+</script>
+@endpush
