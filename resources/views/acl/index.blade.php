@@ -2,20 +2,14 @@
 
 @php
 use Orchestra\Support\Str;
+
+$collection = collect($collection)->map(function ($item, $key) {
+  return ['link' => URL::current().'?name='.$key, 'title' => $item];
+});
 @endphp
 
 @section('header::right')
-<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="acl-metric-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{ $collection[$metric] }}
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="acl-metric-menu">
-    @foreach($collection as $id => $name)
-    <li><a href="{{ URL::current() }}?name={{ $id }}">{{ $name }}</a></li>
-    @endforeach
-  </ul>
-</div>
+<btndrop id="acl-metric-menu" current="{{ $metric }}" pull="right" :items="dropmenu"></btndrop>
 @stop
 
 @section('content')
@@ -59,6 +53,7 @@ use Orchestra\Support\Str;
 <script>
   var app = new App({
     data: {
+      dropmenu: {!! $collection->toJson() !!},
       sidebar: {
         active: 'control-acl'
       }
