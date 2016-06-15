@@ -4,14 +4,22 @@
 use Orchestra\Support\Str;
 @endphp
 
-@section('content')
-<div class="user-search">
-  <form method="GET" action="{{ URL::current() }}" class="navbar-form">
-    {{ Form::select('name', $collection, $metric, ['id' => 'select-metric']) }}
-  </form>
+@section('header::right')
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="acl-metric-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{ $collection[$metric] }}
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="acl-metric-menu">
+    @foreach($collection as $id => $name)
+    <li><a href="{{ URL::current() }}?name={{ $id }}">{{ $name }}</a></li>
+    @endforeach
+  </ul>
 </div>
+@stop
 
-<form method="POST" action="{{ URL::current() }}">
+@section('content')
+<form method="POST" action="{{ URL::current() }}" class="clearfix">
   {{ csrf_field() }}
   <input type="hidden" name="metric" value="{{ $metric }}">
 
