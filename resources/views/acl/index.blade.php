@@ -5,48 +5,46 @@ use Orchestra\Support\Str;
 @endphp
 
 @section('content')
-<div class="row">
-	<div class="navbar user-search hidden-phone">
-		{!! Form::open(['url' => app('url')->current(), 'method' => 'GET', 'class' => 'navbar-form']) !!}
-			{!! Form::select('name', $collection, $metric, ['class' => '']) !!}&nbsp;
-			<button type="submit" class="btn btn-primary">{{ trans('orchestra/foundation::label.submit') }}</button>
-		{!! Form::close() !!}
-	</div>
-
-	{!! Form::open(['url' => app('url')->current(), 'method' => 'POST']) !!}
-	{!! Form::hidden('metric', $metric) !!}
-
-	@foreach($roles as $roleId => $role)
-	<div class="twelve columns panel panel-default">
-		<div class="panel-heading">
-			{{ $role['name'] }}
-		</div>
-		<div class="white rounded-bottom box small-padding">
-			<div class="row">
-			@foreach($actions as $actionId => $action)
-				<label for="acl-{!! $roleId !!}-{!! $actionId !!}" class="three columns checkboxes">
-					{!! Form::checkbox("acl-{$roleId}-{$actionId}", 'yes', $eloquent->check($role['slug'], $action['slug']), [
-						'id' => "acl-{$roleId}-{$actionId}",
-					]) !!}
-					{{ $action['name'] }}
-					&nbsp;&nbsp;&nbsp;
-				</label>
-			@endforeach
-			</div>
-		</div>
-	</div>
-	@endforeach
-
-	<div class="row">
-		<div class="twelve columns">
-			<button type="submit" class="btn btn-primary">{{ trans('orchestra/foundation::label.submit') }}</button>
-			<a href="{!! handles("orchestra::control/acl/{$metric}/sync", ['csrf' => true]) !!}" class="btn btn-link">
-				{{ trans('orchestra/control::label.sync-roles') }}
-			</a>
-		</div>
-	</div>
-	{!! Form::close() !!}
+<div class="user-search">
+  <form method="GET" action="{{ URL::current() }}" class="navbar-form">
+    {{ Form::select('name', $collection, $metric, ['id' => 'select-metric']) }}
+  </form>
 </div>
+
+<form method="POST" action="{{ URL::current() }}">
+  {{ csrf_field() }}
+  <input type="hidden" name="metric" value="{{ $metric }}">
+
+  @foreach($roles as $roleId => $role)
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4>{{ $role['name'] }}</h4>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+        @foreach($actions as $actionId => $action)
+          {{ Form::checkbox("acl-{$roleId}-{$actionId}", 'yes', $eloquent->check($role['slug'], $action['slug']), [
+            'id' => "acl-{$roleId}-{$actionId}",
+          ]) }}
+          <label for="acl-{!! $roleId !!}-{!! $actionId !!}" class="three columns checkboxes">
+            {{ $action['name'] }}
+            &nbsp;&nbsp;&nbsp;
+          </label>
+        @endforeach
+        </div>
+      </div>
+    </div>
+  @endforeach
+
+  <div class="row">
+    <div class="twelve columns">
+      <button type="submit" class="btn btn-primary">{{ trans('orchestra/foundation::label.submit') }}</button>
+      <a href="{!! handles("orchestra::control/acl/{$metric}/sync", ['csrf' => true]) !!}" class="btn btn-link">
+        {{ trans('orchestra/control::label.sync-roles') }}
+      </a>
+    </div>
+  </div>
+</form>
 @stop
 
 

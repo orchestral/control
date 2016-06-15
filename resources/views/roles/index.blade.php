@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="row">
-	<div class="twelve columns">
+	<div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-body">
         {{ $table }}
@@ -19,7 +19,7 @@
   var app = new App({
     data: {
       sidebar: {
-        active: 'control'
+        active: 'control-roles'
       }
     }
   }).$mount('body')

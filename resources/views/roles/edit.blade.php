@@ -2,13 +2,9 @@
 
 @section('content')
 <div class="row">
-	<div class="twelve columns">
-		<div class="row">
-			<div class="nine columns">
-				{{ $form }}
-			</div>
-		</div>
-	</div>
+  <div class="col-md-9">
+    {{ $form }}
+  </div>
 </div>
 @stop
 
@@ -17,7 +13,7 @@
   var app = new App({
     data: {
       sidebar: {
-        active: 'control'
+        active: 'control-roles'
       }
     }
   }).$mount('body')
