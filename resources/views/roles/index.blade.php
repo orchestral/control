@@ -3,12 +3,19 @@
 @set_meta('header::add-button', true)
 
 @section('content')
-
-@include('orchestra/control::widgets.header')
-
 <div class="row">
-	<div class="twelve columns white rounded box">
-		{!! $table !!}
+	<div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        {{ $table }}
+      </div>
+    </div>
 	</div>
 </div>
 @stop
+
+@push('orchestra.footer')
+<script>
+  var app = Platform.make('app').nav('control-roles').$mount('body')
+</script>
+@endpush

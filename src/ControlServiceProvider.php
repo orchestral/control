@@ -52,6 +52,10 @@ class ControlServiceProvider extends ModuleServiceProvider
         $this->addConfigComponent('orchestra/control', 'orchestra/control', "{$path}/config");
         $this->addLanguageComponent('orchestra/control', 'orchestra/control', "{$path}/lang");
         $this->addViewComponent('orchestra/control', 'orchestra/control', "{$path}/views");
+
+        $this->loadMigrationsFrom([
+            "{$path}/database/migrations",
+        ]);
     }
 
     /**

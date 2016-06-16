@@ -15,8 +15,13 @@ class ControlMenuHandler extends MenuHandler
     protected $menu = [
         'id'    => 'control',
         'title' => 'Control',
-        'link'  => 'orchestra::control',
-        'icon'  => null,
+        'link'  => '#!',
+        'icon'  => 'puzzle-piece',
+        'with'  => [
+            RoleMenuHandler::class,
+            AclMenuHandler::class,
+            ThemeMenuHandler::class,
+        ],
     ];
 
     /**
@@ -26,7 +31,7 @@ class ControlMenuHandler extends MenuHandler
      */
     public function getPositionAttribute()
     {
-        return $this->handler->has('extensions') ? '^:extensions' : '>:home';
+        return $this->handler->has('extensions') ? '>:extensions' : '>:home';
     }
 
     /**
@@ -38,6 +43,6 @@ class ControlMenuHandler extends MenuHandler
      */
     public function authorize(Authorization $acl)
     {
-        return ($acl->canIf('manage roles') || $acl->canIf('manage acl'));
+        return true;
     }
 }

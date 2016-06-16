@@ -36,7 +36,7 @@ class ControlMenuHandlerTest extends \PHPUnit_Framework_TestCase
 
         $stub = new ControlMenuHandler($app);
 
-        $this->assertEquals('^:extensions', $stub->getPositionAttribute());
+        $this->assertEquals('>:extensions', $stub->getPositionAttribute());
     }
 
     public function testItShouldNextToHomeGivenExtensionIsntAvailable()

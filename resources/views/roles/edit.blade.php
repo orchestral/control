@@ -1,15 +1,15 @@
 @extends('orchestra/foundation::layouts.page')
 
 @section('content')
-@include('orchestra/control::widgets.header')
-
 <div class="row">
-	<div class="twelve columns rounded box">
-		<div class="row">
-			<div class="nine columns">
-				{!! $form !!}
-			</div>
-		</div>
-	</div>
+  <div class="col-md-9">
+    {{ $form }}
+  </div>
 </div>
 @stop
+
+@push('orchestra.footer')
+<script>
+  var app = Platform.make('app').nav('control-roles').$mount('body')
+</script>
+@endpush
