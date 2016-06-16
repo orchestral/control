@@ -51,13 +51,8 @@ $collection = collect($collection)->map(function ($item, $key) {
 
 @push('orchestra.footer')
 <script>
-  var app = new App({
-    data: {
-      dropmenu: {!! $collection->toJson() !!},
-      sidebar: {
-        active: 'control-acl'
-      }
-    }
-  }).$mount('body')
+  var app = Platform.make('app').nav('control-acl')
+  app.$set('dropmenu', {!! $collection->toJson() !!})
+  app.$mount('body')
 </script>
 @endpush
