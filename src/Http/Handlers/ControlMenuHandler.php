@@ -34,11 +34,11 @@ class ControlMenuHandler extends MenuHandler
     }
 
     /**
-     * Check whether the menu should be displayed.
+     * Determine if the request passes the authorization check.
      *
      * @return bool
      */
-    public function authorize()
+    protected function passesAuthorization()
     {
         return $this->hasNestedMenu();
     }
