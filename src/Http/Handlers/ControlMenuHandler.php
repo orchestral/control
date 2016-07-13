@@ -3,7 +3,6 @@
 namespace Orchestra\Control\Http\Handlers;
 
 use Orchestra\Foundation\Support\MenuHandler;
-use Orchestra\Contracts\Authorization\Authorization;
 
 class ControlMenuHandler extends MenuHandler
 {
@@ -37,11 +36,9 @@ class ControlMenuHandler extends MenuHandler
     /**
      * Check whether the menu should be displayed.
      *
-     * @param  \Orchestra\Contracts\Authorization\Authorization  $acl
-     *
      * @return bool
      */
-    public function authorize(Authorization $acl)
+    public function authorize()
     {
         return $this->hasNestedMenu();
     }
