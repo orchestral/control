@@ -43,6 +43,6 @@ class ControlMenuHandler extends MenuHandler
      */
     public function authorize(Authorization $acl)
     {
-        return $acl->canIf('manage acl');
+        return $acl->canIf('manage acl') || $acl->canIf('manage roles') || $acl->canIf('manage orchestra');
     }
 }
