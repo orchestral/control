@@ -91,7 +91,7 @@ class Role extends Presenter
                         $html[] = app('html')->link(
                             handles("orchestra::control/roles/{$row->id}/delete", ['csrf' => true]),
                             trans('orchestra/foundation::label.delete'),
-                            ['class' => 'btn btn-mini btn-danger']
+                            ['class' => 'btn btn-xs btn-label btn-danger']
                         );
                     }
 
