@@ -97,7 +97,7 @@ class Role extends Presenter
      *
      * @return string
      */
-    protected function addEditButton(Role $role)
+    protected function addEditButton(Eloquent $role)
     {
         $link       = handles("orchestra::control/roles/{$role->id}/edit");
         $text       = trans('orchestra/foundation::label.edit');
@@ -113,7 +113,7 @@ class Role extends Presenter
      *
      * @return string
      */
-    protected function addDeleteButton(Role $role)
+    protected function addDeleteButton(Eloquent $role)
     {
         $link       = handles("orchestra::control/roles/{$role->id}");
         $text       = trans('orchestra/foundation::label.delete');
