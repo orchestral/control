@@ -55,7 +55,7 @@ class Authorization extends Processor
         $eloquent   = null;
 
         foreach ($instances as $name => $instance) {
-            $collection[$name] = $this->getAuthorizationName($name);
+            $collection[$name] = (string) $this->getAuthorizationName($name);
 
             $name === $metric && $eloquent = $instance;
         }
