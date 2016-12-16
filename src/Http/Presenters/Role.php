@@ -74,13 +74,7 @@ class Role extends Presenter
                     return ['class' => 'th-action'];
                 })
                 ->value(function ($row) {
-                    $html = [
-                        app('html')->link(
-                            handles("orchestra::control/roles/{$row->id}/edit"),
-                            trans('orchestra/foundation::label.edit'),
-                            ['class' => 'btn btn-xs btn-label btn-warning']
-                        ),
-                    ];
+                    $html = [$this->addEditButton($row)];
 
                     $roles = [
                         (int) $this->config->get('orchestra/foundation::roles.admin'),
@@ -88,16 +82,44 @@ class Role extends Presenter
                     ];
 
                     if (! in_array((int) $row->id, $roles)) {
-                        $html[] = app('html')->link(
-                            handles("orchestra::control/roles/{$row->id}/delete", ['csrf' => true]),
-                            trans('orchestra/foundation::label.delete'),
-                            ['class' => 'btn btn-mini btn-danger']
-                        );
+                        $html[] = $this->addDeleteButton($row);
                     }
 
                     return app('html')->create('div', app('html')->raw(implode('', $html)), ['class' => 'btn-group']);
                 });
         });
+    }
+
+    /**
+     * Add edit button.
+     *
+     * @param  \Orchestra\Model\Role  $role
+     *
+     * @return string
+     */
+    protected function addEditButton(Eloquent $role)
+    {
+        $link       = handles("orchestra::control/roles/{$role->id}/edit");
+        $text       = trans('orchestra/foundation::label.edit');
+        $attributes = ['class' => 'btn btn-xs btn-label btn-warning'];
+
+        return app('html')->link($link, $text, $attributes);
+    }
+
+    /**
+     * Add delete button.
+     *
+     * @param  \Orchestra\Model\Role  $role
+     *
+     * @return string
+     */
+    protected function addDeleteButton(Eloquent $role)
+    {
+        $link       = handles("orchestra::control/roles/{$role->id}");
+        $text       = trans('orchestra/foundation::label.delete');
+        $attributes = ['class' => 'btn btn-xs btn-label btn-danger', 'data-method' => 'DELETE'];
+
+        return app('html')->link($link, $text, $attributes);
     }
 
     /**
