@@ -13,7 +13,7 @@ class TimezoneTest extends \PHPUnit_Framework_TestCase
 
     public function testItShouldContains()
     {
-        $timezones = Timezone::lists();
+        $timezones = Timezone::pluck();
 
         $this->assertArrayHasKey('UTC', $timezones);
         $this->assertArrayHasKey('Asia/Kuala_Lumpur', $timezones);
