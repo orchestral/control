@@ -1,12 +1,15 @@
-<?php namespace Orchestra\Control\Http\Handlers\TestCase;
+<?php
+
+namespace Orchestra\Control\TestCase\Http\Handlers;
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 use Orchestra\Widget\Handlers\Menu;
 use Orchestra\Foundation\Support\MenuHandler;
 use Illuminate\Contracts\Foundation\Application;
 use Orchestra\Control\Http\Handlers\ControlMenuHandler;
 
-class ControlMenuHandlerTest extends \PHPUnit_Framework_TestCase
+class ControlMenuHandlerTest extends TestCase
 {
     public function tearDown()
     {

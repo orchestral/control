@@ -1,7 +1,10 @@
-<?php namespace Orchestra\Control\TestCase;
+<?php
+
+namespace Orchestra\Control\TestCase\Command;
 
 use Mockery as m;
 use Orchestra\Model\Role;
+use PHPUnit\Framework\TestCase;
 use Orchestra\Control\Command\Synchronizer;
 use Illuminate\Contracts\Foundation\Application;
 use Orchestra\Contracts\Authorization\Authorization;

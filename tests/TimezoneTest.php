@@ -1,8 +1,11 @@
-<?php namespace Orchestra\Control\TestCase;
+<?php
 
+namespace Orchestra\Control\TestCase;
+
+use PHPUnit\Framework\TestCase;
 use Orchestra\Control\Timezone;
 
-class TimezoneTest extends \PHPUnit_Framework_TestCase
+class TimezoneTest extends TestCase
 {
     public function testItIsInitializable()
     {
