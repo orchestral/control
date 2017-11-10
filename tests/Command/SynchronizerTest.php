@@ -10,7 +10,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Orchestra\Contracts\Authorization\Authorization;
 use Orchestra\Control\Contracts\Command\Synchronizer as SynchronizerContract;
 
-class SynchronizerTest extends \PHPUnit_Framework_TestCase
+class SynchronizerTest extends TestCase
 {
     public function tearDown()
     {
