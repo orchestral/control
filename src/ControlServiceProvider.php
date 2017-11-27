@@ -65,8 +65,8 @@ class ControlServiceProvider extends ModuleServiceProvider
      */
     protected function loadRoutes()
     {
-        $path = realpath(__DIR__);
+        $path = realpath(__DIR__.'/../');
 
-        $this->loadBackendRoutesFrom("{$path}/Http/backend.php");
+        $this->loadBackendRoutesFrom("{$path}/routes/backend.php");
     }
 }
