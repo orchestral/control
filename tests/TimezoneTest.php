@@ -2,8 +2,8 @@
 
 namespace Orchestra\Control\TestCase;
 
-use PHPUnit\Framework\TestCase;
 use Orchestra\Control\Timezone;
+use PHPUnit\Framework\TestCase;
 
 class TimezoneTest extends TestCase
 {

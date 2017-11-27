@@ -13,10 +13,10 @@ class AclMenuHandler extends MenuHandler
      * @var array
      */
     protected $menu = [
-        'id'    => 'control-acl',
+        'id' => 'control-acl',
         'title' => 'Permission',
-        'link'  => 'orchestra::control/acl',
-        'icon'  => null,
+        'link' => 'orchestra::control/acl',
+        'icon' => null,
     ];
 
     /**

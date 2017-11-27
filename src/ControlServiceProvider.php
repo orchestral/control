@@ -26,7 +26,7 @@ class ControlServiceProvider extends ModuleServiceProvider
     protected $listen = [
         'orchestra.saved: extension.orchestra/control' => [OnUpdateConfiguration::class],
 
-        'orchestra.form: user.account'  => [OnShowAccount::class],
+        'orchestra.form: user.account' => [OnShowAccount::class],
         'orchestra.saved: user.account' => [OnUpdateAccount::class],
     ];
 

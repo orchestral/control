@@ -25,8 +25,8 @@ class ControlPlugin extends Plugin
      * @var array
      */
     protected $config = [
-        'localtime'   => 'orchestra/control::localtime.enable',
-        'admin_role'  => 'orchestra/foundation::roles.admin',
+        'localtime' => 'orchestra/control::localtime.enable',
+        'admin_role' => 'orchestra/foundation::roles.admin',
         'member_role' => 'orchestra/foundation::roles.member',
     ];
 
@@ -68,7 +68,7 @@ class ControlPlugin extends Plugin
             });
 
             $form->fieldset('Timezone', function (Fieldset $fieldset) {
-                $agreement = ['yes' => 'Yes', 'no'  => 'No'];
+                $agreement = ['yes' => 'Yes', 'no' => 'No'];
 
                 $fieldset->control('select', 'localtime')
                     ->attributes(['role' => 'agreement'])

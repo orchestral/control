@@ -30,9 +30,8 @@ class SynchronizerTest extends TestCase
 
     public function testItCanBeSynced()
     {
-
-        $app  = m::mock(Application::class);
-        $acl  = m::mock(Authorization::class);
+        $app = m::mock(Application::class);
+        $acl = m::mock(Authorization::class);
         $role = m::mock(Role::class);
 
         $stub = new Synchronizer($app, $acl);

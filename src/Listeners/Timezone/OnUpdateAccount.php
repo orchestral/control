@@ -17,11 +17,11 @@ class OnUpdateAccount extends Timezone
     public function handle($user)
     {
         if (! $this->isLocaltimeEnabled()) {
-            return ;
+            return;
         }
 
         $userId = $user->getAttribute('id');
-        $meta   = $this->memory->make('user');
+        $meta = $this->memory->make('user');
 
         $meta->put("timezone.{$userId}", Input::get('meta_timezone'));
     }

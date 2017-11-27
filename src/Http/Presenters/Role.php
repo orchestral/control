@@ -30,8 +30,8 @@ class Role extends Presenter
     public function __construct(Repository $config, FormFactory $form, TableFactory $table)
     {
         $this->config = $config;
-        $this->form   = $form;
-        $this->table  = $table;
+        $this->form = $form;
+        $this->table = $table;
     }
 
     /**
@@ -99,8 +99,8 @@ class Role extends Presenter
      */
     protected function addEditButton(Eloquent $role)
     {
-        $link       = handles("orchestra::control/roles/{$role->id}/edit");
-        $text       = trans('orchestra/foundation::label.edit');
+        $link = handles("orchestra::control/roles/{$role->id}/edit");
+        $text = trans('orchestra/foundation::label.edit');
         $attributes = ['class' => 'btn btn-xs btn-label btn-warning'];
 
         return app('html')->link($link, $text, $attributes);
@@ -115,8 +115,8 @@ class Role extends Presenter
      */
     protected function addDeleteButton(Eloquent $role)
     {
-        $link       = handles("orchestra::control/roles/{$role->id}");
-        $text       = trans('orchestra/foundation::label.delete');
+        $link = handles("orchestra::control/roles/{$role->id}");
+        $text = trans('orchestra/foundation::label.delete');
         $attributes = ['class' => 'btn btn-xs btn-label btn-danger', 'data-method' => 'DELETE'];
 
         return app('html')->link($link, $text, $attributes);

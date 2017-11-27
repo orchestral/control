@@ -14,7 +14,7 @@ class OrchestraControlSeedAcls extends Migration
     public function up()
     {
         $role = Role::admin();
-        $acl  = Foundation::acl();
+        $acl = Foundation::acl();
 
         $actions = ['Manage Roles', 'Manage Acl'];
 

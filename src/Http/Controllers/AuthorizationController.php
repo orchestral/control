@@ -25,7 +25,7 @@ class AuthorizationController extends AdminController
      */
     public function __construct(Authorization $processor, Synchronizer $synchronizer)
     {
-        $this->processor    = $processor;
+        $this->processor = $processor;
         $this->synchronizer = $synchronizer;
 
         parent::__construct();

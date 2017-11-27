@@ -2,7 +2,7 @@
 
 return [
     'acls' => [
-        'update'     => 'ACL has been updated.',
+        'update' => 'ACL has been updated.',
         'sync-roles' => 'Role has been synced to :name metric.',
     ],
 
@@ -12,7 +12,7 @@ return [
         'delete' => 'Role :name has been deleted.',
 
         'delete-default-failed' => 'Unable to delete default role.',
-        'reserved-word'         => 'Unable to use following word as role.',
+        'reserved-word' => 'Unable to use following word as role.',
     ],
 
     'themes' => [

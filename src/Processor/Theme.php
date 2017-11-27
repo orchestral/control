@@ -22,7 +22,7 @@ class Theme extends Processor
     public function __construct(Foundation $foundation)
     {
         $this->foundation = $foundation;
-        $this->memory     = $foundation->memory();
+        $this->memory = $foundation->memory();
     }
 
     /**
@@ -40,7 +40,7 @@ class Theme extends Processor
         }
 
         $current = $this->memory->get("site.theme.{$type}");
-        $themes  = $this->getAvailableTheme($type);
+        $themes = $this->getAvailableTheme($type);
 
         return $listener->showThemeSelection(compact('current', 'themes', 'type'));
     }
@@ -80,7 +80,7 @@ class Theme extends Processor
 
         return $themes->filter(function ($manifest) use ($type) {
             if (! empty($manifest->type) && ! in_array($type, $manifest->type)) {
-                return ;
+                return;
             }
 
             return $manifest;

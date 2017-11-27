@@ -13,10 +13,10 @@ class ThemeMenuHandler extends MenuHandler
      * @var array
      */
     protected $menu = [
-        'id'    => 'control-themes',
+        'id' => 'control-themes',
         'title' => 'Themes',
-        'link'  => 'orchestra::control/themes',
-        'icon'  => null,
+        'link' => 'orchestra::control/themes',
+        'icon' => null,
     ];
 
     /**

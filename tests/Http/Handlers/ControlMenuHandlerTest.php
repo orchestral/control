@@ -18,7 +18,7 @@ class ControlMenuHandlerTest extends TestCase
 
     public function testItIsInitializable()
     {
-        $app  = m::mock(Application::class);
+        $app = m::mock(Application::class);
         $menu = m::mock(Menu::class);
 
         $app->shouldReceive('make')->once()->with('orchestra.platform.menu')->andReturn($menu);
@@ -31,7 +31,7 @@ class ControlMenuHandlerTest extends TestCase
 
     public function testItShouldBeChildOfExtensionGivenExtensionIsAvailable()
     {
-        $app  = m::mock(Application::class);
+        $app = m::mock(Application::class);
         $menu = m::mock(Menu::class);
 
         $app->shouldReceive('make')->once()->with('orchestra.platform.menu')->andReturn($menu);
@@ -44,7 +44,7 @@ class ControlMenuHandlerTest extends TestCase
 
     public function testItShouldNextToHomeGivenExtensionIsntAvailable()
     {
-        $app  = m::mock(Application::class);
+        $app = m::mock(Application::class);
         $menu = m::mock(Menu::class);
 
         $app->shouldReceive('make')->once()->with('orchestra.platform.menu')->andReturn($menu);
