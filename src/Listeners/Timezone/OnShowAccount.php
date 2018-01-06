@@ -21,7 +21,7 @@ class OnShowAccount extends Timezone
     public function handle($user, FormBuilder $form)
     {
         if (! $this->isLocaltimeEnabled()) {
-            return ;
+            return;
         }
 
         $form->extend(function (FormGrid $form) {

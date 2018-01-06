@@ -13,10 +13,10 @@ class RoleMenuHandler extends MenuHandler
      * @var array
      */
     protected $menu = [
-        'id'    => 'control-roles',
+        'id' => 'control-roles',
         'title' => 'Roles',
-        'link'  => 'orchestra::control/roles',
-        'icon'  => null,
+        'link' => 'orchestra::control/roles',
+        'icon' => null,
     ];
 
     /**

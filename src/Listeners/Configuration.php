@@ -38,8 +38,8 @@ abstract class Configuration
      */
     public function __construct(Repository $config, Provider $memory, Synchronizer $synchronizer)
     {
-        $this->config       = $config;
-        $this->memory       = $memory;
+        $this->config = $config;
+        $this->memory = $memory;
         $this->synchronizer = $synchronizer;
     }
 }

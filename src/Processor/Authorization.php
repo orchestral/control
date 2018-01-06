@@ -34,9 +34,9 @@ class Authorization extends Processor
     public function __construct(Foundation $foundation, Factory $acl)
     {
         $this->foundation = $foundation;
-        $this->memory     = $foundation->memory();
-        $this->acl        = $acl;
-        $this->model      = $foundation->make('orchestra.role');
+        $this->memory = $foundation->memory();
+        $this->acl = $acl;
+        $this->model = $foundation->make('orchestra.role');
         $this->translator = $foundation->make('translator');
     }
 
@@ -51,8 +51,8 @@ class Authorization extends Processor
     public function edit($listener, $metric)
     {
         $collection = [];
-        $instances  = $this->acl->all();
-        $eloquent   = null;
+        $instances = $this->acl->all();
+        $eloquent = null;
 
         foreach ($instances as $name => $instance) {
             $collection[$name] = (string) $this->getAuthorizationName($name);
@@ -65,7 +65,7 @@ class Authorization extends Processor
         }
 
         $actions = $this->getAuthorizationActions($eloquent, $metric);
-        $roles   = $this->getAuthorizationRoles($eloquent);
+        $roles = $this->getAuthorizationRoles($eloquent);
 
         return $listener->indexSucceed(compact('actions', 'roles', 'eloquent', 'collection', 'metric'));
     }
@@ -81,13 +81,13 @@ class Authorization extends Processor
     public function update($listener, array $input)
     {
         $metric = $input['metric'];
-        $acl    = $this->acl->get($metric);
+        $acl = $this->acl->get($metric);
 
         if (is_null($acl)) {
             return $listener->aclVerificationFailed();
         }
 
-        $roles   = $acl->roles()->get();
+        $roles = $acl->roles()->get();
         $actions = $acl->actions()->get();
 
         foreach ($roles as $roleKey => $roleName) {
@@ -113,8 +113,8 @@ class Authorization extends Processor
     public function sync($listener, $vendor, $package = null)
     {
         $roles = [];
-        $name  = $this->getExtension($vendor, $package)->get('name');
-        $acl   = $this->acl->get($name);
+        $name = $this->getExtension($vendor, $package)->get('name');
+        $acl = $this->acl->get($name);
 
         if (is_null($acl)) {
             return $listener->aclVerificationFailed();
@@ -141,9 +141,9 @@ class Authorization extends Processor
     protected function getAuthorizationName($name)
     {
         $extension = $this->memory->get("extensions.available.{$name}.name");
-        $title     = ($name === 'orchestra') ? 'Orchestra Platform' : $extension;
+        $title = ($name === 'orchestra') ? 'Orchestra Platform' : $extension;
 
-        return (is_null($title) ? Str::humanize($name) : $title);
+        return is_null($title) ? Str::humanize($name) : $title;
     }
 
     /**

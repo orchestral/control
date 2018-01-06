@@ -21,10 +21,10 @@ class Role extends Processor
      */
     public function __construct(RolePresenter $presenter, RoleValidator $validator, Foundation $foundation)
     {
-        $this->presenter  = $presenter;
-        $this->validator  = $validator;
+        $this->presenter = $presenter;
+        $this->validator = $validator;
         $this->foundation = $foundation;
-        $this->model      = $foundation->make('orchestra.role');
+        $this->model = $foundation->make('orchestra.role');
     }
 
     /**
@@ -37,7 +37,7 @@ class Role extends Processor
     public function index($listener)
     {
         $eloquent = $this->model->newQuery();
-        $table    = $this->presenter->table($eloquent);
+        $table = $this->presenter->table($eloquent);
 
         $this->fireEvent('list', [$eloquent, $table]);
 
@@ -59,7 +59,7 @@ class Role extends Processor
     public function create($listener)
     {
         $eloquent = $this->model;
-        $form     = $this->presenter->form($eloquent);
+        $form = $this->presenter->form($eloquent);
 
         $this->fireEvent('form', [$eloquent, $form]);
 
@@ -77,7 +77,7 @@ class Role extends Processor
     public function edit($listener, $id)
     {
         $eloquent = $this->model->findOrFail($id);
-        $form     = $this->presenter->form($eloquent);
+        $form = $this->presenter->form($eloquent);
 
         $this->fireEvent('form', [$eloquent, $form]);
 
@@ -178,7 +178,7 @@ class Role extends Processor
     protected function saving(Eloquent $role, $input = [], $type = 'create')
     {
         $beforeEvent = ($type === 'create' ? 'creating' : 'updating');
-        $afterEvent  = ($type === 'create' ? 'created' : 'updated');
+        $afterEvent = ($type === 'create' ? 'created' : 'updated');
 
         $role->setAttribute('name', $input['name']);
 

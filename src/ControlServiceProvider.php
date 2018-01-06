@@ -26,7 +26,7 @@ class ControlServiceProvider extends ModuleServiceProvider
     protected $listen = [
         'orchestra.saved: extension.orchestra/control' => [OnUpdateConfiguration::class],
 
-        'orchestra.form: user.account'  => [OnShowAccount::class],
+        'orchestra.form: user.account' => [OnShowAccount::class],
         'orchestra.saved: user.account' => [OnUpdateAccount::class],
     ];
 
@@ -65,8 +65,8 @@ class ControlServiceProvider extends ModuleServiceProvider
      */
     protected function loadRoutes()
     {
-        $path = realpath(__DIR__);
+        $path = realpath(__DIR__.'/../');
 
-        $this->loadBackendRoutesFrom("{$path}/Http/backend.php");
+        $this->loadBackendRoutesFrom("{$path}/routes/backend.php");
     }
 }

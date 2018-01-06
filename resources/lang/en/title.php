@@ -2,11 +2,11 @@
 
 return [
     'acls' => [
-        'list'   => 'List of ACLs',
+        'list' => 'List of ACLs',
     ],
 
     'roles' => [
-        'list'   => 'List of Roles',
+        'list' => 'List of Roles',
         'create' => 'Create New Role',
         'update' => 'Update A Role',
     ],

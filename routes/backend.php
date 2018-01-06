@@ -17,7 +17,7 @@ $router->group(['prefix' => 'control'], function (Router $router) {
     $router->get('themes/backend', 'ThemesController@backend');
     $router->get('themes/frontend', 'ThemesController@frontend');
     $router->get('themes/{type}/{id}/activate', [
-        'uses'  => 'ThemesController@activate',
+        'uses' => 'ThemesController@activate',
         'where' => ['type' => '(backend|frontend)'],
     ]);
 });
