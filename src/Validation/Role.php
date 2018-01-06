@@ -90,7 +90,7 @@ class Role extends Validator
      *
      * @return bool
      */
-    protected function isRoleNameAlreadyUsed(Keyword $name)
+    protected function isRoleNameAlreadyUsed(Keyword $name): bool
     {
         $roles = Foundation::acl()->roles()->get();
 
@@ -104,7 +104,7 @@ class Role extends Validator
      *
      * @return bool
      */
-    protected function isRoleNameGuest(Keyword $name)
+    protected function isRoleNameGuest(Keyword $name): bool
     {
         return $name->searchIn(['guest']) !== false;
     }

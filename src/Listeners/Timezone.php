@@ -38,7 +38,7 @@ class Timezone
      *
      * @return bool
      */
-    protected function isLocaltimeEnabled()
+    protected function isLocaltimeEnabled(): bool
     {
         return !! $this->config->get('orchestra/control::localtime.enable', false);
     }

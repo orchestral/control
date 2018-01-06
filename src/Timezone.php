@@ -130,7 +130,7 @@ class Timezone
      *
      * @return array
      */
-    public static function pluck()
+    public static function pluck(): array
     {
         return static::$lists;
     }

@@ -2,6 +2,7 @@
 
 namespace Orchestra\Control\Processor;
 
+use Illuminate\Support\Collection;
 use Orchestra\Contracts\Foundation\Foundation;
 use Orchestra\Contracts\Theme\Listener\Selector;
 
@@ -22,7 +23,7 @@ class Theme extends Processor
     public function __construct(Foundation $foundation)
     {
         $this->foundation = $foundation;
-        $this->memory     = $foundation->memory();
+        $this->memory = $foundation->memory();
     }
 
     /**
@@ -33,14 +34,14 @@ class Theme extends Processor
      *
      * @return mixed
      */
-    public function showByType(Selector $listener, $type)
+    public function showByType(Selector $listener, string $type)
     {
         if (! in_array($type, $this->type)) {
             return $listener->themeFailedVerification();
         }
 
         $current = $this->memory->get("site.theme.{$type}");
-        $themes  = $this->getAvailableTheme($type);
+        $themes = $this->getAvailableTheme($type);
 
         return $listener->showThemeSelection(compact('current', 'themes', 'type'));
     }
@@ -54,7 +55,7 @@ class Theme extends Processor
      *
      * @return mixed
      */
-    public function activate(Selector $listener, $type, $id)
+    public function activate(Selector $listener, string $type, string $id)
     {
         $theme = $this->getAvailableTheme($type)->get($id);
 
@@ -74,13 +75,13 @@ class Theme extends Processor
      *
      * @return \Illuminate\Support\Collection
      */
-    protected function getAvailableTheme($type)
+    protected function getAvailableTheme(string $type): Collection
     {
         $themes = $this->foundation->make('orchestra.theme.finder')->detect();
 
         return $themes->filter(function ($manifest) use ($type) {
             if (! empty($manifest->type) && ! in_array($type, $manifest->type)) {
-                return ;
+                return null;
             }
 
             return $manifest;

@@ -205,6 +205,6 @@ class Role extends Processor
      */
     protected function fireEvent($type, array $parameters = [])
     {
-        Event::fire("orchestra.control.{$type}: roles", $parameters);
+        Event::dispatch("orchestra.control.{$type}: roles", $parameters);
     }
 }
