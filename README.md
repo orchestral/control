@@ -7,10 +7,11 @@ Official Administration Add-on Extension for Orchestra Platform that provide sup
 * Theme Manager.
 * Timezone Support.
 
-[![Latest Stable Version](https://img.shields.io/github/release/orchestral/control.svg?style=flat-square)](https://packagist.org/packages/orchestra/control)
-[![Total Downloads](https://img.shields.io/packagist/dt/orchestra/control.svg?style=flat-square)](https://packagist.org/packages/orchestra/control)
-[![MIT License](https://img.shields.io/packagist/l/orchestra/control.svg?style=flat-square)](https://packagist.org/packages/orchestra/control)
-[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/control/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/orchestral/control/)
+[![Build Status](https://travis-ci.org/orchestral/control.svg?branch=3.6)](https://travis-ci.org/orchestral/control)
+[![Latest Stable Version](https://poser.pugx.org/orchestra/control/v/stable)](https://packagist.org/packages/orchestra/control)
+[![Total Downloads](https://poser.pugx.org/orchestra/control/downloads)](https://packagist.org/packages/orchestra/control)
+[![Latest Unstable Version](https://poser.pugx.org/orchestra/control/v/unstable)](https://packagist.org/packages/orchestra/control)
+[![License](https://poser.pugx.org/orchestra/control/license)](https://packagist.org/packages/orchestra/control)
 
 ## Table of Content
 
