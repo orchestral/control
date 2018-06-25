@@ -38,7 +38,7 @@ class ControlMenuHandler extends MenuHandler
      *
      * @return bool
      */
-    protected function passesAuthorization()
+    protected function passesAuthorization(): bool
     {
         return $this->hasNestedMenu();
     }
