@@ -4,8 +4,8 @@ namespace Orchestra\Control\Http\Controllers;
 
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Facades\Input;
-use Orchestra\Control\Processor\Authorization;
-use Orchestra\Control\Contracts\Command\Synchronizer;
+use Orchestra\Control\Processors\Authorization;
+use Orchestra\Control\Contracts\Commands\Synchronizer;
 use Orchestra\Foundation\Http\Controllers\AdminController;
 
 class AuthorizationController extends AdminController
@@ -13,15 +13,15 @@ class AuthorizationController extends AdminController
     /**
      * The synchronizer implementation.
      *
-     * @var \Orchestra\Control\Contracts\Command\Synchronizer
+     * @var \Orchestra\Control\Contracts\Commands\Synchronizer
      */
     protected $synchronizer;
 
     /**
      * Setup a new controller.
      *
-     * @param  \Orchestra\Control\Processor\Authorization  $processor
-     * @param  \Orchestra\Control\Contracts\Command\Synchronizer  $synchronizer
+     * @param  \Orchestra\Control\Processors\Authorization  $processor
+     * @param  \Orchestra\Control\Contracts\Commands\Synchronizer  $synchronizer
      */
     public function __construct(Authorization $processor, Synchronizer $synchronizer)
     {

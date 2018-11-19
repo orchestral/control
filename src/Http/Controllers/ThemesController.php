@@ -4,7 +4,7 @@ namespace Orchestra\Control\Http\Controllers;
 
 use Orchestra\Support\Str;
 use Orchestra\Contracts\Theme\Listener\Selector;
-use Orchestra\Control\Processor\Theme as Processor;
+use Orchestra\Control\Processors\Theme as Processor;
 use Orchestra\Foundation\Http\Controllers\AdminController;
 
 class ThemesController extends AdminController implements Selector
@@ -12,7 +12,7 @@ class ThemesController extends AdminController implements Selector
     /**
      * Setup a new controller.
      *
-     * @param  \Orchestra\Control\Processor\Theme  $processor
+     * @param  \Orchestra\Control\Processors\Theme  $processor
      */
     public function __construct(Processor $processor)
     {

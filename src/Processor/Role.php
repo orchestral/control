@@ -1,13 +1,13 @@
 <?php
 
-namespace Orchestra\Control\Processor;
+namespace Orchestra\Control\Processors;
 
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Orchestra\Model\Role as Eloquent;
 use Orchestra\Contracts\Foundation\Foundation;
-use Orchestra\Control\Validation\Role as RoleValidator;
+use Orchestra\Control\Validations\Role as RoleValidator;
 use Orchestra\Control\Http\Presenters\Role as RolePresenter;
 
 class Role extends Processor
@@ -16,7 +16,7 @@ class Role extends Processor
      * Setup a new processor instance.
      *
      * @param  \Orchestra\Control\Http\Presenters\Role  $presenter
-     * @param  \Orchestra\Control\Validation\Role  $validator
+     * @param  \Orchestra\Control\Validations\Role  $validator
      * @param  \Orchestra\Contracts\Foundation\Foundation  $foundation
      */
     public function __construct(RolePresenter $presenter, RoleValidator $validator, Foundation $foundation)

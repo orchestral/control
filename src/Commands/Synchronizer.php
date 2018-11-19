@@ -1,10 +1,10 @@
 <?php
 
-namespace Orchestra\Control\Command;
+namespace Orchestra\Control\Commands;
 
 use Illuminate\Contracts\Foundation\Application;
 use Orchestra\Contracts\Authorization\Authorization;
-use Orchestra\Control\Contracts\Command\Synchronizer as SynchronizerContract;
+use Orchestra\Control\Contracts\Commands\Synchronizer as SynchronizerContract;
 
 class Synchronizer implements SynchronizerContract
 {

@@ -2,12 +2,12 @@
 
 namespace Orchestra\Control;
 
-use Orchestra\Control\Command\Synchronizer;
+use Orchestra\Control\Commands\Synchronizer;
 use Orchestra\Control\Listeners\Timezone\OnShowAccount;
 use Orchestra\Control\Listeners\Timezone\OnUpdateAccount;
 use Orchestra\Foundation\Support\Providers\ModuleServiceProvider;
 use Orchestra\Control\Listeners\Configuration\OnUpdateConfiguration;
-use Orchestra\Control\Contracts\Command\Synchronizer as SynchronizerContract;
+use Orchestra\Control\Contracts\Commands\Synchronizer as SynchronizerContract;
 
 class ControlServiceProvider extends ModuleServiceProvider
 {

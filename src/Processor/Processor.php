@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Control\Processor;
+namespace Orchestra\Control\Processors;
 
 abstract class Processor
 {

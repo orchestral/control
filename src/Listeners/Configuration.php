@@ -4,7 +4,7 @@ namespace Orchestra\Control\Listeners;
 
 use Orchestra\Contracts\Memory\Provider;
 use Illuminate\Contracts\Config\Repository;
-use Orchestra\Control\Contracts\Command\Synchronizer;
+use Orchestra\Control\Contracts\Commands\Synchronizer;
 
 abstract class Configuration
 {
@@ -25,7 +25,7 @@ abstract class Configuration
     /**
      * The synchronizer implementation.
      *
-     * @var \Orchestra\Control\Contracts\Command\Synchronizer
+     * @var \Orchestra\Control\Contracts\Commands\Synchronizer
      */
     protected $synchronizer;
 
@@ -34,7 +34,7 @@ abstract class Configuration
      *
      * @param  \Illuminate\Contracts\Config\Repository  $config
      * @param  \Orchestra\Contracts\Memory\Provider  $memory
-     * @param  \Orchestra\Control\Contracts\Command\Synchronizer  $synchronizer
+     * @param  \Orchestra\Control\Contracts\Commands\Synchronizer  $synchronizer
      */
     public function __construct(Repository $config, Provider $memory, Synchronizer $synchronizer)
     {

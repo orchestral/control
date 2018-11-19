@@ -4,7 +4,7 @@ namespace Orchestra\Control\Http\Controllers;
 
 use Orchestra\Model\Role;
 use Illuminate\Support\Facades\Input;
-use Orchestra\Control\Processor\Role as RoleProcessor;
+use Orchestra\Control\Processors\Role as RoleProcessor;
 use Orchestra\Foundation\Http\Controllers\AdminController;
 
 class RolesController extends AdminController
@@ -12,7 +12,7 @@ class RolesController extends AdminController
     /**
      * Setup a new controller.
      *
-     * @param  \Orchestra\Control\Processor\Role   $processor
+     * @param  \Orchestra\Control\Processors\Role   $processor
      */
     public function __construct(RoleProcessor $processor)
     {
