@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Control\Processor;
+namespace Orchestra\Control\Processors;
 
 use Orchestra\Support\Str;
 use Illuminate\Support\Arr;

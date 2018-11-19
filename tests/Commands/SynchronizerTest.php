@@ -1,14 +1,14 @@
 <?php
 
-namespace Orchestra\Control\TestCase\Command;
+namespace Orchestra\Control\TestCase\Commands;
 
 use Mockery as m;
 use Orchestra\Model\Role;
 use PHPUnit\Framework\TestCase;
-use Orchestra\Control\Command\Synchronizer;
+use Orchestra\Control\Commands\Synchronizer;
 use Illuminate\Contracts\Foundation\Application;
 use Orchestra\Contracts\Authorization\Authorization;
-use Orchestra\Control\Contracts\Command\Synchronizer as SynchronizerContract;
+use Orchestra\Control\Contracts\Commands\Synchronizer as SynchronizerContract;
 
 class SynchronizerTest extends TestCase
 {

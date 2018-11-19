@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Control\Processor;
+namespace Orchestra\Control\Processors;
 
 use Illuminate\Support\Collection;
 use Orchestra\Contracts\Foundation\Foundation;

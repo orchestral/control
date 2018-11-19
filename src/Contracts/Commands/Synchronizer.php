@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Control\Contracts\Command;
+namespace Orchestra\Control\Contracts\Commands;
 
 interface Synchronizer
 {
