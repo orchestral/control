@@ -7,7 +7,7 @@ Official Administration Add-on Extension for Orchestra Platform that provide sup
 * Theme Manager.
 * Timezone Support.
 
-[![Build Status](https://travis-ci.org/orchestral/control.svg?branch=master)](https://travis-ci.org/orchestral/control)
+[![Build Status](https://travis-ci.org/orchestral/control.svg?branch=3.8)](https://travis-ci.org/orchestral/control)
 [![Latest Stable Version](https://poser.pugx.org/orchestra/control/v/stable)](https://packagist.org/packages/orchestra/control)
 [![Total Downloads](https://poser.pugx.org/orchestra/control/downloads)](https://packagist.org/packages/orchestra/control)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/control/v/unstable)](https://packagist.org/packages/orchestra/control)
@@ -25,7 +25,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
     "require": {
-        "orchestra/control": "^3.0"
+        "orchestra/control": "^3.5"
     }
 }
 ```
@@ -36,7 +36,7 @@ And then run `composer install` from the terminal.
 
 Above installation can also be simplify by using the following command:
 
-    composer require "orchestra/control=^3.0"
+    composer require "orchestra/control=^3.5"
 
 ## Setup
 
