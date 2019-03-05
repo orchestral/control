@@ -11,7 +11,7 @@ use Orchestra\Control\Http\Handlers\ControlMenuHandler;
 
 class ControlMenuHandlerTest extends TestCase
 {
-    public function tearDown()
+    protected function tearDown(): void
     {
         m::close();
     }
