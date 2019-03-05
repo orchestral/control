@@ -10,18 +10,6 @@ use Orchestra\Foundation\Http\Controllers\AdminController;
 class RolesController extends AdminController
 {
     /**
-     * Setup a new controller.
-     *
-     * @param  \Orchestra\Control\Processors\Role   $processor
-     */
-    public function __construct(RoleProcessor $processor)
-    {
-        $this->processor = $processor;
-
-        parent::__construct();
-    }
-
-    /**
      * Define the middleware.
      *
      * @return void
@@ -35,91 +23,102 @@ class RolesController extends AdminController
     /**
      * List all the roles.
      *
+     * @param  \Orchestra\Control\Processors\Role   $processor
+     *
      * @return mixed
      */
-    public function index()
+    public function index(RoleProcessor $processor)
     {
-        return $this->processor->index($this);
+        return $processor->index($this);
     }
 
     /**
      * Show a role.
      *
+     * @param  \Orchestra\Control\Processors\Role   $processor
      * @param  int  $roles
      *
      * @return mixed
      */
-    public function show($roles)
+    public function show(RoleProcessor $processor, $roles)
     {
-        return $this->edit($roles);
+        return $this->edit($processor, $roles);
     }
 
     /**
      * Create a new role.
      *
+     * @param  \Orchestra\Control\Processors\Role   $processor
+     *
      * @return mixed
      */
-    public function create()
+    public function create(RoleProcessor $processor)
     {
-        return $this->processor->create($this);
+        return $processor->create($this);
     }
 
     /**
      * Edit the role.
      *
+     * @param  \Orchestra\Control\Processors\Role   $processor
      * @param  int  $roles
      *
      * @return mixed
      */
-    public function edit($roles)
+    public function edit(RoleProcessor $processor, $roles)
     {
-        return $this->processor->edit($this, $roles);
+        return $processor->edit($this, $roles);
     }
 
     /**
      * Create the role.
      *
+     * @param  \Orchestra\Control\Processors\Role   $processor
+     *
      * @return mixed
      */
-    public function store()
+    public function store(RoleProcessor $processor)
     {
-        return $this->processor->store($this, Input::all());
+        return $processor->store($this, Input::all());
     }
 
     /**
      * Update the role.
      *
+     * @param  \Orchestra\Control\Processors\Role   $processor
      * @param  int  $roles
      *
      * @return mixed
      */
-    public function update($roles)
+    public function update(RoleProcessor $processor, $roles)
     {
-        return $this->processor->update($this, Input::all(), $roles);
+        return $processor->update($this, Input::all(), $roles);
     }
 
     /**
      * Request to delete a role.
      *
+     * @param  \Orchestra\Control\Processors\Role   $processor
      * @param  int  $roles
      *
      * @return mixed
      */
-    public function delete($roles)
+    public function delete(RoleProcessor $processor, $roles)
     {
-        return $this->destroy($roles);
+        return $this->destroy($processor, $roles);
     }
 
     /**
      * Request to delete a role.
      *
+     * @param  \Orchestra\Control\Processors\Role   $processor
      * @param  int  $roles
      *
      * @return mixed
      */
-    public function destroy($roles)
+    public function destroy(RoleProcessor $processor, $roles)
     {
-        return $this->processor->destroy($this, $roles);
+        return $processor->destroy($this, $roles);
     }
 
     /**
@@ -131,9 +130,9 @@ class RolesController extends AdminController
      */
     public function indexSucceed(array $data)
     {
-        set_meta('title', trans('orchestra/control::title.roles.list'));
+        \set_meta('title', \trans('orchestra/control::title.roles.list'));
 
-        return view('orchestra/control::roles.index', $data);
+        return \view('orchestra/control::roles.index', $data);
     }
 
     /**
@@ -145,9 +144,9 @@ class RolesController extends AdminController
      */
     public function createSucceed(array $data)
     {
-        set_meta('title', trans('orchestra/control::title.roles.create'));
+        \set_meta('title', \trans('orchestra/control::title.roles.create'));
 
-        return view('orchestra/control::roles.edit', $data);
+        return \view('orchestra/control::roles.edit', $data);
     }
 
     /**
@@ -159,9 +158,9 @@ class RolesController extends AdminController
      */
     public function editSucceed(array $data)
     {
-        set_meta('title', trans('orchestra/control::title.roles.update'));
+        \set_meta('title', \trans('orchestra/control::title.roles.update'));
 
-        return view('orchestra/control::roles.edit', $data);
+        return \view('orchestra/control::roles.edit', $data);
     }
 
     /**
@@ -173,7 +172,9 @@ class RolesController extends AdminController
      */
     public function storeValidationFailed($validation)
     {
-        return $this->redirectWithErrors(handles('orchestra::control/roles/create'), $validation);
+        return $this->redirectWithErrors(
+            \handles('orchestra::control/roles/create'), $validation
+        );
     }
 
     /**
@@ -185,9 +186,11 @@ class RolesController extends AdminController
      */
     public function storeFailed(array $error)
     {
-        $message = trans('orchestra/foundation::response.db-failed', $error);
+        $message = \trans('orchestra/foundation::response.db-failed', $error);
 
-        return $this->redirectWithMessage(handles('orchestra::control/roles'), $message, 'error');
+        return $this->redirectWithMessage(
+            \handles('orchestra::control/roles'), $message, 'error'
+        );
     }
 
     /**
@@ -199,11 +202,13 @@ class RolesController extends AdminController
      */
     public function storeSucceed(Role $role)
     {
-        $message = trans('orchestra/control::response.roles.create', [
+        $message = \trans('orchestra/control::response.roles.create', [
             'name' => $role->getAttribute('name'),
         ]);
 
-        return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
+        return $this->redirectWithMessage(
+            \handles('orchestra::control/roles'), $message
+        );
     }
 
     /**
@@ -216,7 +221,9 @@ class RolesController extends AdminController
      */
     public function updateValidationFailed($validation, $id)
     {
-        return $this->redirectWithErrors(handles("orchestra::control/roles/{$id}/edit"), $validation);
+        return $this->redirectWithErrors(
+            \handles("orchestra::control/roles/{$id}/edit"), $validation
+        );
     }
 
     /**
@@ -228,9 +235,11 @@ class RolesController extends AdminController
      */
     public function updateFailed(array $errors)
     {
-        $message = trans('orchestra/foundation::response.db-failed', $errors);
+        $message = \trans('orchestra/foundation::response.db-failed', $errors);
 
-        return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
+        return $this->redirectWithMessage(
+            \handles('orchestra::control/roles'), $message
+        );
     }
 
     /**
@@ -242,11 +251,13 @@ class RolesController extends AdminController
      */
     public function updateSucceed(Role $role)
     {
-        $message = trans('orchestra/control::response.roles.update', [
+        $message = \trans('orchestra/control::response.roles.update', [
             'name' => $role->getAttribute('name'),
         ]);
 
-        return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
+        return $this->redirectWithMessage(
+            \handles('orchestra::control/roles'), $message
+        );
     }
 
     /**
@@ -258,9 +269,11 @@ class RolesController extends AdminController
      */
     public function destroyFailed(array $error)
     {
-        $message = trans('orchestra/foundation::response.db-failed', $error);
+        $message = \trans('orchestra/foundation::response.db-failed', $error);
 
-        return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
+        return $this->redirectWithMessage(
+            \handles('orchestra::control/roles'), $message
+        );
     }
 
     /**
@@ -272,11 +285,13 @@ class RolesController extends AdminController
      */
     public function destroySucceed(Role $role)
     {
-        $message = trans('orchestra/control::response.roles.delete', [
+        $message = \trans('orchestra/control::response.roles.delete', [
             'name' => $role->getAttribute('name'),
         ]);
 
-        return $this->redirectWithMessage(handles('orchestra::control/roles'), $message);
+        return $this->redirectWithMessage(
+            \handles('orchestra::control/roles'), $message
+        );
     }
 
     /**
@@ -286,6 +301,6 @@ class RolesController extends AdminController
      */
     public function userVerificationFailed()
     {
-        return $this->suspend(500);
+        return \abort(500);
     }
 }

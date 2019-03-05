@@ -10,18 +10,6 @@ use Orchestra\Foundation\Http\Controllers\AdminController;
 class ThemesController extends AdminController implements Selector
 {
     /**
-     * Setup a new controller.
-     *
-     * @param  \Orchestra\Control\Processors\Theme  $processor
-     */
-    public function __construct(Processor $processor)
-    {
-        $this->processor = $processor;
-
-        parent::__construct();
-    }
-
-    /**
      * Define the middleware.
      *
      * @return void
@@ -35,33 +23,38 @@ class ThemesController extends AdminController implements Selector
     /**
      * Show frontend/backend theme for Orchestra Platform.
      *
+     * @param  \Orchestra\Control\Processors\Theme  $processor
      * @param  string  $type
      *
      * @return mixed
      */
-    public function index($type = 'frontend')
+    public function index(Processor $processor, $type = 'frontend')
     {
-        return $this->processor->showByType($this, $type);
+        return $processor->showByType($this, $type);
     }
 
     /**
      * Show backend theme for Orchestra Platform.
      *
+     * @param  \Orchestra\Control\Processors\Theme  $processor
+     *
      * @return mixed
      */
-    public function backend()
+    public function backend(Processor $processor)
     {
-        return $this->processor->showByType($this, 'backend');
+        return $processor->showByType($this, 'backend');
     }
 
     /**
      * Show frontend theme for Orchestra Platform.
      *
+     * @param  \Orchestra\Control\Processors\Theme  $processor
+     *
      * @return mixed
      */
-    public function frontend()
+    public function frontend(Processor $processor)
     {
-        return $this->processor->showByType($this, 'frontend');
+        return $processor->showByType($this, 'frontend');
     }
 
     /**
@@ -72,9 +65,9 @@ class ThemesController extends AdminController implements Selector
      *
      * @return mixed
      */
-    public function activate($type, $id)
+    public function activate(Processor $processor, $type, $id)
     {
-        return $this->processor->activate($this, $type, $id);
+        return $processor->activate($this, $type, $id);
     }
 
     /**
@@ -86,11 +79,11 @@ class ThemesController extends AdminController implements Selector
      */
     public function showThemeSelection(array $data)
     {
-        set_meta('title', trans('orchestra/control::title.themes.list', [
+        \set_meta('title', \trans('orchestra/control::title.themes.list', [
             'type' => Str::title($data['type']),
         ]));
 
-        return view('orchestra/control::themes.index', $data);
+        return \view('orchestra/control::themes.index', $data);
     }
 
     /**
@@ -103,11 +96,13 @@ class ThemesController extends AdminController implements Selector
      */
     public function themeHasActivated($type, $id)
     {
-        $message = trans('orchestra/control::response.themes.update', [
+        $message = \trans('orchestra/control::response.themes.update', [
             'type' => Str::title($type),
         ]);
 
-        return $this->redirectWithMessage(handles("orchestra::control/themes/{$type}"), $message);
+        return $this->redirectWithMessage(
+            \handles("orchestra::control/themes/{$type}"), $message
+        );
     }
 
     /**
@@ -117,6 +112,6 @@ class ThemesController extends AdminController implements Selector
      */
     public function themeFailedVerification()
     {
-        return $this->suspend(404);
+        return \abort(404);
     }
 }
