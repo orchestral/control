@@ -11,12 +11,12 @@
         }
     ],
     "autoload": {
-        "classmap": [
-            "resources/database/migrations"
-        ],
         "psr-4": {
             "Orchestra\\Control\\" : "src/"
-        }
+        },
+        "classmap": [
+            "database/migrations"
+        ]
     },
     "require": {
         "php": ">=7.2",
