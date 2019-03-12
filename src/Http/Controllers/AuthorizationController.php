@@ -11,27 +11,6 @@ use Orchestra\Foundation\Http\Controllers\AdminController;
 class AuthorizationController extends AdminController
 {
     /**
-     * The synchronizer implementation.
-     *
-     * @var \Orchestra\Control\Contracts\Commands\Synchronizer
-     */
-    protected $synchronizer;
-
-    /**
-     * Setup a new controller.
-     *
-     * @param  \Orchestra\Control\Processors\Authorization  $processor
-     * @param  \Orchestra\Control\Contracts\Commands\Synchronizer  $synchronizer
-     */
-    public function __construct(Authorization $processor, Synchronizer $synchronizer)
-    {
-        $this->processor = $processor;
-        $this->synchronizer = $synchronizer;
-
-        parent::__construct();
-    }
-
-    /**
      * Define the middleware.
      *
      * @return void
@@ -45,34 +24,39 @@ class AuthorizationController extends AdminController
     /**
      * Get default resources landing page.
      *
+     * @param  \Orchestra\Control\Processors\Authorization  $processor
+     *
      * @return mixed
      */
-    public function edit()
+    public function edit(Authorization $processor)
     {
-        return $this->processor->edit($this, Input::get('name', 'orchestra'));
+        return $processor->edit($this, Input::get('name', 'orchestra'));
     }
 
     /**
      * Update ACL metric.
      *
+     * @param  \Orchestra\Control\Processors\Authorization  $processor
+     *
      * @return mixed
      */
-    public function update()
+    public function update(Authorization $processor)
     {
-        return $this->processor->update($this, Input::all());
+        return $processor->update($this, Input::all());
     }
 
     /**
      * Get sync roles action.
      *
+     * @param  \Orchestra\Control\Processors\Authorization  $processor
      * @param  string  $vendor
      * @param  string|null  $package
      *
      * @return mixed
      */
-    public function sync($vendor, $package = null)
+    public function sync(Authorization $processor, $vendor, $package = null)
     {
-        return $this->processor->sync($this, $vendor, $package);
+        return $processor->sync($this, $vendor, $package);
     }
 
     /**
@@ -84,9 +68,9 @@ class AuthorizationController extends AdminController
      */
     public function indexSucceed(array $data)
     {
-        set_meta('title', trans('orchestra/control::title.acls.list'));
+        \set_meta('title', trans('orchestra/control::title.acls.list'));
 
-        return view('orchestra/control::acl.index', $data);
+        return \view('orchestra/control::acl.index', $data);
     }
 
     /**
@@ -98,11 +82,13 @@ class AuthorizationController extends AdminController
      */
     public function updateSucceed($metric)
     {
-        $this->synchronizer->handle();
+        \resolve(Synchronizer::class)->handle();
 
-        $message = trans('orchestra/control::response.acls.update');
+        $message = \trans('orchestra/control::response.acls.update');
 
-        return $this->redirectWithMessage(handles("orchestra::control/acl?name={$metric}"), $message);
+        return $this->redirectWithMessage(
+            \handles("orchestra::control/acl?name={$metric}"), $message
+        );
     }
 
     /**
@@ -114,11 +100,13 @@ class AuthorizationController extends AdminController
      */
     public function syncSucceed(Fluent $acl)
     {
-        $message = trans('orchestra/control::response.acls.sync-roles', [
+        $message = \trans('orchestra/control::response.acls.sync-roles', [
             'name' => $acl->get('name'),
         ]);
 
-        return $this->redirectWithMessage(handles("orchestra::control/acl?name={$acl->get('name')}"), $message);
+        return $this->redirectWithMessage(
+            \handles("orchestra::control/acl?name={$acl->get('name')}"), $message
+        );
     }
 
     /**
@@ -128,6 +116,6 @@ class AuthorizationController extends AdminController
      */
     public function aclVerificationFailed()
     {
-        return $this->suspend(404);
+        return \abort(404);
     }
 }

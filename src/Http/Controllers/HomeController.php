@@ -13,8 +13,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        set_meta('title', 'Control');
+        \set_meta('title', 'Control');
 
-        return view('orchestra/control::home');
+        return \view('orchestra/control::home');
     }
 }

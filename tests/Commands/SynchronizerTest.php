@@ -12,7 +12,7 @@ use Orchestra\Control\Contracts\Commands\Synchronizer as SynchronizerContract;
 
 class SynchronizerTest extends TestCase
 {
-    public function tearDown()
+    protected function tearDown(): void
     {
         m::close();
     }
