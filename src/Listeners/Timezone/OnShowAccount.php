@@ -2,7 +2,7 @@
 
 namespace Orchestra\Control\Listeners\Timezone;
 
-use Orchestra\Control\Timezone as Model;
+use Orchestra\Support\Timezone as TimezoneCollection;
 use Orchestra\Control\Listeners\Timezone;
 use Orchestra\Contracts\Html\Form\Fieldset;
 use Orchestra\Contracts\Html\Form\Grid as FormGrid;
@@ -28,7 +28,7 @@ class OnShowAccount extends Timezone
             $form->fieldset('Timezone', function (Fieldset $fieldset) {
                 $fieldset->control('select', 'meta_timezone')
                     ->label('Timezone')
-                    ->options(Model::pluck())
+                    ->options(TimezoneCollection::pluck('name', 'code'))
                     ->value(function ($row) {
                         $meta = $this->memory->make('user');
 

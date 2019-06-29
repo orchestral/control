@@ -1,7 +1,7 @@
 {
     "name": "orchestra/control",
     "description": "Control Extension for Orchestra Platform",
-    "keywords": ["orchestra-platform", "orchestral", "extension", "laravel", "rbac", "timezone", "theme"],
+    "keywords": ["orchestra-platform", "orchestral", "extension", "laravel", "rbac", "theme"],
     "license": "MIT",
     "authors": [
         {
