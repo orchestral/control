@@ -3,8 +3,6 @@
 namespace Orchestra\Control;
 
 use Orchestra\Control\Commands\Synchronizer;
-use Orchestra\Control\Listeners\Timezone\OnShowAccount;
-use Orchestra\Control\Listeners\Timezone\OnUpdateAccount;
 use Orchestra\Foundation\Support\Providers\ModuleServiceProvider;
 use Orchestra\Control\Listeners\Configuration\OnUpdateConfiguration;
 use Orchestra\Control\Contracts\Commands\Synchronizer as SynchronizerContract;
@@ -25,9 +23,6 @@ class ControlServiceProvider extends ModuleServiceProvider
      */
     protected $listen = [
         'orchestra.saved: extension.orchestra/control' => [OnUpdateConfiguration::class],
-
-        'orchestra.form: user.account' => [OnShowAccount::class],
-        'orchestra.saved: user.account' => [OnUpdateAccount::class],
     ];
 
     /**

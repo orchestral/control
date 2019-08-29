@@ -3,6 +3,7 @@
 namespace Orchestra\Control\Http\Controllers;
 
 use Orchestra\Model\Role;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Orchestra\Control\Processors\Role as RoleProcessor;
 use Orchestra\Foundation\Http\Controllers\AdminController;
@@ -73,26 +74,28 @@ class RolesController extends AdminController
     /**
      * Create the role.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Orchestra\Control\Processors\Role   $processor
      *
      * @return mixed
      */
-    public function store(RoleProcessor $processor)
+    public function store(Request $request, RoleProcessor $processor)
     {
-        return $processor->store($this, Input::all());
+        return $processor->store($this, $request->all());
     }
 
     /**
      * Update the role.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Orchestra\Control\Processors\Role   $processor
      * @param  int  $roles
      *
      * @return mixed
      */
-    public function update(RoleProcessor $processor, $roles)
+    public function update(Request $request, RoleProcessor $processor, $roles)
     {
-        return $processor->update($this, Input::all(), $roles);
+        return $processor->update($this, $request->all(), $roles);
     }
 
     /**
