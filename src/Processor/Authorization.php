@@ -5,6 +5,7 @@ namespace Orchestra\Control\Processors;
 use Orchestra\Support\Str;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
+use Illuminate\Support\Collection;
 use Orchestra\Contracts\Authorization\Factory;
 use Orchestra\Contracts\Foundation\Foundation;
 use Orchestra\Contracts\Authorization\Authorization as AuthorizationContract;
@@ -57,17 +58,19 @@ class Authorization extends Processor
         foreach ($instances as $name => $instance) {
             $collection[$name] = (string) $this->getAuthorizationName($name);
 
-            $name === $metric && $eloquent = $instance;
+            if ($name === $metric) {
+                $eloquent = $instance;
+            }
         }
 
-        if (is_null($eloquent)) {
+        if (\is_null($eloquent)) {
             return $listener->aclVerificationFailed();
         }
 
         $actions = $this->getAuthorizationActions($eloquent, $metric);
         $roles = $this->getAuthorizationRoles($eloquent);
 
-        return $listener->indexSucceed(compact('actions', 'roles', 'eloquent', 'collection', 'metric'));
+        return $listener->indexSucceed(\compact('actions', 'roles', 'eloquent', 'collection', 'metric'));
     }
 
     /**
@@ -83,7 +86,7 @@ class Authorization extends Processor
         $metric = $input['metric'];
         $acl = $this->acl->get($metric);
 
-        if (is_null($acl)) {
+        if (\is_null($acl)) {
             return $listener->aclVerificationFailed();
         }
 
@@ -116,7 +119,7 @@ class Authorization extends Processor
         $name = $this->getExtension($vendor, $package)->get('name');
         $acl = $this->acl->get($name);
 
-        if (is_null($acl)) {
+        if (\is_null($acl)) {
             return $listener->aclVerificationFailed();
         }
 
@@ -128,7 +131,9 @@ class Authorization extends Processor
 
         $acl->sync();
 
-        return $listener->syncSucceed(new Fluent(compact('vendor', 'package', 'name')));
+        return $listener->syncSucceed(
+            new Fluent(\compact('vendor', 'package', 'name'))
+        );
     }
 
     /**
@@ -138,12 +143,12 @@ class Authorization extends Processor
      *
      * @return string
      */
-    protected function getAuthorizationName($name)
+    protected function getAuthorizationName($name): string
     {
         $extension = $this->memory->get("extensions.available.{$name}.name");
         $title = ($name === 'orchestra') ? 'Orchestra Platform' : $extension;
 
-        return is_null($title) ? Str::humanize($name) : $title;
+        return \is_null($title) ? Str::humanize($name) : $title;
     }
 
     /**
@@ -154,13 +159,13 @@ class Authorization extends Processor
      *
      * @return \Illuminate\Support\Collection
      */
-    protected function getAuthorizationActions(AuthorizationContract $acl, $metric)
+    protected function getAuthorizationActions(AuthorizationContract $acl, $metric): Collection
     {
-        return collect($acl->actions()->get())->map(function ($slug) use ($metric) {
+        return Collection::make($acl->actions()->get())->map(function ($slug) use ($metric) {
             $key = "orchestra/foundation::acl.{$metric}.{$slug}";
             $name = $this->translator->has($key) ? $this->translator->get($key) : Str::humanize($slug);
 
-            return compact('slug', 'name');
+            return \compact('slug', 'name');
         });
     }
 
@@ -171,14 +176,14 @@ class Authorization extends Processor
      *
      * @return \Illuminate\Support\Collection
      */
-    protected function getAuthorizationRoles(AuthorizationContract $acl)
+    protected function getAuthorizationRoles(AuthorizationContract $acl): Collection
     {
-        return collect($acl->roles()->get())->reject(function ($role) {
-            return in_array($role, ['guest']);
-        })->map(function ($slug) {
+        return Collection::make($acl->roles()->get())->reject(static function ($role) {
+            return \in_array($role, ['guest']);
+        })->map(static function ($slug) {
             $name = Str::humanize($slug);
 
-            return compact('slug', 'name');
+            return \compact('slug', 'name');
         });
     }
 
@@ -190,9 +195,9 @@ class Authorization extends Processor
      *
      * @return \Illuminate\Support\Fluent
      */
-    protected function getExtension($vendor, $package = null)
+    protected function getExtension($vendor, $package = null): Fluent
     {
-        $name = (is_null($package) ? $vendor : implode('/', [$vendor, $package]));
+        $name = (\is_null($package) ? $vendor : \implode('/', [$vendor, $package]));
 
         return new Fluent(['name' => $name, 'uid' => $name]);
     }

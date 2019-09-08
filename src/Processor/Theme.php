@@ -36,14 +36,14 @@ class Theme extends Processor
      */
     public function showByType(Selector $listener, string $type)
     {
-        if (! in_array($type, $this->type)) {
+        if (! \in_array($type, $this->type)) {
             return $listener->themeFailedVerification();
         }
 
         $current = $this->memory->get("site.theme.{$type}");
         $themes = $this->getAvailableTheme($type);
 
-        return $listener->showThemeSelection(compact('current', 'themes', 'type'));
+        return $listener->showThemeSelection(\compact('current', 'themes', 'type'));
     }
 
     /**
@@ -59,7 +59,7 @@ class Theme extends Processor
     {
         $theme = $this->getAvailableTheme($type)->get($id);
 
-        if (! in_array($type, $this->type) || is_null($theme)) {
+        if (! \in_array($type, $this->type) || \is_null($theme)) {
             return $listener->themeFailedVerification();
         }
 
@@ -77,14 +77,14 @@ class Theme extends Processor
      */
     protected function getAvailableTheme(string $type): Collection
     {
-        $themes = $this->foundation->make('orchestra.theme.finder')->detect();
+        return $this->foundation->make('orchestra.theme.finder')->detect()->filter(
+            static function ($manifest) use ($type) {
+                if (! empty($manifest->type) && ! \in_array($type, $manifest->type)) {
+                    return null;
+                }
 
-        return $themes->filter(function ($manifest) use ($type) {
-            if (! empty($manifest->type) && ! in_array($type, $manifest->type)) {
-                return null;
+                return $manifest;
             }
-
-            return $manifest;
-        });
+        );
     }
 }

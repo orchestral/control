@@ -100,7 +100,7 @@ class ThemesController extends AdminController implements Selector
             'type' => Str::title($type),
         ]);
 
-        return $this->redirectWithMessage(
+        return \redirect_with_message(
             \handles("orchestra::control/themes/{$type}"), $message
         );
     }

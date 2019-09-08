@@ -20,6 +20,6 @@ class OnUpdateAccount extends Timezone
             return;
         }
 
-        $user->timezone = Request::input('meta_timezone');
+        $user->timezone = Request::input('timezone');
     }
 }

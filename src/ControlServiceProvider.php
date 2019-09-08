@@ -42,7 +42,7 @@ class ControlServiceProvider extends ModuleServiceProvider
      */
     protected function bootExtensionComponents()
     {
-        $path = realpath(__DIR__.'/../');
+        $path = \realpath(__DIR__.'/../');
 
         $this->addConfigComponent('orchestra/control', 'orchestra/control', "{$path}/config");
         $this->addLanguageComponent('orchestra/control', 'orchestra/control', "{$path}/resources/lang");
@@ -60,7 +60,7 @@ class ControlServiceProvider extends ModuleServiceProvider
      */
     protected function loadRoutes()
     {
-        $path = realpath(__DIR__.'/../');
+        $path = \realpath(__DIR__.'/../');
 
         $this->loadBackendRoutesFrom("{$path}/routes/backend.php");
     }

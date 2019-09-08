@@ -54,28 +54,28 @@ class ControlPlugin extends Plugin
      */
     protected function form(Fluent $model, FormBuilder $form)
     {
-        $form->extend(function (FormGrid $form) {
-            $form->fieldset('Role Configuration', function (Fieldset $fieldset) {
+        $form->extend(static function (FormGrid $form) {
+            $form->fieldset('Role Configuration', static function (Fieldset $fieldset) {
                 $roles = Role::pluck('name', 'id');
 
                 $fieldset->control('select', 'admin_role')
-                    ->label(trans('orchestra/control::label.roles.admin'))
+                    ->label(\trans('orchestra/control::label.roles.admin'))
                     ->options($roles);
 
                 $fieldset->control('select', 'member_role')
-                    ->label(trans('orchestra/control::label.roles.member'))
+                    ->label(\trans('orchestra/control::label.roles.member'))
                     ->options($roles);
             });
 
-            $form->fieldset('Timezone', function (Fieldset $fieldset) {
+            $form->fieldset('Timezone', static function (Fieldset $fieldset) {
                 $agreement = ['yes' => 'Yes', 'no' => 'No'];
 
                 $fieldset->control('select', 'localtime')
                     ->attributes(['role' => 'agreement'])
-                    ->label(trans('orchestra/control::label.enable-timezone'))
+                    ->label(\trans('orchestra/control::label.enable-timezone'))
                     ->options($agreement)
-                    ->value(function ($row) {
-                        return ($row->localtime === true) ? 'yes' : 'no';
+                    ->value(static function ($field) {
+                        return ($field->localtime === true) ? 'yes' : 'no';
                     });
             });
         });

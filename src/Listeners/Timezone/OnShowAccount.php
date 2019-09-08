@@ -24,12 +24,12 @@ class OnShowAccount extends Timezone
             return;
         }
 
-        $form->extend(function (FormGrid $form) {
-            $form->fieldset('Timezone', function (Fieldset $fieldset) {
-                $fieldset->control('select', 'meta_timezone')
+        $form->extend(static function (FormGrid $form) {
+            $form->fieldset('Timezone', static function (Fieldset $fieldset) {
+                $fieldset->control('select', 'timezone')
                     ->label('Timezone')
                     ->options(TimezoneCollection::pluck('name', 'code'))
-                    ->value(function ($user) {
+                    ->value(static function ($user) {
                         return $user->timezone;
                     });
             });

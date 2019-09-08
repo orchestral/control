@@ -185,9 +185,7 @@ class Role extends Processor
         $this->fireEvent($beforeEvent, [$role]);
         $this->fireEvent('saving', [$role]);
 
-        DB::transaction(function () use ($role) {
-            $role->save();
-        });
+        $role->saveOrFail();
 
         $this->fireEvent($afterEvent, [$role]);
         $this->fireEvent('saved', [$role]);

@@ -88,7 +88,7 @@ class AuthorizationController extends AdminController
 
         $message = \trans('orchestra/control::response.acls.update');
 
-        return $this->redirectWithMessage(
+        return \redirect_with_message(
             \handles("orchestra::control/acl?name={$metric}"), $message
         );
     }
@@ -106,7 +106,7 @@ class AuthorizationController extends AdminController
             'name' => $acl->get('name'),
         ]);
 
-        return $this->redirectWithMessage(
+        return \redirect_with_message(
             \handles("orchestra::control/acl?name={$acl->get('name')}"), $message
         );
     }
