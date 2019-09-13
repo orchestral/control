@@ -2,12 +2,12 @@
 
 namespace Orchestra\Control\TestCase\Http\Handlers;
 
-use Mockery as m;
-use PHPUnit\Framework\TestCase;
-use Orchestra\Widget\Handlers\Menu;
-use Orchestra\Foundation\Support\MenuHandler;
 use Illuminate\Contracts\Foundation\Application;
+use Mockery as m;
 use Orchestra\Control\Http\Handlers\ControlMenuHandler;
+use Orchestra\Foundation\Support\MenuHandler;
+use Orchestra\Widget\Handlers\Menu;
+use PHPUnit\Framework\TestCase;
 
 class ControlMenuHandlerTest extends TestCase
 {

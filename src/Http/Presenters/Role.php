@@ -2,14 +2,14 @@
 
 namespace Orchestra\Control\Http\Presenters;
 
-use Orchestra\Html\Form\Fieldset;
-use Orchestra\Model\Role as Eloquent;
 use Illuminate\Contracts\Config\Repository;
-use Orchestra\Contracts\Html\Form\Grid as FormGrid;
-use Orchestra\Contracts\Html\Table\Grid as TableGrid;
 use Orchestra\Contracts\Html\Form\Factory as FormFactory;
+use Orchestra\Contracts\Html\Form\Grid as FormGrid;
 use Orchestra\Contracts\Html\Table\Builder as TableBuilder;
 use Orchestra\Contracts\Html\Table\Factory as TableFactory;
+use Orchestra\Contracts\Html\Table\Grid as TableGrid;
+use Orchestra\Html\Form\Fieldset;
+use Orchestra\Model\Role as Eloquent;
 
 class Role extends Presenter
 {

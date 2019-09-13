@@ -2,10 +2,10 @@
 
 namespace Orchestra\Control\Http\Controllers;
 
-use Orchestra\Model\Role;
 use Illuminate\Http\Request;
 use Orchestra\Control\Processors\Role as RoleProcessor;
 use Orchestra\Foundation\Http\Controllers\AdminController;
+use Orchestra\Model\Role;
 
 class RolesController extends AdminController
 {

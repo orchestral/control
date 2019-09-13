@@ -2,11 +2,11 @@
 
 namespace Orchestra\Control\Listeners\Timezone;
 
-use Orchestra\Control\Listeners\Timezone;
+use Orchestra\Contracts\Html\Form\Builder as FormBuilder;
 use Orchestra\Contracts\Html\Form\Fieldset;
 use Orchestra\Contracts\Html\Form\Grid as FormGrid;
+use Orchestra\Control\Listeners\Timezone;
 use Orchestra\Support\Timezone as TimezoneCollection;
-use Orchestra\Contracts\Html\Form\Builder as FormBuilder;
 
 class OnShowAccount extends Timezone
 {

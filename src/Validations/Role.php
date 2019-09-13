@@ -2,10 +2,10 @@
 
 namespace Orchestra\Control\Validations;
 
+use Illuminate\Contracts\Validation\Validator as ValidatorResolver;
+use Orchestra\Support\Facades\Foundation;
 use Orchestra\Support\Keyword;
 use Orchestra\Support\Validator;
-use Orchestra\Support\Facades\Foundation;
-use Illuminate\Contracts\Validation\Validator as ValidatorResolver;
 
 class Role extends Validator
 {

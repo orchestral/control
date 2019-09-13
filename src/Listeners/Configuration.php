@@ -2,8 +2,8 @@
 
 namespace Orchestra\Control\Listeners;
 
-use Orchestra\Contracts\Memory\Provider;
 use Illuminate\Contracts\Config\Repository;
+use Orchestra\Contracts\Memory\Provider;
 use Orchestra\Control\Contracts\Commands\Synchronizer;
 
 abstract class Configuration

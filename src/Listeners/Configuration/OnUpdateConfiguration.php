@@ -2,9 +2,9 @@
 
 namespace Orchestra\Control\Listeners\Configuration;
 
-use Orchestra\Model\Role;
 use Illuminate\Support\Fluent;
 use Orchestra\Control\Listeners\Configuration;
+use Orchestra\Model\Role;
 
 class OnUpdateConfiguration extends Configuration
 {

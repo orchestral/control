@@ -4,8 +4,8 @@ namespace Orchestra\Control\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Fluent;
-use Orchestra\Control\Processors\Authorization;
 use Orchestra\Control\Contracts\Commands\Synchronizer;
+use Orchestra\Control\Processors\Authorization;
 use Orchestra\Foundation\Http\Controllers\AdminController;
 
 class AuthorizationController extends AdminController

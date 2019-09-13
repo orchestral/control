@@ -2,8 +2,8 @@
 
 namespace Orchestra\Control\Http\Handlers;
 
-use Orchestra\Foundation\Support\MenuHandler;
 use Orchestra\Contracts\Authorization\Authorization;
+use Orchestra\Foundation\Support\MenuHandler;
 
 class RoleMenuHandler extends MenuHandler
 {

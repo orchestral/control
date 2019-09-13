@@ -5,10 +5,10 @@ namespace Orchestra\Control\Processors;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
-use Orchestra\Model\Role as Eloquent;
 use Orchestra\Contracts\Foundation\Foundation;
-use Orchestra\Control\Validations\Role as RoleValidator;
 use Orchestra\Control\Http\Presenters\Role as RolePresenter;
+use Orchestra\Control\Validations\Role as RoleValidator;
+use Orchestra\Model\Role as Eloquent;
 
 class Role extends Processor
 {

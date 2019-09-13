@@ -2,13 +2,13 @@
 
 namespace Orchestra\Control;
 
-use Orchestra\Model\Role;
 use Illuminate\Support\Fluent;
-use Orchestra\Extension\Plugin;
+use Orchestra\Contracts\Html\Form\Builder as FormBuilder;
 use Orchestra\Contracts\Html\Form\Fieldset;
 use Orchestra\Contracts\Html\Form\Grid as FormGrid;
 use Orchestra\Control\Http\Handlers\ControlMenuHandler;
-use Orchestra\Contracts\Html\Form\Builder as FormBuilder;
+use Orchestra\Extension\Plugin;
+use Orchestra\Model\Role;
 
 class ControlPlugin extends Plugin
 {

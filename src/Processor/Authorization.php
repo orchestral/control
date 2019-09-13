@@ -2,13 +2,13 @@
 
 namespace Orchestra\Control\Processors;
 
-use Orchestra\Support\Str;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Fluent;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Fluent;
+use Orchestra\Contracts\Authorization\Authorization as AuthorizationContract;
 use Orchestra\Contracts\Authorization\Factory;
 use Orchestra\Contracts\Foundation\Foundation;
-use Orchestra\Contracts\Authorization\Authorization as AuthorizationContract;
+use Orchestra\Support\Str;
 
 class Authorization extends Processor
 {

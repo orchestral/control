@@ -3,9 +3,9 @@
 namespace Orchestra\Control;
 
 use Orchestra\Control\Commands\Synchronizer;
-use Orchestra\Foundation\Support\Providers\ModuleServiceProvider;
-use Orchestra\Control\Listeners\Configuration\OnUpdateConfiguration;
 use Orchestra\Control\Contracts\Commands\Synchronizer as SynchronizerContract;
+use Orchestra\Control\Listeners\Configuration\OnUpdateConfiguration;
+use Orchestra\Foundation\Support\Providers\ModuleServiceProvider;
 
 class ControlServiceProvider extends ModuleServiceProvider
 {

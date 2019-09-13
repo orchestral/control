@@ -1,8 +1,8 @@
 <?php
 
+use Illuminate\Database\Migrations\Migration;
 use Orchestra\Model\Role;
 use Orchestra\Support\Facades\Foundation;
-use Illuminate\Database\Migrations\Migration;
 
 class OrchestraControlSeedAcls extends Migration
 {
