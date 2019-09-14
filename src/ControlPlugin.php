@@ -25,7 +25,7 @@ class ControlPlugin extends Plugin
      * @var array
      */
     protected $config = [
-        'localtime' => 'orchestra/control::localtime.enable',
+        'localtime' => 'orchestra/control::localtime',
         'admin_role' => 'orchestra/foundation::roles.admin',
         'member_role' => 'orchestra/foundation::roles.member',
     ];
