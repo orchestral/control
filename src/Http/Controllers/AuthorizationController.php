@@ -2,10 +2,10 @@
 
 namespace Orchestra\Control\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Fluent;
-use Illuminate\Support\Facades\Input;
-use Orchestra\Control\Processors\Authorization;
 use Orchestra\Control\Contracts\Commands\Synchronizer;
+use Orchestra\Control\Processors\Authorization;
 use Orchestra\Foundation\Http\Controllers\AdminController;
 
 class AuthorizationController extends AdminController
@@ -24,25 +24,27 @@ class AuthorizationController extends AdminController
     /**
      * Get default resources landing page.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Orchestra\Control\Processors\Authorization  $processor
      *
      * @return mixed
      */
-    public function edit(Authorization $processor)
+    public function edit(Request $request, Authorization $processor)
     {
-        return $processor->edit($this, Input::get('name', 'orchestra'));
+        return $processor->edit($this, $request->input('name', 'orchestra'));
     }
 
     /**
      * Update ACL metric.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Orchestra\Control\Processors\Authorization  $processor
      *
      * @return mixed
      */
-    public function update(Authorization $processor)
+    public function update(Request $request, Authorization $processor)
     {
-        return $processor->update($this, Input::all());
+        return $processor->update($this, $request->all());
     }
 
     /**
@@ -86,7 +88,7 @@ class AuthorizationController extends AdminController
 
         $message = \trans('orchestra/control::response.acls.update');
 
-        return $this->redirectWithMessage(
+        return \redirect_with_message(
             \handles("orchestra::control/acl?name={$metric}"), $message
         );
     }
@@ -104,7 +106,7 @@ class AuthorizationController extends AdminController
             'name' => $acl->get('name'),
         ]);
 
-        return $this->redirectWithMessage(
+        return \redirect_with_message(
             \handles("orchestra::control/acl?name={$acl->get('name')}"), $message
         );
     }

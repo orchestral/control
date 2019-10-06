@@ -2,10 +2,10 @@
 
 namespace Orchestra\Control\Http\Controllers;
 
-use Orchestra\Model\Role;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
 use Orchestra\Control\Processors\Role as RoleProcessor;
 use Orchestra\Foundation\Http\Controllers\AdminController;
+use Orchestra\Model\Role;
 
 class RolesController extends AdminController
 {
@@ -73,26 +73,28 @@ class RolesController extends AdminController
     /**
      * Create the role.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Orchestra\Control\Processors\Role   $processor
      *
      * @return mixed
      */
-    public function store(RoleProcessor $processor)
+    public function store(Request $request, RoleProcessor $processor)
     {
-        return $processor->store($this, Input::all());
+        return $processor->store($this, $request->all());
     }
 
     /**
      * Update the role.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Orchestra\Control\Processors\Role   $processor
      * @param  int  $roles
      *
      * @return mixed
      */
-    public function update(RoleProcessor $processor, $roles)
+    public function update(Request $request, RoleProcessor $processor, $roles)
     {
-        return $processor->update($this, Input::all(), $roles);
+        return $processor->update($this, $request->all(), $roles);
     }
 
     /**
@@ -172,7 +174,7 @@ class RolesController extends AdminController
      */
     public function storeValidationFailed($validation)
     {
-        return $this->redirectWithErrors(
+        return \redirect_with_errors(
             \handles('orchestra::control/roles/create'), $validation
         );
     }
@@ -188,7 +190,7 @@ class RolesController extends AdminController
     {
         $message = \trans('orchestra/foundation::response.db-failed', $error);
 
-        return $this->redirectWithMessage(
+        return \redirect_with_message(
             \handles('orchestra::control/roles'), $message, 'error'
         );
     }
@@ -206,7 +208,7 @@ class RolesController extends AdminController
             'name' => $role->getAttribute('name'),
         ]);
 
-        return $this->redirectWithMessage(
+        return \redirect_with_message(
             \handles('orchestra::control/roles'), $message
         );
     }
@@ -221,7 +223,7 @@ class RolesController extends AdminController
      */
     public function updateValidationFailed($validation, $id)
     {
-        return $this->redirectWithErrors(
+        return \redirect_with_errors(
             \handles("orchestra::control/roles/{$id}/edit"), $validation
         );
     }
@@ -237,7 +239,7 @@ class RolesController extends AdminController
     {
         $message = \trans('orchestra/foundation::response.db-failed', $errors);
 
-        return $this->redirectWithMessage(
+        return \redirect_with_message(
             \handles('orchestra::control/roles'), $message
         );
     }
@@ -255,7 +257,7 @@ class RolesController extends AdminController
             'name' => $role->getAttribute('name'),
         ]);
 
-        return $this->redirectWithMessage(
+        return \redirect_with_message(
             \handles('orchestra::control/roles'), $message
         );
     }
@@ -271,7 +273,7 @@ class RolesController extends AdminController
     {
         $message = \trans('orchestra/foundation::response.db-failed', $error);
 
-        return $this->redirectWithMessage(
+        return \redirect_with_message(
             \handles('orchestra::control/roles'), $message
         );
     }
@@ -289,7 +291,7 @@ class RolesController extends AdminController
             'name' => $role->getAttribute('name'),
         ]);
 
-        return $this->redirectWithMessage(
+        return \redirect_with_message(
             \handles('orchestra::control/roles'), $message
         );
     }

@@ -2,11 +2,11 @@
 
 namespace Orchestra\Control\Listeners\Timezone;
 
-use Orchestra\Support\Timezone as TimezoneCollection;
-use Orchestra\Control\Listeners\Timezone;
+use Orchestra\Contracts\Html\Form\Builder as FormBuilder;
 use Orchestra\Contracts\Html\Form\Fieldset;
 use Orchestra\Contracts\Html\Form\Grid as FormGrid;
-use Orchestra\Contracts\Html\Form\Builder as FormBuilder;
+use Orchestra\Control\Listeners\Timezone;
+use Orchestra\Support\Timezone as TimezoneCollection;
 
 class OnShowAccount extends Timezone
 {
@@ -24,15 +24,13 @@ class OnShowAccount extends Timezone
             return;
         }
 
-        $form->extend(function (FormGrid $form) {
-            $form->fieldset('Timezone', function (Fieldset $fieldset) {
-                $fieldset->control('select', 'meta_timezone')
+        $form->extend(static function (FormGrid $form) {
+            $form->fieldset('Timezone', static function (Fieldset $fieldset) {
+                $fieldset->control('select', 'timezone')
                     ->label('Timezone')
                     ->options(TimezoneCollection::pluck('name', 'code'))
-                    ->value(function ($row) {
-                        $meta = $this->memory->make('user');
-
-                        return $meta->get("timezone.{$row->id}", $this->config->get('app.timezone'));
+                    ->value(static function ($user) {
+                        return $user->timezone;
                     });
             });
         });

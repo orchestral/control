@@ -3,11 +3,9 @@
 namespace Orchestra\Control;
 
 use Orchestra\Control\Commands\Synchronizer;
-use Orchestra\Control\Listeners\Timezone\OnShowAccount;
-use Orchestra\Control\Listeners\Timezone\OnUpdateAccount;
-use Orchestra\Foundation\Support\Providers\ModuleServiceProvider;
-use Orchestra\Control\Listeners\Configuration\OnUpdateConfiguration;
 use Orchestra\Control\Contracts\Commands\Synchronizer as SynchronizerContract;
+use Orchestra\Control\Listeners\Configuration\OnUpdateConfiguration;
+use Orchestra\Foundation\Support\Providers\ModuleServiceProvider;
 
 class ControlServiceProvider extends ModuleServiceProvider
 {
@@ -25,9 +23,6 @@ class ControlServiceProvider extends ModuleServiceProvider
      */
     protected $listen = [
         'orchestra.saved: extension.orchestra/control' => [OnUpdateConfiguration::class],
-
-        'orchestra.form: user.account' => [OnShowAccount::class],
-        'orchestra.saved: user.account' => [OnUpdateAccount::class],
     ];
 
     /**
@@ -47,7 +42,7 @@ class ControlServiceProvider extends ModuleServiceProvider
      */
     protected function bootExtensionComponents()
     {
-        $path = realpath(__DIR__.'/../');
+        $path = \realpath(__DIR__.'/../');
 
         $this->addConfigComponent('orchestra/control', 'orchestra/control', "{$path}/config");
         $this->addLanguageComponent('orchestra/control', 'orchestra/control', "{$path}/resources/lang");
@@ -65,7 +60,7 @@ class ControlServiceProvider extends ModuleServiceProvider
      */
     protected function loadRoutes()
     {
-        $path = realpath(__DIR__.'/../');
+        $path = \realpath(__DIR__.'/../');
 
         $this->loadBackendRoutesFrom("{$path}/routes/backend.php");
     }

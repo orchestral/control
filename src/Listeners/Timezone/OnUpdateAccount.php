@@ -2,7 +2,7 @@
 
 namespace Orchestra\Control\Listeners\Timezone;
 
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Request;
 use Orchestra\Control\Listeners\Timezone;
 
 class OnUpdateAccount extends Timezone
@@ -20,9 +20,6 @@ class OnUpdateAccount extends Timezone
             return;
         }
 
-        $userId = $user->getAttribute('id');
-        $meta = $this->memory->make('user');
-
-        $meta->put("timezone.{$userId}", Input::get('meta_timezone'));
+        $user->timezone = Request::input('timezone');
     }
 }

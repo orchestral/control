@@ -2,7 +2,6 @@
 
 namespace Orchestra\Control\Listeners;
 
-use Orchestra\Memory\MemoryManager;
 use Illuminate\Contracts\Config\Repository;
 
 class Timezone
@@ -25,12 +24,10 @@ class Timezone
      * Construct a new config handler.
      *
      * @param  \Illuminate\Contracts\Config\Repository  $config
-     * @param  \Orchestra\Memory\MemoryManager  $memory
      */
-    public function __construct(Repository $config, MemoryManager $memory)
+    public function __construct(Repository $config)
     {
         $this->config = $config;
-        $this->memory = $memory;
     }
 
     /**
@@ -40,6 +37,6 @@ class Timezone
      */
     protected function isLocaltimeEnabled(): bool
     {
-        return (bool) $this->config->get('orchestra/control::localtime.enable', false);
+        return (bool) $this->config->get('orchestra/control::localtime', false);
     }
 }

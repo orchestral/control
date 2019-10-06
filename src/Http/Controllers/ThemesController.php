@@ -2,10 +2,10 @@
 
 namespace Orchestra\Control\Http\Controllers;
 
-use Orchestra\Support\Str;
 use Orchestra\Contracts\Theme\Listener\Selector;
 use Orchestra\Control\Processors\Theme as Processor;
 use Orchestra\Foundation\Http\Controllers\AdminController;
+use Orchestra\Support\Str;
 
 class ThemesController extends AdminController implements Selector
 {
@@ -100,7 +100,7 @@ class ThemesController extends AdminController implements Selector
             'type' => Str::title($type),
         ]);
 
-        return $this->redirectWithMessage(
+        return \redirect_with_message(
             \handles("orchestra::control/themes/{$type}"), $message
         );
     }

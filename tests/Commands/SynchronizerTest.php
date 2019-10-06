@@ -2,13 +2,13 @@
 
 namespace Orchestra\Control\TestCase\Commands;
 
+use Illuminate\Contracts\Foundation\Application;
 use Mockery as m;
+use Orchestra\Contracts\Authorization\Authorization;
+use Orchestra\Control\Commands\Synchronizer;
+use Orchestra\Control\Contracts\Commands\Synchronizer as SynchronizerContract;
 use Orchestra\Model\Role;
 use PHPUnit\Framework\TestCase;
-use Orchestra\Control\Commands\Synchronizer;
-use Illuminate\Contracts\Foundation\Application;
-use Orchestra\Contracts\Authorization\Authorization;
-use Orchestra\Control\Contracts\Commands\Synchronizer as SynchronizerContract;
 
 class SynchronizerTest extends TestCase
 {
