@@ -4,7 +4,7 @@ namespace Orchestra\Control\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Fluent;
-use Orchestra\Control\Contracts\Commands\Synchronizer;
+use Orchestra\Foundation\Jobs\SyncDefaultAuthorization;
 use Orchestra\Control\Processors\Authorization;
 use Orchestra\Foundation\Http\Controllers\AdminController;
 
@@ -84,7 +84,7 @@ class AuthorizationController extends AdminController
      */
     public function updateSucceed($metric)
     {
-        \resolve(Synchronizer::class)->handle();
+        \dispatch_now(new SyncDefaultAuthorization());
 
         $message = \trans('orchestra/control::response.acls.update');
 

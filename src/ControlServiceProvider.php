@@ -32,7 +32,7 @@ class ControlServiceProvider extends ModuleServiceProvider
      */
     public function register()
     {
-        $this->app->bind(SynchronizerContract::class, Synchronizer::class);
+        //
     }
 
     /**
