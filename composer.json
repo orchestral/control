@@ -19,7 +19,7 @@
         ]
     },
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.3",
         "orchestra/contracts": "^6.0",
         "orchestra/extension": "^6.0",
         "orchestra/support": "^6.0"
@@ -31,7 +31,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "5.0-dev"
+            "dev-master": "6.0-dev"
         }
     },
     "minimum-stability": "dev"
