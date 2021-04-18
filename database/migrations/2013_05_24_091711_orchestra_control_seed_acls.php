@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Orchestra\Model\Role;
 use Orchestra\Support\Facades\Foundation;
 
-class OrchestraControlSeedAcls extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -31,4 +31,4 @@ class OrchestraControlSeedAcls extends Migration
     {
         // Nothing to do here.
     }
-}
+};
