@@ -2,8 +2,6 @@
 
 namespace Orchestra\Control;
 
-use Orchestra\Control\Commands\Synchronizer;
-use Orchestra\Control\Contracts\Commands\Synchronizer as SynchronizerContract;
 use Orchestra\Control\Listeners\Configuration\OnUpdateConfiguration;
 use Orchestra\Foundation\Support\Providers\ModuleServiceProvider;
 
